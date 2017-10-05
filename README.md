@@ -12,7 +12,7 @@ Para compilar y empaquetar, se requiere Maven 3.x
  
 
 ```
-$ git clone https://github.com/magm3333/ing-web3-2017
+$ git clone https://github.com/fcabanilla/ing-web3-2017.git
 $ cd ing-web3-2017
 ```
 
