@@ -2,7 +2,7 @@
 
 Creado con propósitos didácticos
 
-Autor: Mariano García Mattío - email: [magm3333@gmail.com](mailto:magm3333@gmail.com) - Twitter: [@magm3333](https://twitter.com/magm3333)
+Autor:  - email: [federico.cabanilla@gmail.com](mailto:federico.cabanilla@gmail.com) 
 
 
 ### Instalar y Ejecutar
