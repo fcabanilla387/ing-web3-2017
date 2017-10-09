@@ -27,10 +27,15 @@
 
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
-		<property name="hbm2ddl.auto">update</property>
+		<property name="hbm2ddl.auto">create</property>
 		<!-- update validate -->
 		<mapping class="ar.com.magm.ti.model.Entidad" />
 		<mapping class="ar.com.magm.ti.model.Persona" />
+		<mapping class="ar.com.magm.ti.model.Album" />
+		<mapping class="ar.com.magm.ti.model.Cancion" />
+		<mapping class="ar.com.magm.ti.model.Concierto" />
+		<mapping class="ar.com.magm.ti.model.Usuario" />
+		
 
 
 
