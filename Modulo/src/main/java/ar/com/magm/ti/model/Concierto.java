@@ -11,29 +11,29 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
+
 @Entity
 @Proxy(lazy = false)
 @Access(value = AccessType.FIELD)
 @Table(name = "concierto")
 public class Concierto implements Serializable {
 
-	private static final long serialVersionUID = -3235990393994226233L;
-
+	private static final long serialVersionUID = 2464927409480955012L;
 	@Id
 	@GeneratedValue
-	private int id;
+	private int idConcierto;
+	
 	private String pais;
 	private String lugar;
 	private Date fecha;
-	private String idArtista;
 	
 	
-	public int getId() {
-		return id;
+	public int getIdConcierto() {
+		return idConcierto;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setIdConcierto(int idConcierto) {
+		this.idConcierto = idConcierto;
 	}
 
 	public String getPais() {
@@ -60,27 +60,19 @@ public class Concierto implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public String getIdArtista() {
-		return idArtista;
-	}
-
-	public void setIdArtista(String idArtista) {
-		this.idArtista = idArtista;
-	}
-
 	@Override
 	public int hashCode() {
-		return getId();
-	}
+		return getIdConcierto();
 
-	@Override
-	public boolean equals(Object obj) {
-		Concierto p = (Concierto) obj;
-		return getId() == p.getId();
 	}
 
 	@Override
 	public String toString() {
-		return String.format("Concierto: lugar=%s, pais=%s", getLugar(), getPais());
+		return String.format("Concierto: %s Pais: %s", getIdConcierto(), getPais());
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return getIdConcierto()==((Concierto)obj).getIdConcierto();
 	}
 }

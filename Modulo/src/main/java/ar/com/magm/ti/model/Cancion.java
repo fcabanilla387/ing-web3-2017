@@ -3,12 +3,17 @@ package ar.com.magm.ti.model;
 import java.io.Serializable;
 //import java.util.ArrayList;
 //import java.util.*;
+import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
@@ -27,7 +32,15 @@ public class Cancion implements Serializable {
 	private String titulo;
 	private String duracion;
 	private float rating;
-	private long reproducciones;	
+	private long reproducciones;
+	
+	
+	@ManyToMany(cascade = {CascadeType.ALL},mappedBy="artistasSeguidos")
+	private List<Usuario> usuarios;
+	
+	@OneToMany
+	@JoinColumn(name="idCancion")
+	private List<Subgenero> subgenero;
 
 	public int getId() {
 		return id;

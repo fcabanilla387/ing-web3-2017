@@ -1,7 +1,10 @@
 package ar.com.magm.ti.model;
 
+
+
 import java.io.Serializable;
-import java.util.*;
+import java.util.List;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
@@ -9,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,21 +30,25 @@ public class Artista implements Serializable {
 	private int id;
 	private String nombre;
 	private String genero;
-	
-	@OneToMany(cascade= CascadeType.ALL)
-	@JoinColumn(name="idConcierto")
-	private List<Concierto> conciertos;
-	
-	@OneToMany(cascade= CascadeType.ALL)
-	@JoinColumn(name="idAlbum")
-	private List<Album> albums;
 
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="idArtista")
+	private List<Concierto> conciertos;
+
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="idArtista")
+	private List<Album> albums;
+	
+	@ManyToMany(cascade = {CascadeType.ALL},mappedBy="canciones")
+	private List<Playlist> playlists; 
+	
+	
 	public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public Artista() {
+		super();
 	}
 
 	public String getNombre() {
@@ -57,22 +65,6 @@ public class Artista implements Serializable {
 
 	public void setGenero(String genero) {
 		this.genero = genero;
-	}
-
-	public List<Concierto> getConciertos() {
-		return conciertos;
-	}
-
-	public void setConciertos(List<Concierto> conciertos) {
-		this.conciertos = conciertos;
-	}
-
-	public List<Album> getAlbums() {
-		return albums;
-	}
-
-	public void setAlbums(List<Album> albums) {
-		this.albums = albums;
 	}
 
 	@Override

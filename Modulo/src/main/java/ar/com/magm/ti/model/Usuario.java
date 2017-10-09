@@ -1,14 +1,18 @@
 package ar.com.magm.ti.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
@@ -28,8 +32,30 @@ public class Usuario implements Serializable {
 	private String mail;
 	private String pais;
 	private boolean premiun;
-
 	
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="idUsuario")
+	private List<Playlist> playlists;
+	
+	@ManyToMany
+	@JoinTable(name="Artista_Seguido", joinColumns={@JoinColumn(name="idUsuario")}, inverseJoinColumns={@JoinColumn(name="IdArtista")})
+	private List<Artista> artistasSeguidos;
+	
+	
+	@ManyToMany
+	@JoinTable(name="Genero_Favorito", joinColumns={@JoinColumn(name="idUsuario")}, inverseJoinColumns={@JoinColumn(name="IdGenero")})
+	private List<Genero> generosFavoritos;
+	
+	
+	public List<Playlist> getPlaylists() {
+		return playlists;
+	}
+
+	public void setPlaylists(List<Playlist> playlists) {
+		this.playlists = playlists;
+	}
+
 	public int getId() {
 		return id;
 	}
