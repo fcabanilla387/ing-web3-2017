@@ -34,7 +34,7 @@ public class Genero implements Serializable {
 	@JoinColumn(name="idGenero")
 	private List<Subgenero> subgeneros;
 	
-	@ManyToMany
+	@ManyToMany(cascade = {CascadeType.ALL},mappedBy="generosFavoritos")
 	private List<Usuario> usuarios;
 	
 
