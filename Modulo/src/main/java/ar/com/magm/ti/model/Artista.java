@@ -1,9 +1,7 @@
 package ar.com.magm.ti.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-
+import java.util.*;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
@@ -31,27 +29,11 @@ public class Artista implements Serializable {
 	
 	@OneToMany(cascade= CascadeType.ALL)
 	@JoinColumn(name="idConcierto")
-	private ArrayList<Concierto> conciertos;
+	private List<Concierto> conciertos;
 	
 	@OneToMany(cascade= CascadeType.ALL)
 	@JoinColumn(name="idAlbum")
-	private ArrayList<Album> albums;
-	
-	public ArrayList<Concierto> getConciertos() {
-		return conciertos;
-	}
-
-	public void setConciertos(ArrayList<Concierto> conciertos) {
-		this.conciertos = conciertos;
-	}
-
-	public ArrayList<Album> getAlbums() {
-		return albums;
-	}
-
-	public void setAlbums(ArrayList<Album> albums) {
-		this.albums = albums;
-	}
+	private List<Album> albums;
 
 	public int getId() {
 		return id;
@@ -77,10 +59,20 @@ public class Artista implements Serializable {
 		this.genero = genero;
 	}
 
+	public List<Concierto> getConciertos() {
+		return conciertos;
+	}
 
-	@Override
-	public int hashCode() {
-		return getId();
+	public void setConciertos(List<Concierto> conciertos) {
+		this.conciertos = conciertos;
+	}
+
+	public List<Album> getAlbums() {
+		return albums;
+	}
+
+	public void setAlbums(List<Album> albums) {
+		this.albums = albums;
 	}
 
 	@Override

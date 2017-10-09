@@ -1,8 +1,8 @@
 package ar.com.magm.ti.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.*;
+//import java.util.ArrayList;
+//import java.util.*;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -23,15 +23,12 @@ public class Cancion implements Serializable {
 	@Id
 	@GeneratedValue
 	private int id;
+	
 	private String titulo;
 	private String duracion;
 	private float rating;
-	private long reproducciones;
-	//private String idAlbum;
-	
-	
-	
-	
+	private long reproducciones;	
+
 	public int getId() {
 		return id;
 	}

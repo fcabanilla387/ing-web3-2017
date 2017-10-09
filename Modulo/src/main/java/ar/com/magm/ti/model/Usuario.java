@@ -28,8 +28,6 @@ public class Usuario implements Serializable {
 	private String mail;
 	private String pais;
 	private boolean premiun;
-	//private ArrayList<Artista> seguidos ;
-	//private ArrayList<Cancion> playlist;
 
 	
 	public int getId() {

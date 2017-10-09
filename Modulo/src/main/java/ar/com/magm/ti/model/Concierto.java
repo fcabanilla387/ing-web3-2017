@@ -14,7 +14,7 @@ import org.hibernate.annotations.Proxy;
 @Entity
 @Proxy(lazy = false)
 @Access(value = AccessType.FIELD)
-@Table(name = "artista")
+@Table(name = "concierto")
 public class Concierto implements Serializable {
 
 	private static final long serialVersionUID = -3235990393994226233L;

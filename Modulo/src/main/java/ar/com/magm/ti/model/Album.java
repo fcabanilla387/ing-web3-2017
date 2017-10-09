@@ -1,7 +1,7 @@
 package ar.com.magm.ti.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.*;
 
 import javax.persistence.Access;
@@ -18,7 +18,7 @@ import org.hibernate.annotations.Proxy;
 @Entity
 @Proxy(lazy = false)
 @Access(value = AccessType.FIELD)
-@Table(name = "artista")
+@Table(name = "album")
 public class Album implements Serializable {
 
 	private static final long serialVersionUID = -3235990393994226233L;
@@ -28,20 +28,11 @@ public class Album implements Serializable {
 	private int id;
 	
 	private String nombre;
-	private int año;
-	
+	private int año;	
 	
 	@OneToMany(cascade= CascadeType.ALL)
 	@JoinColumn(name="idCancion")
 	private List<Cancion> listaCanciones;
-	
-	public List<Cancion> getListaCanciones() {
-		return listaCanciones;
-	}
-
-	public void setListaCanciones(List<Cancion> listaCanciones) {
-		this.listaCanciones = listaCanciones;
-	}
 
 	public int getId() {
 		return id;
@@ -65,6 +56,14 @@ public class Album implements Serializable {
 
 	public void setAño(int año) {
 		this.año = año;
+	}
+
+	public List<Cancion> getListaCanciones() {
+		return listaCanciones;
+	}
+
+	public void setListaCanciones(List<Cancion> listaCanciones) {
+		this.listaCanciones = listaCanciones;
 	}
 
 	@Override

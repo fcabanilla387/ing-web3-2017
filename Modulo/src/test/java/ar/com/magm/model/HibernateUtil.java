@@ -1,5 +1,7 @@
 package ar.com.magm.model;
 
+import java.io.File;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,7 +15,7 @@ public class HibernateUtil {
 
 	private synchronized static SessionFactory buildSessionFactory() {
 		Configuration configuration = new Configuration();
-		configuration.configure();
+		configuration.configure(new File("D:\\IUA\\ingWeb3\\cabanilla\\ing-web3-2017\\Modulo\\src\\test\\java\\hibernate.cfg.xml"));
 		serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
 		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
