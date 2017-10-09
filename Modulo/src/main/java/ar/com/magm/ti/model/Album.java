@@ -2,13 +2,16 @@ package ar.com.magm.ti.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
@@ -23,10 +26,23 @@ public class Album implements Serializable {
 	@Id
 	@GeneratedValue
 	private int id;
+	
 	private String nombre;
 	private int año;
-	private int idArtista;	
 	
+	
+	@OneToMany(cascade= CascadeType.ALL)
+	@JoinColumn(name="idCancion")
+	private List<Cancion> listaCanciones;
+	
+	public List<Cancion> getListaCanciones() {
+		return listaCanciones;
+	}
+
+	public void setListaCanciones(List<Cancion> listaCanciones) {
+		this.listaCanciones = listaCanciones;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -49,14 +65,6 @@ public class Album implements Serializable {
 
 	public void setAño(int año) {
 		this.año = año;
-	}
-
-	public int getIdArtista() {
-		return idArtista;
-	}
-
-	public void setIdArtista(int idArtista) {
-		this.idArtista = idArtista;
 	}
 
 	@Override

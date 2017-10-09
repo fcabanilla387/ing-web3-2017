@@ -6,9 +6,12 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
@@ -26,9 +29,30 @@ public class Artista implements Serializable {
 	private String nombre;
 	private String genero;
 	
-	//private ArrayList<Concierto> conciertos;
-	//private ArrayList<Album> albums;
+	@OneToMany(cascade= CascadeType.ALL)
+	@JoinColumn(name="idConcierto")
+	private ArrayList<Concierto> conciertos;
 	
+	@OneToMany(cascade= CascadeType.ALL)
+	@JoinColumn(name="idAlbum")
+	private ArrayList<Album> albums;
+	
+	public ArrayList<Concierto> getConciertos() {
+		return conciertos;
+	}
+
+	public void setConciertos(ArrayList<Concierto> conciertos) {
+		this.conciertos = conciertos;
+	}
+
+	public ArrayList<Album> getAlbums() {
+		return albums;
+	}
+
+	public void setAlbums(ArrayList<Album> albums) {
+		this.albums = albums;
+	}
+
 	public int getId() {
 		return id;
 	}

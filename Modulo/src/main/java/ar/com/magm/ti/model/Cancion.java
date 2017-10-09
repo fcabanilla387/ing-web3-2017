@@ -2,7 +2,7 @@ package ar.com.magm.ti.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -27,7 +27,9 @@ public class Cancion implements Serializable {
 	private String duracion;
 	private float rating;
 	private long reproducciones;
-	private String idAlbum;
+	//private String idAlbum;
+	
+	
 	
 	
 	public int getId() {
@@ -68,14 +70,6 @@ public class Cancion implements Serializable {
 
 	public void setReproducciones(long reproducciones) {
 		this.reproducciones = reproducciones;
-	}
-
-	public String getIdAlbum() {
-		return idAlbum;
-	}
-
-	public void setIdAlbum(String idAlbum) {
-		this.idAlbum = idAlbum;
 	}
 
 	@Override
