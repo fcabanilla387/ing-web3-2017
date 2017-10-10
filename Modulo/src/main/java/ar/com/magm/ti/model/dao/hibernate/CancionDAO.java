@@ -23,7 +23,7 @@ public class CancionDAO extends GenericDAO<Cancion, Integer> implements ICancion
 	public List<Cancion> list(String parteDelNombre) throws PersistenceException {
 		List<Cancion> l = null;
 		try {
-			l = getSession().createQuery("FROM cancion p WHERE p.titulo LIKE :parteNombre")
+			l = getSession().createQuery("FROM Cancion p WHERE p.titulo LIKE :parteNombre")
 					.setString("parteNombre", "%"+parteDelNombre+"%").list();
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
@@ -40,11 +40,16 @@ public class CancionDAO extends GenericDAO<Cancion, Integer> implements ICancion
 		
 		List<Cancion> l = null;
 		
-		try {
-			Query q = getSession().createQuery("FROM cancion c ORDER BY c.rating");
+		try {/*
+			
+			l = getSession().createQuery("from Cancion").list();
+			*/
+			Query q = getSession().createQuery("FROM Cancion c ORDER BY c.rating desc");
 			q.setFirstResult(1);
 			q.setMaxResults(limite);
 			l = q.list();
+			
+			
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
 			throw new PersistenceException(e.getMessage(), e);

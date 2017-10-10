@@ -138,7 +138,7 @@ public class ArtistaTest extends BaseTest {
         }
         
         assertNotNull("No se cargo el album");
-    }/*
+    }
     @Test
     public void testDelete()  throws ServiceException{
         IArtistaService service = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
@@ -154,6 +154,6 @@ public class ArtistaTest extends BaseTest {
         }catch(NotFoundException e){
         }
         assertNull("Se borro el Album", p);
-    }*/
+    }
     
 }

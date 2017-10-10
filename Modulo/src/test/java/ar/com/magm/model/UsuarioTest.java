@@ -127,7 +127,7 @@ public class UsuarioTest extends BaseTest {
         }
 
         assertNotNull("No se cargo el Usuario");
-    }/*
+    }
 
     @Test
     public void testDelete() throws ServiceException {
@@ -145,6 +145,6 @@ public class UsuarioTest extends BaseTest {
         } catch (NotFoundException e) {
         }
         assertNull("Se borro el Usuario", p);
-    }*/
+    }
 
 }

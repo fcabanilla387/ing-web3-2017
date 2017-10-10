@@ -22,7 +22,7 @@ public class ArtistaDAO extends GenericDAO<Artista, Integer> implements IArtista
 	public List<Artista> list(String parteDelNombre) throws PersistenceException {
 		List<Artista> l = null;
 		try {
-			l = getSession().createQuery("FROM artista p WHERE p.nombre LIKE :parteNombre")
+			l = getSession().createQuery("FROM Artista p WHERE p.nombre LIKE :parteNombre")
 					.setString("parteNombre", "%"+parteDelNombre+"%").list();
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);

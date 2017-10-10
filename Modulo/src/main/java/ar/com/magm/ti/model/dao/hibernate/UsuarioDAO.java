@@ -22,7 +22,7 @@ public class UsuarioDAO extends GenericDAO<Usuario, Integer> implements IUsuario
 	public List<Usuario> list(String parteDelNombre) throws PersistenceException {
 		List<Usuario> l = null;
 		try {
-			l = getSession().createQuery("FROM usuario p WHERE p.usuario LIKE :parteNombre")
+			l = getSession().createQuery("FROM Usuario p WHERE p.usuario LIKE :parteNombre")
 					.setString("parteNombre", "%"+parteDelNombre+"%").list();
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);

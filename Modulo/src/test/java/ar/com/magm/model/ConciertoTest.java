@@ -106,7 +106,7 @@ public class ConciertoTest extends BaseTest {
         }
         
         assertNotNull("No se cargo el concierto");
-    }/*
+    }
     @Test
     public void testDelete()  throws ServiceException{
         IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
@@ -123,6 +123,6 @@ public class ConciertoTest extends BaseTest {
         }catch(NotFoundException e){
         }
         assertNull("Se borro el concierto", p);
-    }*/
+    }
     
 }

@@ -22,7 +22,7 @@ public class PersonaDAO extends GenericDAO<Persona, Integer> implements IPersona
 	public List<Persona> list(String parteDelNombre) throws PersistenceException {
 		List<Persona> l = null;
 		try {
-			l = getSession().createQuery("FROM personas p WHERE p.nombre LIKE :parteNombre")
+			l = getSession().createQuery("FROM Personas p WHERE p.nombre LIKE :parteNombre")
 					.setString("parteNombre", "%"+parteDelNombre+"%").list();
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);

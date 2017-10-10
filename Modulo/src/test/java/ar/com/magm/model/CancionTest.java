@@ -113,7 +113,7 @@ public class CancionTest extends BaseTest {
         }
         
         assertNotNull("No se cargo la cancion");
-    }/*
+    }
     @Test
     public void testDelete()  throws ServiceException{
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
@@ -130,7 +130,7 @@ public class CancionTest extends BaseTest {
         }catch(NotFoundException e){
         }
         assertNull("Se borro la cancion", p);
-    }*/
+    }
     
     @Test
     public void testTopRating() throws ServiceException {
@@ -139,6 +139,12 @@ public class CancionTest extends BaseTest {
         
         
         List<Cancion> p = service.topRating(5);
+        
+        for (Cancion t : p) {
+        	System.out.println(t.getTitulo());
+        	System.out.println("PRUEBA SALIDA");
+        	System.out.println(t.getRating());
+        }
 
         assertNotNull("Se generó la lista", p);
     }

@@ -23,7 +23,7 @@ public class PlaylistDAO extends GenericDAO<Playlist, Integer> implements IPlayl
 	public List<Playlist> list(String parteDelNombre) throws PersistenceException {
 		List<Playlist> l = null;
 		try {
-			l = getSession().createQuery("FROM playlist p WHERE p.nombre LIKE :parteNombre")
+			l = getSession().createQuery("FROM Playlist p WHERE p.nombre LIKE :parteNombre")
 					.setString("parteNombre", "%"+parteDelNombre+"%").list();
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);

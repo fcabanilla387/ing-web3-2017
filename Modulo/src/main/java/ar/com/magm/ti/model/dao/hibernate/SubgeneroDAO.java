@@ -22,7 +22,7 @@ public class SubgeneroDAO extends GenericDAO<Subgenero, Integer> implements ISub
 	public List<Subgenero> list(String parteDelNombre) throws PersistenceException {
 		List<Subgenero> l = null;
 		try {
-			l = getSession().createQuery("FROM subgenero p WHERE p.nombre LIKE :parteNombre")
+			l = getSession().createQuery("FROM Subgenero p WHERE p.nombre LIKE :parteNombre")
 					.setString("parteNombre", "%"+parteDelNombre+"%").list();
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);

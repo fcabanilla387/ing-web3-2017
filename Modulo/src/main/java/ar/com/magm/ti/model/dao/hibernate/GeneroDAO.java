@@ -22,7 +22,7 @@ public class GeneroDAO extends GenericDAO<Genero, Integer> implements IGeneroDAO
 	public List<Genero> list(String parteDelNombre) throws PersistenceException {
 		List<Genero> l = null;
 		try {
-			l = getSession().createQuery("FROM genero p WHERE p.nombre LIKE :parteNombre")
+			l = getSession().createQuery("FROM Genero p WHERE p.nombre LIKE :parteNombre")
 					.setString("parteNombre", "%"+parteDelNombre+"%").list();
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);

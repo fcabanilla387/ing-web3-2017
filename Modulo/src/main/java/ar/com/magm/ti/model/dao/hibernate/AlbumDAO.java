@@ -22,7 +22,7 @@ public class AlbumDAO extends GenericDAO<Album, Integer> implements IAlbumDAO {
 	public List<Album> list(String parteDelNombre) throws PersistenceException {
 		List<Album> l = null;
 		try {
-			l = getSession().createQuery("FROM album p WHERE p.nombre LIKE :parteNombre")
+			l = getSession().createQuery("FROM Album p WHERE p.nombre LIKE :parteNombre")
 					.setString("parteNombre", "%"+parteDelNombre+"%").list();
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
