@@ -44,9 +44,8 @@ public class AlbumTest extends BaseTest {
 
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Album p = new Album();
-        p.setId(1);
-        p.setAño(1995);
-        p.setNombre("Slipknot");
+        p.setAño(1832);
+        p.setNombre("Dark side of the moon");
         p.setListaCanciones(new ArrayList<Cancion>());
 
         p = service.saveOrUpdate(p);
@@ -60,7 +59,7 @@ public class AlbumTest extends BaseTest {
 
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Album p = new Album();
-        p.setId(2);
+        p.setId(1);
         p.setAño(2000);
         p.setNombre("Iowa");
         p.setListaCanciones(new ArrayList<Cancion>());
@@ -81,7 +80,7 @@ public class AlbumTest extends BaseTest {
         List<Album> p = service.list();
 
         assertNotNull("Se generó la lista", p);
-    }
+    }/*
     @Test
     public void testListFilter() throws ServiceException {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
@@ -92,7 +91,7 @@ public class AlbumTest extends BaseTest {
         List<Album> p = service.list("eath");
 
         assertNull("No se generó la lista", p);
-    }
+    }*/
     @Test
     public void testLoad() throws ServiceException {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
@@ -108,7 +107,7 @@ public class AlbumTest extends BaseTest {
         }
         
         assertNotNull("No se cargo el album");
-    }/*
+    }
     @Test
     public void testDelete()  throws ServiceException{
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
@@ -125,6 +124,6 @@ public class AlbumTest extends BaseTest {
         }catch(NotFoundException e){
         }
         assertNull("Se borro el Album", p);
-    }*/
+    }
     
 }
