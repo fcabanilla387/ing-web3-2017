@@ -16,8 +16,8 @@ public class HibernateUtil {
 
     private synchronized static SessionFactory buildSessionFactory() {
         Configuration configuration = new Configuration();
-        //configuration.configure(new File("D:\\IUA\\ingWeb3\\cabanilla\\ing-web3-2017\\Modulo\\src\\test\\java\\hibernate.cfg.xml"));
-        configuration.configure(new File("C:\\Users\\matia\\Desktop\\ing-web3-2017\\Modulo\\src\\test\\java\\hibernate.cfg.xml"));
+        configuration.configure(new File("D:\\IUA\\ingWeb3\\cabanilla\\ing-web3-2017\\Modulo\\src\\test\\java\\hibernate.cfg.xml"));
+        //configuration.configure(new File("C:\\Users\\matia\\Desktop\\ing-web3-2017\\Modulo\\src\\test\\java\\hibernate.cfg.xml"));
         serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 

@@ -107,7 +107,7 @@ public class SubgeneroTest extends BaseTest {
         }
 
         assertNotNull("No se cargo el Subgenero");
-    }
+    }/*
 
     @Test
     public void testDelete() throws ServiceException {
@@ -125,6 +125,6 @@ public class SubgeneroTest extends BaseTest {
         } catch (NotFoundException e) {
         }
         assertNull("Se borro el Subgenero", p);
-    }
+    }*/
 
 }

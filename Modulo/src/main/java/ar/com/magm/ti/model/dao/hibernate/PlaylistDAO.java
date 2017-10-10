@@ -2,10 +2,11 @@ package ar.com.magm.ti.model.dao.hibernate;
 
 import java.util.List;
 
+
 import org.hibernate.SessionFactory;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import ar.com.magm.ti.model.Playlist;
 import ar.com.magm.ti.model.dao.IPlaylistDAO;
 import ar.com.magm.ti.persistence.dao.hibernate.GenericDAO;

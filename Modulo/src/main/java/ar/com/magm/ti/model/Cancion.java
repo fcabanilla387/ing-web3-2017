@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
@@ -22,7 +20,7 @@ import org.hibernate.annotations.Proxy;
 @Proxy(lazy = false)
 @Access(value = AccessType.FIELD)
 @Table(name = "cancion")
-public class Cancion implements Serializable {
+public class Cancion implements Serializable, Comparable<Cancion>{
 
     private static final long serialVersionUID = -3235990393994226233L;
 
@@ -109,4 +107,12 @@ public class Cancion implements Serializable {
     public String toString() {
         return String.format("Cancion: titulo=%s, Duracion=%s", getTitulo(), getDuracion());
     }
+
+	@Override
+	public int compareTo(Cancion o) {
+		// TODO Auto-generated method stub
+		String a = new String(String.valueOf(this.getReproducciones()));
+		String b = new String(String.valueOf(this.getReproducciones()));
+		return a.compareTo(b);
+	}
 }

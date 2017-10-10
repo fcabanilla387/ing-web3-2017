@@ -3,6 +3,7 @@ package ar.com.magm.ti.model.dao.hibernate;
 import ar.com.magm.ti.model.Cancion;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,26 @@ public class CancionDAO extends GenericDAO<Cancion, Integer> implements ICancion
 		try {
 			l = getSession().createQuery("FROM cancion p WHERE p.titulo LIKE :parteNombre")
 					.setString("parteNombre", "%"+parteDelNombre+"%").list();
+		} catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+			throw new PersistenceException(e.getMessage(), e);
+		} finally {
+			closeSession();
+		}
+		return l;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Cancion> topRating(int limite) throws PersistenceException {
+		
+		List<Cancion> l = null;
+		
+		try {
+			Query q = getSession().createQuery("FROM cancion c ORDER BY c.rating");
+			q.setFirstResult(1);
+			q.setMaxResults(limite);
+			l = q.list();
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
 			throw new PersistenceException(e.getMessage(), e);

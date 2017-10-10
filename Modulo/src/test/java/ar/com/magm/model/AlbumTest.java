@@ -107,7 +107,7 @@ public class AlbumTest extends BaseTest {
         }
         
         assertNotNull("No se cargo el album");
-    }
+    }/*
     @Test
     public void testDelete()  throws ServiceException{
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
@@ -124,6 +124,6 @@ public class AlbumTest extends BaseTest {
         }catch(NotFoundException e){
         }
         assertNull("Se borro el Album", p);
-    }
+    }*/
     
 }

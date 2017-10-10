@@ -107,7 +107,7 @@ public class PlaylistTest extends BaseTest {
         }
 
         assertNotNull("No se cargo la Playlist");
-    }
+    }/*
 
     @Test
     public void testDelete() throws ServiceException {
@@ -125,6 +125,6 @@ public class PlaylistTest extends BaseTest {
         } catch (NotFoundException e) {
         }
         assertNull("Se borro la Playlist", p);
-    }
+    }*/
 
 }

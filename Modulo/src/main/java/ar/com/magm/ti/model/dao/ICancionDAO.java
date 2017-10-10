@@ -7,5 +7,6 @@ import ar.com.magm.ti.persistence.dao.IGenericDAO;
 import ar.com.magm.ti.persistence.exception.PersistenceException;
 
 public interface ICancionDAO extends IGenericDAO<Cancion, Integer>{
-	public List<Cancion> list(String parteDelNombre) throws PersistenceException; 
+	public List<Cancion> list(String parteDelNombre) throws PersistenceException;
+	public List<Cancion> topRating(int limite) throws PersistenceException;
 }

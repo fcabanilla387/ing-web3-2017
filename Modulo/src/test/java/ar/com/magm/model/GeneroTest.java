@@ -108,7 +108,7 @@ public class GeneroTest extends BaseTest {
         }
         
         assertNotNull("No se cargo el genero");
-    }
+    }/*
     @Test
     public void testDelete()  throws ServiceException{
         IGeneroService service = new GeneroService(new GeneroDAO((SessionFactory) sessionFactory()));
@@ -125,6 +125,6 @@ public class GeneroTest extends BaseTest {
         }catch(NotFoundException e){
         }
         assertNull("Se borro el genero", p);
-    }
+    }*/
     
 }
