@@ -59,6 +59,7 @@ public class CancionDAO extends GenericDAO<Cancion, Integer> implements ICancion
 		return l;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cancion> topReproducido(int limite) throws PersistenceException {
 List<Cancion> l = null;
