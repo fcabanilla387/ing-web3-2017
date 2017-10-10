@@ -26,7 +26,7 @@ public class Subgenero implements Serializable {
     @GeneratedValue
     private int idSubgenero;
     private String nombre;
-
+    
     public Subgenero() {
         super();
     }
@@ -77,4 +77,5 @@ public class Subgenero implements Serializable {
     public boolean equals(Object obj) {
         return getIdSubgenero() == ((Subgenero) obj).getIdSubgenero();
     }
+
 }

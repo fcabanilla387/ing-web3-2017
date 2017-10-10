@@ -10,7 +10,7 @@
 		<!--	
 		<property name="connection.password">root</property>		
 		-->
-                <property name="connection.password">root</property>
+                <property name="connection.password"></property>
 
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
