@@ -25,8 +25,6 @@ public class CancionTest extends BaseTest {
     public void testSave() throws ServiceException {
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
 
-        // List<Cancion> l = service.list();
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Cancion p = new Cancion();
         p.setDuracion("3'45''");
         p.setRating((float) 4.5);
@@ -42,8 +40,6 @@ public class CancionTest extends BaseTest {
     public void testSaveOrUpdate() throws ServiceException {
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
 
-        //List<Cancion> l = service.list();
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Cancion p = new Cancion();
         p.setDuracion("7'22''");
         p.setRating((float) 3.2);
@@ -59,8 +55,6 @@ public class CancionTest extends BaseTest {
     public void testUpdate() throws ServiceException {
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
 
-        //List<Cancion> l = service.list();
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Cancion p = new Cancion();
         p.setId(1);
         p.setDuracion("9'11''");
@@ -80,8 +74,6 @@ public class CancionTest extends BaseTest {
     public void testList() throws ServiceException {
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
 
-        // List<Cancion> l = service.list();
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         List<Cancion> p = service.list();
 
         assertNotNull("Se generó la lista", p);
@@ -91,20 +83,16 @@ public class CancionTest extends BaseTest {
     public void testListFilter() throws ServiceException {
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
 
-        List<Cancion> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         List<Cancion> p = service.list("the");
 
         assertNotNull("No se generó la lista", p);
     }
 
-    @Test
+    @SuppressWarnings("unused")
+	@Test
     public void testLoad() throws ServiceException {
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
 
-        //List<Cancion> l = service.list();
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Cancion p = new Cancion();
         p = null;
         try {

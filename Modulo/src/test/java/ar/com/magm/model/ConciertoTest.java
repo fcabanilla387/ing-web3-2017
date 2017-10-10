@@ -24,9 +24,6 @@ public class ConciertoTest extends BaseTest {
     public void testSave() throws ServiceException {
         IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
 
-        List<Concierto> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Concierto p = new Concierto();
         p.setFecha(new Date());
         p.setLugar("Orfeo Superdomo");
@@ -39,9 +36,6 @@ public class ConciertoTest extends BaseTest {
     public void testSaveOrUpdate() throws ServiceException {
         IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
 
-        List<Concierto> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Concierto p = new Concierto();
         p.setFecha(new Date());
         p.setLugar("Luna Park");
@@ -54,9 +48,6 @@ public class ConciertoTest extends BaseTest {
     public void testUpdate() throws ServiceException {
         IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
 
-        List<Concierto> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Concierto p = new Concierto();
         p.setIdConcierto(1);
         p.setFecha(new Date());
@@ -73,9 +64,6 @@ public class ConciertoTest extends BaseTest {
     public void testList() throws ServiceException {
         IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
 
-        List<Concierto> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         List<Concierto> p = service.list();
 
         assertNotNull("Se generó la lista", p);
@@ -84,9 +72,6 @@ public class ConciertoTest extends BaseTest {
     public void testListPaisFilter() throws ServiceException {
         IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
 
-        List<Concierto> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         List<Concierto> p = service.listPais("rge");
 
         assertNotNull("No se generó la lista", p);
@@ -95,20 +80,15 @@ public class ConciertoTest extends BaseTest {
     public void testListLugarFilter() throws ServiceException {
         IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
 
-        List<Concierto> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         List<Concierto> p = service.listLugar("una");
 
         assertNotNull("No se generó la lista", p);
     }
-    @Test
+    @SuppressWarnings("unused")
+	@Test
     public void testLoad() throws ServiceException {
         IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
 
-        List<Concierto> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Concierto p = new Concierto();
         p = null;
         try{
@@ -122,9 +102,6 @@ public class ConciertoTest extends BaseTest {
     public void testDelete()  throws ServiceException{
         IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
 
-        List<Concierto> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Concierto p = new Concierto();
         try{
             p = service.load(1);

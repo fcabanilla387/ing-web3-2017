@@ -25,9 +25,6 @@ public class AlbumTest extends BaseTest {
     public void testSave() throws ServiceException {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
 
-        List<Album> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Album p = new Album();
         p.setAño(1990);
         p.setNombre("Death Magnetic");
@@ -40,9 +37,6 @@ public class AlbumTest extends BaseTest {
     public void testSaveOrUpdate() throws ServiceException {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
 
-        List<Album> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Album p = new Album();
         p.setAño(1832);
         p.setNombre("Dark side of the moon");
@@ -55,9 +49,6 @@ public class AlbumTest extends BaseTest {
     public void testUpdate() throws ServiceException {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
 
-        List<Album> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Album p = new Album();
         p.setId(1);
         p.setAño(2000);
@@ -74,9 +65,6 @@ public class AlbumTest extends BaseTest {
     public void testList() throws ServiceException {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
 
-        List<Album> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         List<Album> p = service.list();
 
         assertNotNull("Se generó la lista", p);
@@ -85,20 +73,15 @@ public class AlbumTest extends BaseTest {
     public void testListFilter() throws ServiceException {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
 
-        List<Album> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         List<Album> p = service.list("side");
 
         assertNotNull("No se generó la lista", p);
     }
-    @Test
+    @SuppressWarnings("unused")
+	@Test
     public void testLoad() throws ServiceException {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
 
-        List<Album> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Album p = new Album();
         p = null;
         try{
@@ -112,9 +95,6 @@ public class AlbumTest extends BaseTest {
     public void testDelete()  throws ServiceException{
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
 
-        List<Album> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Album p = new Album();
         try{
             p = service.load(1);

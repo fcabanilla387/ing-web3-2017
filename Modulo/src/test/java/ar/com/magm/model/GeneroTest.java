@@ -26,9 +26,6 @@ public class GeneroTest extends BaseTest {
     public void testSave() throws ServiceException {
         IGeneroService service = new GeneroService(new GeneroDAO((SessionFactory) sessionFactory()));
 
-        List<Genero> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Genero p = new Genero();
         p.setNombre("Clasica");
         p.setSubgeneros(new ArrayList<Subgenero>());
@@ -41,9 +38,6 @@ public class GeneroTest extends BaseTest {
     public void testSaveOrUpdate() throws ServiceException {
         IGeneroService service = new GeneroService(new GeneroDAO((SessionFactory) sessionFactory()));
 
-        List<Genero> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Genero p = new Genero();
         p.setNombre("Punk");
         p.setSubgeneros(new ArrayList<Subgenero>());
@@ -56,9 +50,6 @@ public class GeneroTest extends BaseTest {
     public void testUpdate() throws ServiceException {
         IGeneroService service = new GeneroService(new GeneroDAO((SessionFactory) sessionFactory()));
 
-        List<Genero> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Genero p = new Genero();
         p.setIdGenero(1);
         p.setNombre("Metal");
@@ -75,9 +66,6 @@ public class GeneroTest extends BaseTest {
     public void testList() throws ServiceException {
         IGeneroService service = new GeneroService(new GeneroDAO((SessionFactory) sessionFactory()));
 
-        List<Genero> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         List<Genero> p = service.list();
 
         assertNotNull("Se generó la lista", p);
@@ -86,20 +74,15 @@ public class GeneroTest extends BaseTest {
     public void testListFilter() throws ServiceException {
         IGeneroService service = new GeneroService(new GeneroDAO((SessionFactory) sessionFactory()));
 
-        List<Genero> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         List<Genero> p = service.list("unk");
 
         assertNotNull("No se generó la lista", p);
     }
-    @Test
+    @SuppressWarnings("unused")
+	@Test
     public void testLoad() throws ServiceException {
         IGeneroService service = new GeneroService(new GeneroDAO((SessionFactory) sessionFactory()));
 
-        List<Genero> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Genero p = new Genero();
         p = null;
         try{
@@ -113,9 +96,6 @@ public class GeneroTest extends BaseTest {
     public void testDelete()  throws ServiceException{
         IGeneroService service = new GeneroService(new GeneroDAO((SessionFactory) sessionFactory()));
 
-        List<Genero> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Genero p = new Genero();
         try{
             p = service.load(1);

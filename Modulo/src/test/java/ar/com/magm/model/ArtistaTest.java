@@ -28,9 +28,6 @@ public class ArtistaTest extends BaseTest {
     public void testSave() throws ServiceException {
         IArtistaService service = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
 
-        //List<Artista> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Artista p = new Artista();
         p.setNombre("Kevin Johansen + The Nada");
         p.setGenero("Rock");
@@ -38,7 +35,6 @@ public class ArtistaTest extends BaseTest {
         p.setAlbums(new ArrayList<Album>());
         p.setPlaylists(new ArrayList<Playlist>());
         
-        //p.setListaCanciones(new ArrayList<Cancion>());
 
         p = service.save(p);
         assertNotEquals("Se generó mal el id", 0, p.getId());
@@ -119,14 +115,12 @@ public class ArtistaTest extends BaseTest {
     public void testListFilter() throws ServiceException {
         IArtistaService service = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
 
-        List<Artista> l = service.list();
-
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         List<Artista> p = service.list("Black");
 
         assertNotNull("No se generó la lista", p);
     }
-    @Test
+    @SuppressWarnings("unused")
+	@Test
     public void testLoad() throws ServiceException {
         IArtistaService service = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
 

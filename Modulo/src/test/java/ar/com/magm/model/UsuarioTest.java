@@ -27,7 +27,7 @@ public class UsuarioTest extends BaseTest {
     public void testSave() throws ServiceException {
         IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
 
-        List<Usuario> l = service.list();
+        //List<Usuario> l = service.list();
 
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Usuario p = new Usuario();
@@ -48,7 +48,7 @@ public class UsuarioTest extends BaseTest {
     public void testSaveOrUpdate() throws ServiceException {
         IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
 
-        List<Usuario> l = service.list();
+        //List<Usuario> l = service.list();
 
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Usuario p = new Usuario();
@@ -69,9 +69,8 @@ public class UsuarioTest extends BaseTest {
     public void testUpdate() throws ServiceException {
         IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
 
-        List<Usuario> l = service.list();
+        //List<Usuario> l = service.list();
 
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Usuario p = new Usuario();
         p.setId(1);
         p.setArtistasSeguidos(new ArrayList<Artista>());
@@ -94,7 +93,7 @@ public class UsuarioTest extends BaseTest {
     public void testList() throws ServiceException {
         IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
 
-        List<Usuario> l = service.list();
+        //List<Usuario> l = service.list();
 
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         List<Usuario> p = service.list();
@@ -105,18 +104,19 @@ public class UsuarioTest extends BaseTest {
     public void testListFilter() throws ServiceException {
         IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
 
-        List<Usuario> l = service.list();
+        //List<Usuario> l = service.list();
 
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         List<Usuario> p = service.list("caba");
 
         assertNotNull("No se generó la lista", p);
     }
-    @Test
+    @SuppressWarnings("unused")
+	@Test
     public void testLoad() throws ServiceException {
         IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
 
-        List<Usuario> l = service.list();
+        //List<Usuario> l = service.list();
 
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Usuario p = new Usuario();
@@ -133,7 +133,7 @@ public class UsuarioTest extends BaseTest {
     public void testDelete() throws ServiceException {
         IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
 
-        List<Usuario> l = service.list();
+        //List<Usuario> l = service.list();
 
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Usuario p = new Usuario();
