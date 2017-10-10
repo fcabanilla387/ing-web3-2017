@@ -1,9 +1,8 @@
 package ar.com.magm.model;
 
 //import static org.junit.Assert.assertEquals;
+import ar.com.magm.ti.exception.NotFoundException;
 import ar.com.magm.ti.model.Concierto;
-import ar.com.magm.ti.model.dao.hibernate.ConciertoDAO;
-import ar.com.magm.ti.model.service.IConciertoService;
 import static org.junit.Assert.assertNotEquals;
 
 import java.util.List;
@@ -11,116 +10,119 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 
+import ar.com.magm.ti.model.dao.hibernate.ConciertoDAO;
+import ar.com.magm.ti.model.service.IConciertoService;
 import ar.com.magm.ti.model.service.impl.ConciertoService;
 import ar.com.magm.ti.service.exception.ServiceException;
 import java.util.Date;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
 public class ConciertoTest extends BaseTest {
 
-	@Test
-	public void testSave() throws ServiceException {
-		IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
+    @Test
+    public void testSave() throws ServiceException {
+        IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
 
-		List<Concierto> l = service.list();
+        List<Concierto> l = service.list();
 
-		
-		//assertEquals("Tamaño erróneo de la lista",0,l.size());
-		
-		Concierto p=new Concierto();
-		p.setFecha(new Date());
-                p.setLugar("Orfeo Superdomo");
-                p.setPais("Argentina");
-		p=service.save(p);
-		assertNotEquals("Se generó mal el id", 0,p.getIdConcierto());
-		
-	}/*
-        @Test
-	public void test3() throws ServiceException {
-		IPersonaService service = new PersonaService(new PersonaDAO((SessionFactory) sessionFactory()));
+        //assertEquals("Tamaño erróneo de la lista",0,l.size());
+        Concierto p = new Concierto();
+        p.setFecha(new Date());
+        p.setLugar("Orfeo Superdomo");
+        p.setPais("Argentina");
 
-		List<Persona> l = service.list();
+        p = service.save(p);
+        assertNotEquals("Se generó mal el id", 0, p.getIdConcierto());
+    }
+    @Test
+    public void testSaveOrUpdate() throws ServiceException {
+        IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
 
-		
-		//assertEquals("Tamaño erróneo de la lista",0,l.size());
-		
-		Persona p=new Persona();
-		p.setApellido("García");
-		p.setNombre("Mariano");
-		p.setFechaNacimiento(new Date());
-		
-		p=service.save(p);
-		assertNotEquals("Se generó mal el id", 0,p.getDni());
-		
-	}
-        @Test
-	public void test4() throws ServiceException {
-		IPersonaService service = new PersonaService(new PersonaDAO((SessionFactory) sessionFactory()));
+        List<Concierto> l = service.list();
 
-		List<Persona> l = service.list();
+        //assertEquals("Tamaño erróneo de la lista",0,l.size());
+        Concierto p = new Concierto();
+        p.setFecha(new Date());
+        p.setLugar("Luna Park");
+        p.setPais("Argentina");
 
-		
-		//assertEquals("Tamaño erróneo de la lista",0,l.size());
-		
-		Persona p=new Persona();
-		p.setApellido("García");
-		p.setNombre("Mariano");
-		p.setFechaNacimiento(new Date());
-		
-		p=service.save(p);
-		assertNotEquals("Se generó mal el id", 0,p.getDni());
-		
-	}
-        @Test
-	public void test5() throws ServiceException {
-		IPersonaService service = new PersonaService(new PersonaDAO((SessionFactory) sessionFactory()));
+        p = service.saveOrUpdate(p);
+        assertNotEquals("Se generó mal el id", 0, p.getIdConcierto());
+    }
+    @Test
+    public void testUpdate() throws ServiceException {
+        IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
 
-		List<Persona> l = service.list();
+        List<Concierto> l = service.list();
 
-		
-		//assertEquals("Tamaño erróneo de la lista",0,l.size());
-		
-		Persona p=new Persona();
-		p.setApellido("García");
-		p.setNombre("Mariano");
-		p.setFechaNacimiento(new Date());
-		
-		p=service.save(p);
-		assertNotEquals("Se generó mal el id", 0,p.getDni());
-		
-	}
-        @Test
-	public void test6() throws ServiceException {
-		IPersonaService service = new PersonaService(new PersonaDAO((SessionFactory) sessionFactory()));
+        //assertEquals("Tamaño erróneo de la lista",0,l.size());
+        Concierto p = new Concierto();
+        p.setIdConcierto(1);
+        p.setFecha(new Date());
+        p.setLugar("Maracana");
+        p.setPais("Brasil");
+        try{
+            p = service.update(p);
+        }catch(NotFoundException e){
+            
+        }
+        assertNotEquals("Se generó mal el id", 0, p.getIdConcierto());
+    }
+    @Test
+    public void testList() throws ServiceException {
+        IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
 
-		List<Persona> l = service.list();
+        List<Concierto> l = service.list();
 
-		
-		//assertEquals("Tamaño erróneo de la lista",0,l.size());
-		
-		Persona p=new Persona();
-		p.setApellido("García");
-		p.setNombre("Mariano");
-		p.setFechaNacimiento(new Date());
-		
-		p=service.save(p);
-		assertNotEquals("Se generó mal el id", 0,p.getDni());
-		
-	}
-        @Test
-	public void test7() throws ServiceException {
-		IPersonaService service = new PersonaService(new PersonaDAO((SessionFactory) sessionFactory()));
+        //assertEquals("Tamaño erróneo de la lista",0,l.size());
+        List<Concierto> p = service.list();
 
-		List<Persona> l = service.list();
+        assertNotNull("Se generó la lista", p);
+    }/*
+    @Test
+    public void testListFilter() throws ServiceException {
+        IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
 
-		
-		//assertEquals("Tamaño erróneo de la lista",0,l.size());
-		
-		Persona p=new Persona();
-		p.setApellido("García");
-		p.setNombre("Mariano");
-		p.setFechaNacimiento(new Date());
-		
-		p=service.save(p);
-		assertNotEquals("Se generó mal el id", 0,p.getDni());
-		
-	}*/
+        List<Album> l = service.list();
+
+        //assertEquals("Tamaño erróneo de la lista",0,l.size());
+        List<Album> p = service.list("eath");
+
+        assertNotNull("No se generó la lista", p);
+    }*/
+    @Test
+    public void testLoad() throws ServiceException {
+        IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
+
+        List<Concierto> l = service.list();
+
+        //assertEquals("Tamaño erróneo de la lista",0,l.size());
+        Concierto p = new Concierto();
+        p = null;
+        try{
+            p = service.load(1);
+        }catch(NotFoundException e){
+        }
+        
+        assertNotNull("No se cargo el concierto");
+    }
+    @Test
+    public void testDelete()  throws ServiceException{
+        IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
+
+        List<Concierto> l = service.list();
+
+        //assertEquals("Tamaño erróneo de la lista",0,l.size());
+        Concierto p = new Concierto();
+        try{
+            p = service.load(1);
+            service.delete(p);
+            p = null;
+            p = service.load(1);
+        }catch(NotFoundException e){
+        }
+        assertNull("Se borro el concierto", p);
+    }
+    
 }

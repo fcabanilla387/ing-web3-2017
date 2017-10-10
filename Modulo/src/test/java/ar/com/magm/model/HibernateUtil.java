@@ -10,51 +10,54 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 public class HibernateUtil {
-	private static ServiceRegistry serviceRegistry;
-	private static SessionFactory sessionFactory;
 
-	private synchronized static SessionFactory buildSessionFactory() {
-		Configuration configuration = new Configuration();
-		//configuration.configure(new File("D:\\IUA\\ingWeb3\\cabanilla\\ing-web3-2017\\Modulo\\src\\test\\java\\hibernate.cfg.xml"));
-                configuration.configure(new File("C:\\Users\\matia\\Desktop\\ing-web3-2017\\Modulo\\src\\test\\java\\hibernate.cfg.xml"));
-		serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+    private static ServiceRegistry serviceRegistry;
+    private static SessionFactory sessionFactory;
 
-		return sessionFactory;
-	}
+    private synchronized static SessionFactory buildSessionFactory() {
+        Configuration configuration = new Configuration();
+        //configuration.configure(new File("D:\\IUA\\ingWeb3\\cabanilla\\ing-web3-2017\\Modulo\\src\\test\\java\\hibernate.cfg.xml"));
+        configuration.configure(new File("C:\\Users\\matia\\Desktop\\ing-web3-2017\\Modulo\\src\\test\\java\\hibernate.cfg.xml"));
+        serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+        sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
-	public synchronized static SessionFactory getSessionFactory() {
-		if (sessionFactory == null)
-			return buildSessionFactory();
-		else
-			return sessionFactory;
-	}
+        return sessionFactory;
+    }
 
-	public synchronized static void shutdown() {
-		getSessionFactory().close();
-	}
+    public synchronized static SessionFactory getSessionFactory() {
+        if (sessionFactory == null) {
+            return buildSessionFactory();
+        } else {
+            return sessionFactory;
+        }
+    }
 
-	private static final ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
+    public synchronized static void shutdown() {
+        getSessionFactory().close();
+    }
 
-	public static Session getSession() throws HibernateException {
-		Session session = threadLocal.get();
+    private static final ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
 
-		if (session == null || !session.isOpen()) {
-			if (sessionFactory == null) {
-				buildSessionFactory();
-			}
-			session = (sessionFactory != null) ? sessionFactory.openSession() : null;
-			threadLocal.set(session);
-		}
+    public static Session getSession() throws HibernateException {
+        Session session = threadLocal.get();
 
-		return session;
-	}
-	 public static void closeSession() throws HibernateException {
-		    Session session = (Session) threadLocal.get();
-		    threadLocal.set(null);
+        if (session == null || !session.isOpen()) {
+            if (sessionFactory == null) {
+                buildSessionFactory();
+            }
+            session = (sessionFactory != null) ? sessionFactory.openSession() : null;
+            threadLocal.set(session);
+        }
 
-		    if (session != null) {
-		      session.close();
-		    }
-		  }
+        return session;
+    }
+
+    public static void closeSession() throws HibernateException {
+        Session session = (Session) threadLocal.get();
+        threadLocal.set(null);
+
+        if (session != null) {
+            session.close();
+        }
+    }
 }

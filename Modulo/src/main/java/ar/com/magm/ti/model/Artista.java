@@ -38,6 +38,10 @@ public class Artista implements Serializable {
     @JoinColumn(name = "idArtista")
     private List<Album> albums;
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "canciones")
     private List<Playlist> playlists;
 
