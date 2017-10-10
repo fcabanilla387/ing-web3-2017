@@ -41,9 +41,6 @@ public class Cancion implements Serializable {
     /*@OneToMany
     @JoinColumn(name = "idCancion")
     */
-    @OneToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private Subgenero subgenero;
 
     public Cancion() {
         super();
@@ -55,14 +52,6 @@ public class Cancion implements Serializable {
 
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
-    }
-
-    public Subgenero getSubgenero() {
-        return subgenero;
-    }
-
-    public void setSubgenero(Subgenero subgenero) {
-        this.subgenero = subgenero;
     }
 
     public int getId() {
