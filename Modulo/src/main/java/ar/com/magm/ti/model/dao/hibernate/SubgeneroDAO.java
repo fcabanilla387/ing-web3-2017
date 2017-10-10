@@ -33,12 +33,11 @@ public class SubgeneroDAO extends GenericDAO<Subgenero, Integer> implements ISub
 		return l;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<Subgenero> list(Integer idGenero) throws PersistenceException {
+	public List<Subgenero> listSubgeneros(Integer idGenero) throws PersistenceException {
 		List<Subgenero> l = null;
 		try {
-			l = getSession().createQuery("FROM Subgenero p WHERE p.idGenero ="+idGenero).list();
+			l = getSession().createQuery("FROM Subgenero p WHERE p.idGenero="+idGenero).list();
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
 			throw new PersistenceException(e.getMessage(), e);
@@ -47,4 +46,5 @@ public class SubgeneroDAO extends GenericDAO<Subgenero, Integer> implements ISub
 		}
 		return l;
 	}
+	
 }
