@@ -58,6 +58,29 @@ public class CancionDAO extends GenericDAO<Cancion, Integer> implements ICancion
 		}
 		return l;
 	}
+
+	@Override
+	public List<Cancion> topReproducido(int limite) throws PersistenceException {
+List<Cancion> l = null;
+		
+		try {/*
+			
+			l = getSession().createQuery("from Cancion").list();
+			*/
+			Query q = getSession().createQuery("FROM Cancion c ORDER BY c.reproducciones desc");
+			q.setFirstResult(1);
+			q.setMaxResults(limite);
+			l = q.list();
+			
+			
+		} catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+			throw new PersistenceException(e.getMessage(), e);
+		} finally {
+			closeSession();
+		}
+		return l;
+	}
 	
 
 }

@@ -43,4 +43,14 @@ public class CancionService extends GenericService<Cancion, Integer>
         }
 	}
 
+	@Override
+	public List<Cancion> topReproducido(int limite) throws ServiceException {
+		try {
+            return dao.topReproducido(limite);
+        } catch (PersistenceException e) {
+            LOG.error(e.getMessage(), e);
+            throw new ServiceException(e.getMessage(), e);
+        }
+	}
+
 }

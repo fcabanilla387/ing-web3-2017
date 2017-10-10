@@ -149,4 +149,21 @@ public class CancionTest extends BaseTest {
         assertNotNull("Se generó la lista", p);
     }
     
+    @Test
+    public void testTopReproducido() throws ServiceException {
+        ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
+        
+        
+        
+        List<Cancion> p = service.topReproducido(5);
+        
+        for (Cancion t : p) {
+        	System.out.println(t.getTitulo());
+        	System.out.println("PRUEBA SALIDA");
+        	System.out.println(t.getReproducciones());
+        }
+
+        assertNotNull("Se generó la lista", p);
+    }
+    
 }
