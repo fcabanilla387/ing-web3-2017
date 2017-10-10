@@ -21,10 +21,16 @@ public class Entidad implements Serializable {
 	@Id
 	@GeneratedValue
 	private int idEntidad;
-
-
 	private String nombre;
 
+        public Entidad(){
+            super();
+        }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+        
 	@Override
 	public int hashCode() {
 		return getIdEntidad();

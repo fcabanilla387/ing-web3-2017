@@ -17,43 +17,49 @@ import org.hibernate.annotations.Proxy;
 @Table(name = "subgenero")
 public class Subgenero implements Serializable {
 
-	private static final long serialVersionUID = 2464927409480955012L;
-	@Id
-	@GeneratedValue
-	private int idSubgenero;
+    private static final long serialVersionUID = 2464927409480955012L;
+    @Id
+    @GeneratedValue
+    private int idSubgenero;
+    private String nombre;
 
-	private String nombre;
-	
+    public Subgenero() {
+        super();
+    }
 
-	public int getIdSubgenero() {
-		return idSubgenero;
-	}
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
-	public void setIdSubgenero(int idSubgenero) {
-		this.idSubgenero = idSubgenero;
-	}
+    public int getIdSubgenero() {
+        return idSubgenero;
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public void setIdSubgenero(int idSubgenero) {
+        this.idSubgenero = idSubgenero;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	@Override
-	public int hashCode() {
-		return getIdSubgenero();
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	}
+    @Override
+    public int hashCode() {
+        return getIdSubgenero();
 
-	@Override
-	public String toString() {
-		return String.format("Sub-Genero: %s - %s", getIdSubgenero(), getNombre());
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		return getIdSubgenero()==((Subgenero)obj).getIdSubgenero();
-	}
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Sub-Genero: %s - %s", getIdSubgenero(), getNombre());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return getIdSubgenero() == ((Subgenero) obj).getIdSubgenero();
+    }
 }

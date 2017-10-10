@@ -1,30 +1,30 @@
 package ar.com.magm.ti.model.service.impl;
 
+import ar.com.magm.ti.model.Album;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ar.com.magm.ti.model.Persona;
-import ar.com.magm.ti.model.dao.IPersonaDAO;
-import ar.com.magm.ti.model.service.IPersonaService;
+import ar.com.magm.ti.model.dao.IAlbumDAO;
+import ar.com.magm.ti.model.service.IAlbumService;
 import ar.com.magm.ti.persistence.exception.PersistenceException;
 import ar.com.magm.ti.service.exception.ServiceException;
 import ar.com.magm.ti.service.impl.GenericService;
 
-public class PersonaService extends GenericService<Persona, Integer>
-        implements IPersonaService {
+public class AlbumService extends GenericService<Album, Integer>
+        implements IAlbumService {
 
-    private static Logger LOG = LoggerFactory.getLogger(PersonaService.class);
-    private IPersonaDAO dao;
+    private static Logger LOG = LoggerFactory.getLogger(AlbumService.class);
+    private IAlbumDAO dao;
 
-    public PersonaService(IPersonaDAO dao) {
+    public AlbumService(IAlbumDAO dao) {
         super(dao);
         this.dao = dao;
     }
 
     @Override
-    public List<Persona> list(String parteDelNombre) throws ServiceException {
+    public List<Album> list(String parteDelNombre) throws ServiceException {
         try {
             return dao.list(parteDelNombre);
         } catch (PersistenceException e) {

@@ -89,5 +89,4 @@ public class GenericService<Entity, PK extends Serializable> implements IGeneric
 			throw new ServiceException(e.getMessage(), e);
 		}
 	}
-
 }

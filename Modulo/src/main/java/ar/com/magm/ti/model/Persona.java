@@ -11,66 +11,75 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
+
 @Entity
 @Proxy(lazy = false)
 @Access(value = AccessType.FIELD)
 @Table(name = "personas")
 public class Persona implements Serializable {
 
-	private static final long serialVersionUID = -3235990393994226233L;
+    private static final long serialVersionUID = -3235990393994226233L;
 
-	@Id
-	@GeneratedValue
-	private int dni;
-	private String nombre;
-	private String apellido;
-	private Date fechaNacimiento;
+    @Id
+    @GeneratedValue
+    private int dni;
+    private String nombre;
+    private String apellido;
+    private Date fechaNacimiento;
 
-	public int getDni() {
-		return dni;
-	}
+    public Persona() {
+        super();
+    }
 
-	public void setDni(int dni) {
-		this.dni = dni;
-	}
+    public int getDni() {
+        return dni;
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public void setDni(int dni) {
+        this.dni = dni;
+    }
 
-	public String getApellido() {
-		return apellido;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
-	}
+    public String getApellido() {
+        return apellido;
+    }
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
-	@Override
-	public int hashCode() {
-		return getDni();
-	}
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		Persona p = (Persona) obj;
-		return getDni() == p.getDni();
-	}
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
 
-	@Override
-	public String toString() {
-		return String.format("Persona: dni=%s, nombre=%s, apellido=%s", getDni(), getNombre(), getApellido());
-	}
+    @Override
+    public int hashCode() {
+        return getDni();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Persona p = (Persona) obj;
+        return getDni() == p.getDni();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Persona: dni=%s, nombre=%s, apellido=%s", getDni(), getNombre(), getApellido());
+    }
 }

@@ -7,7 +7,7 @@
 
 		<property name="connection.url">jdbc:mysql://localhost:3306/ti</property>
 		<property name="connection.username">root</property>
-		<property name="connection.password">root</property>
+		<property name="connection.password"></property>
 
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
@@ -27,7 +27,7 @@
 
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
-		<property name="hbm2ddl.auto">create</property>
+		<property name="hbm2ddl.auto">update</property>
 		<!-- update validate -->
 		<mapping class="ar.com.magm.ti.model.Entidad" />
 		<mapping class="ar.com.magm.ti.model.Persona" />

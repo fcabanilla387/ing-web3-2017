@@ -22,46 +22,59 @@ import org.hibernate.annotations.Proxy;
 @Table(name = "playlist")
 public class Playlist implements Serializable {
 
-	private static final long serialVersionUID = 2464927409480955012L;
-	@Id
-	@GeneratedValue
-	private int idPlaylist;
+    private static final long serialVersionUID = 2464927409480955012L;
+    @Id
+    @GeneratedValue
+    private int idPlaylist;
+    private String nombre;
 
-	private String nombre;
-	
-	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="Playlist_Cancion", joinColumns={@JoinColumn(name="idPlaylist")}, inverseJoinColumns={@JoinColumn(name="IdCancion")})
-	private List<Cancion> canciones;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "Playlist_Cancion", joinColumns = {
+        @JoinColumn(name = "idPlaylist")}, inverseJoinColumns = {
+        @JoinColumn(name = "IdCancion")})
+    private List<Cancion> canciones;
 
-	public int getIdPlaylist() {
-		return idPlaylist;
-	}
+    public Playlist() {
+        super();
+    }
 
-	public void setIdPlaylist(int idPlaylist) {
-		this.idPlaylist = idPlaylist;
-	}
+    public List<Cancion> getCanciones() {
+        return canciones;
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public void setCanciones(List<Cancion> canciones) {
+        this.canciones = canciones;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public int getIdPlaylist() {
+        return idPlaylist;
+    }
 
-	@Override
-	public int hashCode() {
-		return getIdPlaylist();
+    public void setIdPlaylist(int idPlaylist) {
+        this.idPlaylist = idPlaylist;
+    }
 
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	@Override
-	public String toString() {
-		return String.format("PLaylist: %s - %s", getIdPlaylist(), getNombre());
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		return getIdPlaylist()==((Playlist)obj).getIdPlaylist();
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    public int hashCode() {
+        return getIdPlaylist();
+
+    }
+
+    @Override
+    public String toString() {
+        return String.format("PLaylist: %s - %s", getIdPlaylist(), getNombre());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return getIdPlaylist() == ((Playlist) obj).getIdPlaylist();
+    }
 }

@@ -22,59 +22,68 @@ import org.hibernate.annotations.Proxy;
 @Table(name = "genero")
 public class Genero implements Serializable {
 
-	private static final long serialVersionUID = 2464927409480955012L;
-	@Id
-	@GeneratedValue
-	private int idGenero;
+    private static final long serialVersionUID = 2464927409480955012L;
+    @Id
+    @GeneratedValue
+    private int idGenero;
+    private String nombre;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idGenero")
+    private List<Subgenero> subgeneros;
 
-	private String nombre;
-	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="idGenero")
-	private List<Subgenero> subgeneros;
-	
-	@ManyToMany(cascade = {CascadeType.ALL},mappedBy="generosFavoritos")
-	private List<Usuario> usuarios;
-	
+    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "generosFavoritos")
+    private List<Usuario> usuarios;
 
-	public int getIdGenero() {
-		return idGenero;
-	}
+    public Genero() {
+        super();
+    }
 
-	public void setIdGenero(int idGenero) {
-		this.idGenero = idGenero;
-	}
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public int getIdGenero() {
+        return idGenero;
+    }
 
-	public List<Subgenero> getSubgeneros() {
-		return subgeneros;
-	}
+    public void setIdGenero(int idGenero) {
+        this.idGenero = idGenero;
+    }
 
-	public void setSubgeneros(List<Subgenero> subgeneros) {
-		this.subgeneros = subgeneros;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	@Override
-	public int hashCode() {
-		return getIdGenero();
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	}
+    public List<Subgenero> getSubgeneros() {
+        return subgeneros;
+    }
 
-	@Override
-	public String toString() {
-		return String.format("Genero: %s - %s", getIdGenero(), getNombre());
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		return getIdGenero()==((Genero)obj).getIdGenero();
-	}
+    public void setSubgeneros(List<Subgenero> subgeneros) {
+        this.subgeneros = subgeneros;
+    }
+
+    @Override
+    public int hashCode() {
+        return getIdGenero();
+
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Genero: %s - %s", getIdGenero(), getNombre());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return getIdGenero() == ((Genero) obj).getIdGenero();
+    }
 }

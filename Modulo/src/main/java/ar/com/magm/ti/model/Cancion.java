@@ -11,90 +11,113 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
+
 @Entity
 @Proxy(lazy = false)
 @Access(value = AccessType.FIELD)
 @Table(name = "cancion")
 public class Cancion implements Serializable {
 
-	private static final long serialVersionUID = -3235990393994226233L;
+    private static final long serialVersionUID = -3235990393994226233L;
 
-	@Id
-	@GeneratedValue
-	private int id;
-	
-	private String titulo;
-	private String duracion;
-	private float rating;
-	private long reproducciones;
-	
-	
-	@ManyToMany(cascade = {CascadeType.ALL},mappedBy="artistasSeguidos")
-	private List<Usuario> usuarios;
-	
-	@OneToMany
-	@JoinColumn(name="idCancion")
-	private List<Subgenero> subgenero;
+    @Id
+    @GeneratedValue
+    private int id;
 
-	public int getId() {
-		return id;
-	}
+    private String titulo;
+    private String duracion;
+    private float rating;
+    private long reproducciones;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "artistasSeguidos")
+    private List<Usuario> usuarios;
 
-	public String getTitulo() {
-		return titulo;
-	}
+    /*@OneToMany
+    @JoinColumn(name = "idCancion")
+    */
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private Subgenero subgenero;
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
+    public Cancion() {
+        super();
+    }
 
-	public String getDuracion() {
-		return duracion;
-	}
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
 
-	public void setDuracion(String duracion) {
-		this.duracion = duracion;
-	}
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
 
-	public float getRating() {
-		return rating;
-	}
+    public Subgenero getSubgenero() {
+        return subgenero;
+    }
 
-	public void setRating(float rating) {
-		this.rating = rating;
-	}
+    public void setSubgenero(Subgenero subgenero) {
+        this.subgenero = subgenero;
+    }
 
-	public long getReproducciones() {
-		return reproducciones;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setReproducciones(long reproducciones) {
-		this.reproducciones = reproducciones;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	@Override
-	public int hashCode() {
-		return getId();
-	}
+    public String getTitulo() {
+        return titulo;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		Cancion p = (Cancion) obj;
-		return getId() == p.getId();
-	}
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
-	@Override
-	public String toString() {
-		return String.format("Cancion: titulo=%s, Duracion=%s", getTitulo(), getDuracion());
-	}
+    public String getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(String duracion) {
+        this.duracion = duracion;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public long getReproducciones() {
+        return reproducciones;
+    }
+
+    public void setReproducciones(long reproducciones) {
+        this.reproducciones = reproducciones;
+    }
+
+    @Override
+    public int hashCode() {
+        return getId();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Cancion p = (Cancion) obj;
+        return getId() == p.getId();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Cancion: titulo=%s, Duracion=%s", getTitulo(), getDuracion());
+    }
 }

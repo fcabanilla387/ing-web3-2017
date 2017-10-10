@@ -6,23 +6,23 @@ import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ar.com.magm.ti.model.Persona;
-import ar.com.magm.ti.model.dao.IPersonaDAO;
+import ar.com.magm.ti.model.Usuario;
+import ar.com.magm.ti.model.dao.IUsuarioDAO;
 import ar.com.magm.ti.persistence.dao.hibernate.GenericDAO;
 import ar.com.magm.ti.persistence.exception.PersistenceException;
 
-public class PersonaDAO extends GenericDAO<Persona, Integer> implements IPersonaDAO {
-	private static Logger LOG = LoggerFactory.getLogger(PersonaDAO.class);
-	public PersonaDAO(SessionFactory sessionFactory) {
+public class UsuarioDAO extends GenericDAO<Usuario, Integer> implements IUsuarioDAO {
+	private static Logger LOG = LoggerFactory.getLogger(UsuarioDAO.class);
+	public UsuarioDAO(SessionFactory sessionFactory) {
 		super(sessionFactory);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Persona> list(String parteDelNombre) throws PersistenceException {
-		List<Persona> l = null;
+	public List<Usuario> list(String parteDelNombre) throws PersistenceException {
+		List<Usuario> l = null;
 		try {
-			l = getSession().createQuery("FROM personas p WHERE p.nombre LIKE :parteNombre")
+			l = getSession().createQuery("FROM usuario p WHERE p.usuario LIKE :parteNombre")
 					.setString("parteNombre", "%"+parteDelNombre+"%").list();
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);

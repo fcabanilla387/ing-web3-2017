@@ -16,108 +16,129 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
+
 @Entity
 @Proxy(lazy = false)
 @Access(value = AccessType.FIELD)
 @Table(name = "usuario")
 public class Usuario implements Serializable {
 
-	private static final long serialVersionUID = -3235990393994226233L;
+    private static final long serialVersionUID = -3235990393994226233L;
 
-	@Id
-	@GeneratedValue
-	private int id;
-	private String usuario;
-	private String contraseña;
-	private String mail;
-	private String pais;
-	private boolean premiun;
-	
-	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="idUsuario")
-	private List<Playlist> playlists;
-	
-	@ManyToMany
-	@JoinTable(name="Artista_Seguido", joinColumns={@JoinColumn(name="idUsuario")}, inverseJoinColumns={@JoinColumn(name="IdArtista")})
-	private List<Artista> artistasSeguidos;
-	
-	
-	@ManyToMany
-	@JoinTable(name="Genero_Favorito", joinColumns={@JoinColumn(name="idUsuario")}, inverseJoinColumns={@JoinColumn(name="IdGenero")})
-	private List<Genero> generosFavoritos;
-	
-	
-	public List<Playlist> getPlaylists() {
-		return playlists;
-	}
+    @Id
+    @GeneratedValue
+    private int id;
+    private String usuario;
+    private String contraseña;
+    private String mail;
+    private String pais;
+    private boolean premiun;
 
-	public void setPlaylists(List<Playlist> playlists) {
-		this.playlists = playlists;
-	}
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idUsuario")
+    private List<Playlist> playlists;
 
-	public int getId() {
-		return id;
-	}
+    @ManyToMany
+    @JoinTable(name = "Artista_Seguido", joinColumns = {
+        @JoinColumn(name = "idUsuario")}, inverseJoinColumns = {
+        @JoinColumn(name = "IdArtista")})
+    private List<Artista> artistasSeguidos;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    @ManyToMany
+    @JoinTable(name = "Genero_Favorito", joinColumns = {
+        @JoinColumn(name = "idUsuario")}, inverseJoinColumns = {
+        @JoinColumn(name = "IdGenero")})
+    private List<Genero> generosFavoritos;
 
-	public String getUsuario() {
-		return usuario;
-	}
+    public Usuario() {
+        super();
+    }
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
+    public List<Playlist> getPlaylists() {
+        return playlists;
+    }
 
-	public String getContraseña() {
-		return contraseña;
-	}
+    public void setPlaylists(List<Playlist> playlists) {
+        this.playlists = playlists;
+    }
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getMail() {
-		return mail;
-	}
+    public List<Artista> getArtistasSeguidos() {
+        return artistasSeguidos;
+    }
 
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
+    public void setArtistasSeguidos(List<Artista> artistasSeguidos) {
+        this.artistasSeguidos = artistasSeguidos;
+    }
 
-	public String getPais() {
-		return pais;
-	}
+    public List<Genero> getGenerosFavoritos() {
+        return generosFavoritos;
+    }
 
-	public void setPais(String pais) {
-		this.pais = pais;
-	}
+    public void setGenerosFavoritos(List<Genero> generosFavoritos) {
+        this.generosFavoritos = generosFavoritos;
+    }
 
-	public boolean isPremiun() {
-		return premiun;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setPremiun(boolean premiun) {
-		this.premiun = premiun;
-	}
+    public String getUsuario() {
+        return usuario;
+    }
 
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
 
-	@Override
-	public int hashCode() {
-		return getId();
-	}
+    public String getContraseña() {
+        return contraseña;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		Usuario p = (Usuario) obj;
-		return getId() == p.getId();
-	}
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
 
-	@Override
-	public String toString() {
-		return String.format("Usuario: usuario=%s, pais=%s", getUsuario(), getPais());
-	}
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public boolean isPremiun() {
+        return premiun;
+    }
+
+    public void setPremiun(boolean premiun) {
+        this.premiun = premiun;
+    }
+
+    @Override
+    public int hashCode() {
+        return getId();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Usuario p = (Usuario) obj;
+        return getId() == p.getId();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Usuario: usuario=%s, pais=%s", getUsuario(), getPais());
+    }
 }

@@ -18,61 +18,68 @@ import org.hibernate.annotations.Proxy;
 @Table(name = "concierto")
 public class Concierto implements Serializable {
 
-	private static final long serialVersionUID = 2464927409480955012L;
-	@Id
-	@GeneratedValue
-	private int idConcierto;
-	
-	private String pais;
-	private String lugar;
-	private Date fecha;
-	
-	
-	public int getIdConcierto() {
-		return idConcierto;
-	}
+    private static final long serialVersionUID = 2464927409480955012L;
+    @Id
+    @GeneratedValue
+    private int idConcierto;
 
-	public void setIdConcierto(int idConcierto) {
-		this.idConcierto = idConcierto;
-	}
+    private String pais;
+    private String lugar;
+    private Date fecha;
 
-	public String getPais() {
-		return pais;
-	}
+    public Concierto() {
+        super();
+    }
 
-	public void setPais(String pais) {
-		this.pais = pais;
-	}
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
-	public String getLugar() {
-		return lugar;
-	}
+    public int getIdConcierto() {
+        return idConcierto;
+    }
 
-	public void setLugar(String lugar) {
-		this.lugar = lugar;
-	}
+    public void setIdConcierto(int idConcierto) {
+        this.idConcierto = idConcierto;
+    }
 
-	public Date getFecha() {
-		return fecha;
-	}
+    public String getPais() {
+        return pais;
+    }
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
 
-	@Override
-	public int hashCode() {
-		return getIdConcierto();
+    public String getLugar() {
+        return lugar;
+    }
 
-	}
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
 
-	@Override
-	public String toString() {
-		return String.format("Concierto: %s Pais: %s", getIdConcierto(), getPais());
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		return getIdConcierto()==((Concierto)obj).getIdConcierto();
-	}
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    @Override
+    public int hashCode() {
+        return getIdConcierto();
+
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Concierto: %s Pais: %s", getIdConcierto(), getPais());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return getIdConcierto() == ((Concierto) obj).getIdConcierto();
+    }
 }

@@ -1,7 +1,5 @@
 package ar.com.magm.ti.model;
 
-
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -16,63 +14,75 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
+
 @Entity
 @Proxy(lazy = false)
 @Access(value = AccessType.FIELD)
 @Table(name = "album")
 public class Album implements Serializable {
 
-	private static final long serialVersionUID = -3235990393994226233L;
+    private static final long serialVersionUID = -3235990393994226233L;
 
-	@Id
-	@GeneratedValue
-	private int id;
-	
-	private String nombre;
-	private int año;	
-	
-	@OneToMany(cascade= CascadeType.ALL)
-	@JoinColumn(name="idAlbum")
-	private List<Cancion> listaCanciones;
+    @Id
+    @GeneratedValue
+    private int id;
 
+    private String nombre;
+    private int año;
 
-	@Override
-	public int hashCode() {
-		return getId();
-	}
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idAlbum")
+    private List<Cancion> listaCanciones;
 
-	public int getId() {
-		return id;
-	}
+    public Album() {
+        super();
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    @Override
+    public int hashCode() {
+        return getId();
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public int getAño() {
-		return año;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public void setAño(int año) {
-		this.año = año;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		Album p = (Album) obj;
-		return getId() == p.getId();
-	}
+    public int getAño() {
+        return año;
+    }
 
-	@Override
-	public String toString() {
-		return String.format("Album: nombre=%s, año=%s", getNombre(), getAño());
-	}
+    public void setAño(int año) {
+        this.año = año;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Album p = (Album) obj;
+        return getId() == p.getId();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Album: nombre=%s, año=%s", getNombre(), getAño());
+    }
+
+    public List<Cancion> getListaCanciones() {
+        return listaCanciones;
+    }
+
+    public void setListaCanciones(List<Cancion> listaCanciones) {
+        this.listaCanciones = listaCanciones;
+    }
 }
