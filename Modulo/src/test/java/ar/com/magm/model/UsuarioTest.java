@@ -100,18 +100,18 @@ public class UsuarioTest extends BaseTest {
         List<Usuario> p = service.list();
 
         assertNotNull("Se generó la lista", p);
-    }/*
+    }
     @Test
     public void testListFilter() throws ServiceException {
-        IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
+        IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
 
-        List<Album> l = service.list();
+        List<Usuario> l = service.list();
 
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
-        List<Album> p = service.list("eath");
+        List<Usuario> p = service.list("caba");
 
         assertNotNull("No se generó la lista", p);
-    }*/
+    }
     @Test
     public void testLoad() throws ServiceException {
         IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));

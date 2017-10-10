@@ -80,18 +80,18 @@ public class SubgeneroTest extends BaseTest {
         List<Subgenero> p = service.list();
 
         assertNotNull("Se generó la lista", p);
-    }/*
+    }
     @Test
     public void testListFilter() throws ServiceException {
-        IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
+        ISubgeneroService service = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));
 
-        List<Album> l = service.list();
+        List<Subgenero> l = service.list();
 
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
-        List<Album> p = service.list("eath");
+        List<Subgenero> p = service.list("ash");
 
         assertNotNull("No se generó la lista", p);
-    }*/
+    }
     @Test
     public void testLoad() throws ServiceException {
         ISubgeneroService service = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));

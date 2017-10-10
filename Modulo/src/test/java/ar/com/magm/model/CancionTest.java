@@ -25,12 +25,11 @@ public class CancionTest extends BaseTest {
     public void testSave() throws ServiceException {
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
 
-       // List<Cancion> l = service.list();
-
+        // List<Cancion> l = service.list();
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Cancion p = new Cancion();
         p.setDuracion("3'45''");
-        p.setRating((float)4.5);
+        p.setRating((float) 4.5);
         p.setReproducciones(15);
         p.setTitulo("Before I forguet");
         p.setUsuarios(new ArrayList<Usuario>());
@@ -38,16 +37,16 @@ public class CancionTest extends BaseTest {
         p = service.save(p);
         assertNotEquals("Se generó mal el id", 0, p.getId());
     }
+
     @Test
     public void testSaveOrUpdate() throws ServiceException {
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
 
         //List<Cancion> l = service.list();
-
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Cancion p = new Cancion();
         p.setDuracion("7'22''");
-        p.setRating((float)3.2);
+        p.setRating((float) 3.2);
         p.setReproducciones(9);
         p.setTitulo("Pulse of the maggot");
         p.setUsuarios(new ArrayList<Usuario>());
@@ -55,115 +54,100 @@ public class CancionTest extends BaseTest {
         p = service.saveOrUpdate(p);
         assertNotEquals("Se generó mal el id", 0, p.getId());
     }
+
     @Test
     public void testUpdate() throws ServiceException {
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
 
         //List<Cancion> l = service.list();
-
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Cancion p = new Cancion();
         p.setId(1);
         p.setDuracion("9'11''");
-        p.setRating((float)4.1);
+        p.setRating((float) 4.1);
         p.setReproducciones(33);
         p.setTitulo("Smell like teen spirit");
         p.setUsuarios(new ArrayList<Usuario>());
-        try{
+        try {
             p = service.update(p);
-        }catch(NotFoundException e){
-            
+        } catch (NotFoundException e) {
+
         }
         assertNotEquals("Se generó mal el id", 0, p.getId());
     }
+
     @Test
     public void testList() throws ServiceException {
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
 
-       // List<Cancion> l = service.list();
-
+        // List<Cancion> l = service.list();
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         List<Cancion> p = service.list();
 
         assertNotNull("Se generó la lista", p);
-    }/*
+    }
+
     @Test
     public void testListFilter() throws ServiceException {
-        IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
+        ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
 
-        List<Album> l = service.list();
+        List<Cancion> l = service.list();
 
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
-        List<Album> p = service.list("eath");
+        List<Cancion> p = service.list("the");
 
         assertNotNull("No se generó la lista", p);
-    }*/
+    }
+
     @Test
     public void testLoad() throws ServiceException {
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
 
         //List<Cancion> l = service.list();
-
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Cancion p = new Cancion();
         p = null;
-        try{
+        try {
             p = service.load(1);
-        }catch(NotFoundException e){
+        } catch (NotFoundException e) {
         }
-        
+
         assertNotNull("No se cargo la cancion");
     }
+
     @Test
-    public void testDelete()  throws ServiceException{
+    public void testDelete() throws ServiceException {
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
 
         //List<Cancion> l = service.list();
-
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Cancion p = new Cancion();
-        try{
+        try {
             p = service.load(1);
             service.delete(p);
             p = null;
             p = service.load(1);
-        }catch(NotFoundException e){
+        } catch (NotFoundException e) {
         }
         assertNull("Se borro la cancion", p);
     }
-    
+
     @Test
     public void testTopRating() throws ServiceException {
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
-        
-        
-        
+
         List<Cancion> p = service.topRating(5);
-        
-        for (Cancion t : p) {
-        	System.out.println(t.getTitulo());
-        	System.out.println("PRUEBA SALIDA");
-        	System.out.println(t.getRating());
-        }
 
         assertNotNull("Se generó la lista", p);
     }
-    
+
     @Test
     public void testTopReproducido() throws ServiceException {
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
-        
-        
-        
+
         List<Cancion> p = service.topReproducido(5);
-        
-        for (Cancion t : p) {
-        	System.out.println(t.getTitulo());
-        	System.out.println("PRUEBA SALIDA");
-        	System.out.println(t.getReproducciones());
-        }
 
         assertNotNull("Se generó la lista", p);
     }
-    
+
 }
