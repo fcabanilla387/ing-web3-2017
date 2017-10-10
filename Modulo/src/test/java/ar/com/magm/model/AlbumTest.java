@@ -90,7 +90,7 @@ public class AlbumTest extends BaseTest {
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         List<Album> p = service.list("eath");
 
-        assertNull("No se generó la lista", p);
+        assertNotNull("No se generó la lista", p);
     }*/
     @Test
     public void testLoad() throws ServiceException {
