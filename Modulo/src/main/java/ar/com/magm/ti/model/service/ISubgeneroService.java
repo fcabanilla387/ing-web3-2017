@@ -7,5 +7,6 @@ import ar.com.magm.ti.service.IGenericService;
 import ar.com.magm.ti.service.exception.ServiceException;
 
 public interface ISubgeneroService extends IGenericService<Subgenero, Integer> {
-	public List<Subgenero> list(String parteDelNombre) throws ServiceException; 
+	public List<Subgenero> list(String parteDelNombre) throws ServiceException;
+	public List<Subgenero> listSubgeneros(Integer idGenero) throws ServiceException;
 }

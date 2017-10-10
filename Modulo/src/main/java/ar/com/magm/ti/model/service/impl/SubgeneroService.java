@@ -33,4 +33,14 @@ public class SubgeneroService extends GenericService<Subgenero, Integer>
         }
     }
 
+	@Override
+	public List<Subgenero> listSubgeneros(Integer idGenero) throws ServiceException {
+		try {
+            return dao.list(idGenero);
+        } catch (PersistenceException e) {
+            LOG.error(e.getMessage(), e);
+            throw new ServiceException(e.getMessage(), e);
+        }
+	}
+
 }
