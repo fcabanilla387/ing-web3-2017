@@ -11,7 +11,7 @@ import org.hibernate.SessionFactory;
 import org.junit.Test;
 
 import ar.com.magm.ti.model.dao.hibernate.CancionDAO;
-import ar.com.magm.ti.model.service.CalcularGenerosService;
+import ar.com.magm.ti.model.service.impl.CalcularUsuarioService;
 import ar.com.magm.ti.model.service.ICancionService;
 import ar.com.magm.ti.model.service.impl.CancionService;
 import ar.com.magm.ti.service.exception.ServiceException;
@@ -22,7 +22,7 @@ import static org.junit.Assert.assertNotNull;
  *
  * @author matia
  */
-public class CalcularGenerosTest extends BaseTest {
+public class CalcularUsuarioTest extends BaseTest {
     
     @Test
     public void test1()throws ServiceException{
@@ -30,7 +30,7 @@ public class CalcularGenerosTest extends BaseTest {
         
         ArrayList<Cancion> canciones = (ArrayList<Cancion>)service.list();
         
-        CalcularGenerosService calc = new CalcularGenerosService(canciones);
+        CalcularUsuarioService calc = new CalcularUsuarioService(canciones);
         Cancion c = calc.CancionMejorPuntuada();
         assertNotNull(c);
     }
@@ -41,7 +41,7 @@ public class CalcularGenerosTest extends BaseTest {
         
         ArrayList<Cancion> canciones = (ArrayList<Cancion>)service.list();
         
-        CalcularGenerosService calc = new CalcularGenerosService(canciones);
+        CalcularUsuarioService calc = new CalcularUsuarioService(canciones);
         Cancion c = calc.CancionMasReproducida();
         assertNotNull(c);
     }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ar.com.magm.ti.model.service;
+package ar.com.magm.ti.model.service.impl;
 
 import ar.com.magm.ti.model.Cancion;
 import java.util.ArrayList;
@@ -12,10 +12,10 @@ import java.util.ArrayList;
  *
  * @author matia
  */
-public class CalcularGenerosService {
+public class CalcularUsuarioService {
     private ArrayList<Cancion> canciones;
     
-    public CalcularGenerosService(ArrayList<Cancion> canciones){
+    public CalcularUsuarioService(ArrayList<Cancion> canciones){
         this.canciones = canciones;
     }            
     
