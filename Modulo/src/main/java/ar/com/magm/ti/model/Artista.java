@@ -42,9 +42,6 @@ public class Artista implements Serializable {
         this.id = id;
     }
 
-    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "canciones")
-    private List<Playlist> playlists;
-
     public Artista() {
         super();
     }
@@ -89,14 +86,6 @@ public class Artista implements Serializable {
 
     public void setAlbums(List<Album> albums) {
         this.albums = albums;
-    }
-
-    public List<Playlist> getPlaylists() {
-        return playlists;
-    }
-
-    public void setPlaylists(List<Playlist> playlists) {
-        this.playlists = playlists;
     }
 
     @Override

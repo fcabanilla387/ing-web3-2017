@@ -33,7 +33,6 @@ public class ArtistaTest extends BaseTest {
         p.setGenero("Rock");
         p.setConciertos(new ArrayList<Concierto>());
         p.setAlbums(new ArrayList<Album>());
-        p.setPlaylists(new ArrayList<Playlist>());
         
 
         p = service.save(p);
@@ -56,7 +55,6 @@ public class ArtistaTest extends BaseTest {
         p.setGenero("Pop");
         p.setConciertos(new ArrayList<Concierto>());
         p.setAlbums(new ArrayList<Album>());
-        p.setPlaylists(new ArrayList<Playlist>());
 
         /*
          * ****************************************************
@@ -85,7 +83,6 @@ public class ArtistaTest extends BaseTest {
         p.setGenero("Pop");
         p.setConciertos(new ArrayList<Concierto>());
         p.setAlbums(new ArrayList<Album>());
-        p.setPlaylists(new ArrayList<Playlist>());
 
         /*
          * ****************************************************
