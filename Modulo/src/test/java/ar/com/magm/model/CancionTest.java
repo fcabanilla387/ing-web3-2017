@@ -3,7 +3,7 @@ package ar.com.magm.model;
 //import static org.junit.Assert.assertEquals;
 import ar.com.magm.ti.exception.NotFoundException;
 import ar.com.magm.ti.model.Cancion;
-import ar.com.magm.ti.model.Usuario;
+import ar.com.magm.ti.model.Subgenero;
 import static org.junit.Assert.assertNotEquals;
 
 import java.util.List;
@@ -15,7 +15,6 @@ import ar.com.magm.ti.model.dao.hibernate.CancionDAO;
 import ar.com.magm.ti.model.service.ICancionService;
 import ar.com.magm.ti.model.service.impl.CancionService;
 import ar.com.magm.ti.service.exception.ServiceException;
-import java.util.ArrayList;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
@@ -30,7 +29,9 @@ public class CancionTest extends BaseTest {
         p.setRating((float) 4.5);
         p.setReproducciones(15);
         p.setTitulo("Before I forguet");
-
+        Subgenero s = new Subgenero();
+        s.setNombre("gato");
+        p.setSubgenero(s);
         p = service.save(p);
         assertNotEquals("Se generó mal el id", 0, p.getId());
     }
@@ -44,6 +45,7 @@ public class CancionTest extends BaseTest {
         p.setRating((float) 3.2);
         p.setReproducciones(9);
         p.setTitulo("Pulse of the maggot");
+        p.setSubgenero(new Subgenero());
 
         p = service.saveOrUpdate(p);
         assertNotEquals("Se generó mal el id", 0, p.getId());
@@ -59,6 +61,7 @@ public class CancionTest extends BaseTest {
         p.setRating((float) 4.1);
         p.setReproducciones(33);
         p.setTitulo("Smell like teen spirit");
+        p.setSubgenero(new Subgenero());
         try {
             p = service.update(p);
         } catch (NotFoundException e) {

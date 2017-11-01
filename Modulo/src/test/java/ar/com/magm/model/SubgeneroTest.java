@@ -2,7 +2,6 @@ package ar.com.magm.model;
 
 //import static org.junit.Assert.assertEquals;
 import ar.com.magm.ti.exception.NotFoundException;
-import ar.com.magm.ti.model.Cancion;
 import ar.com.magm.ti.model.Subgenero;
 import static org.junit.Assert.assertNotEquals;
 
@@ -15,7 +14,6 @@ import ar.com.magm.ti.model.dao.hibernate.SubgeneroDAO;
 import ar.com.magm.ti.model.service.ISubgeneroService;
 import ar.com.magm.ti.model.service.impl.SubgeneroService;
 import ar.com.magm.ti.service.exception.ServiceException;
-import java.util.ArrayList;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
@@ -28,7 +26,6 @@ public class SubgeneroTest extends BaseTest {
 
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Subgenero p = new Subgenero();
-        p.setCanciones(new ArrayList<Cancion>());
         p.setNombre("Cuarteto de cuerdas");
 
         p = service.save(p);
@@ -40,7 +37,6 @@ public class SubgeneroTest extends BaseTest {
         ISubgeneroService service = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));
         
         Subgenero p = new Subgenero();
-        p.setCanciones(new ArrayList<Cancion>());
         p.setNombre("Trash");
 
         p = service.saveOrUpdate(p);
@@ -54,7 +50,6 @@ public class SubgeneroTest extends BaseTest {
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Subgenero p = new Subgenero();
         p.setIdSubgenero(1);
-        p.setCanciones(new ArrayList<Cancion>());
         p.setNombre("Nu Metal");
         try {
             p = service.update(p);
@@ -96,7 +91,7 @@ public class SubgeneroTest extends BaseTest {
 
         assertNotNull("No se cargo el Subgenero");
     }
-
+/*
     @Test
     public void testDelete() throws ServiceException {
         ISubgeneroService service = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));
@@ -104,15 +99,15 @@ public class SubgeneroTest extends BaseTest {
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Subgenero p = new Subgenero();
         try {
-            p = service.load(1);
+            p = service.load(3);
             service.delete(p);
             p = null;
-            p = service.load(1);
+            p = service.load(3);
         } catch (NotFoundException e) {
         }
         assertNull("Se borro el Subgenero", p);
     }
-    /*
+    
     @Test
     public void testListSubgenero() throws ServiceException {
         ISubgeneroService service = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));

@@ -11,7 +11,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
@@ -75,6 +76,18 @@ public class Cancion implements Serializable, Comparable<Cancion>{
 
     public void setReproducciones(long reproducciones) {
         this.reproducciones = reproducciones;
+    }
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idSubgenero")
+    private Subgenero subgenero;
+
+    public Subgenero getSubgenero() {
+        return subgenero;
+    }
+
+    public void setSubgenero(Subgenero subgenero) {
+        this.subgenero = subgenero;
     }
 
     @Override

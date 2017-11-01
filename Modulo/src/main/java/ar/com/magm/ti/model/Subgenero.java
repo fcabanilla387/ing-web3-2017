@@ -1,16 +1,12 @@
 package ar.com.magm.ti.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
@@ -30,20 +26,9 @@ public class Subgenero implements Serializable {
     public Subgenero() {
         super();
     }
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idSubgenero")
-    private List<Cancion> canciones; 
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
-    }
-
-    public List<Cancion> getCanciones() {
-        return canciones;
-    }
-
-    public void setCanciones(List<Cancion> canciones) {
-        this.canciones = canciones;
     }
 
     public int getIdSubgenero() {
