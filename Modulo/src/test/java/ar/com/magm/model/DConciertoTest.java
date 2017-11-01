@@ -3,6 +3,7 @@ package ar.com.magm.model;
 //import static org.junit.Assert.assertEquals;
 import ar.com.magm.ti.exception.NotFoundException;
 import ar.com.magm.ti.model.Concierto;
+import ar.com.magm.ti.model.dao.hibernate.CancionDAO;
 import static org.junit.Assert.assertNotEquals;
 
 import java.util.List;
@@ -11,19 +12,21 @@ import org.hibernate.SessionFactory;
 import org.junit.Test;
 
 import ar.com.magm.ti.model.dao.hibernate.ConciertoDAO;
+import ar.com.magm.ti.model.service.ICancionService;
 import ar.com.magm.ti.model.service.IConciertoService;
+import ar.com.magm.ti.model.service.impl.CancionService;
 import ar.com.magm.ti.model.service.impl.ConciertoService;
 import ar.com.magm.ti.service.exception.ServiceException;
 import java.util.Date;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-public class ConciertoTest extends BaseTest {
+public class DConciertoTest extends BaseTest {
 
     @Test
     public void testSave() throws ServiceException {
         IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
-
+        
         Concierto p = new Concierto();
         p.setFecha(new Date());
         p.setLugar("Orfeo Superdomo");
