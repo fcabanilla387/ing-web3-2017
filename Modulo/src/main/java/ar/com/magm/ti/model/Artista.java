@@ -26,7 +26,7 @@ public class Artista implements Serializable {
 
     @Id
     @GeneratedValue
-    private int id;
+    private int idArtista;
     private String nombre;
     private String genero;
 
@@ -37,20 +37,20 @@ public class Artista implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "idArtista")
     private List<Album> albums;
-
+    
+    
     public void setId(int id) {
-        this.id = id;
+        this.idArtista = id;
     }
 
-    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "canciones")
-    private List<Playlist> playlists;
+    
 
     public Artista() {
         super();
     }
 
     public int getId() {
-        return id;
+        return idArtista;
     }
 
     public String getNombre() {
@@ -89,14 +89,6 @@ public class Artista implements Serializable {
 
     public void setAlbums(List<Album> albums) {
         this.albums = albums;
-    }
-
-    public List<Playlist> getPlaylists() {
-        return playlists;
-    }
-
-    public void setPlaylists(List<Playlist> playlists) {
-        this.playlists = playlists;
     }
 
     @Override

@@ -26,38 +26,24 @@ public class Cancion implements Serializable, Comparable<Cancion>{
 
     @Id
     @GeneratedValue
-    private int id;
+    private int idCancion;
 
     private String titulo;
     private String duracion;
     private float rating;
     private long reproducciones;
 
-    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "artistasSeguidos")
-    private List<Usuario> usuarios;
-
-    /*@OneToMany
-    @JoinColumn(name = "idCancion")
-    */
 
     public Cancion() {
         super();
     }
 
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-
     public int getId() {
-        return id;
+        return idCancion;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.idCancion = id;
     }
 
     public String getTitulo() {

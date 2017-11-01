@@ -25,7 +25,7 @@ public class Album implements Serializable {
 
     @Id
     @GeneratedValue
-    private int id;
+    private int idAlbum;
 
     private String nombre;
     private int año;
@@ -44,11 +44,11 @@ public class Album implements Serializable {
     }
 
     public int getId() {
-        return id;
+        return idAlbum;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.idAlbum = id;
     }
 
     public String getNombre() {

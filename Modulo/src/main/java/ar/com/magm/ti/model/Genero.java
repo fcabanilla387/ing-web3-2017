@@ -32,19 +32,10 @@ public class Genero implements Serializable {
     @JoinColumn(name = "idGenero")
     private List<Subgenero> subgeneros;
 
-    @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "generosFavoritos")
-    private List<Usuario> usuarios;
+    
 
     public Genero() {
         super();
-    }
-
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
     }
 
     public int getIdGenero() {

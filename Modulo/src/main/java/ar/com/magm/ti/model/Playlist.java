@@ -28,11 +28,13 @@ public class Playlist implements Serializable {
     private int idPlaylist;
     private String nombre;
 
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "Playlist_Cancion", joinColumns = {
-        @JoinColumn(name = "idPlaylist")}, inverseJoinColumns = {
-        @JoinColumn(name = "IdCancion")})
+    @JoinColumn(name = "idPlaylist")}, inverseJoinColumns = {
+    @JoinColumn(name = "IdCancion")})
     private List<Cancion> canciones;
+
 
     public Playlist() {
         super();

@@ -27,7 +27,7 @@ public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue
-    private int id;
+    private int idUsuario;
     private String usuario;
     private String contraseña;
     private String mail;
@@ -44,11 +44,6 @@ public class Usuario implements Serializable {
         @JoinColumn(name = "IdArtista")})
     private List<Artista> artistasSeguidos;
 
-    @ManyToMany
-    @JoinTable(name = "Genero_Favorito", joinColumns = {
-        @JoinColumn(name = "idUsuario")}, inverseJoinColumns = {
-        @JoinColumn(name = "IdGenero")})
-    private List<Genero> generosFavoritos;
 
     public Usuario() {
         super();
@@ -63,7 +58,7 @@ public class Usuario implements Serializable {
     }
 
     public int getId() {
-        return id;
+        return idUsuario;
     }
 
     public List<Artista> getArtistasSeguidos() {
@@ -74,16 +69,10 @@ public class Usuario implements Serializable {
         this.artistasSeguidos = artistasSeguidos;
     }
 
-    public List<Genero> getGenerosFavoritos() {
-        return generosFavoritos;
-    }
-
-    public void setGenerosFavoritos(List<Genero> generosFavoritos) {
-        this.generosFavoritos = generosFavoritos;
-    }
+    
 
     public void setId(int id) {
-        this.id = id;
+        this.idUsuario = id;
     }
 
     public String getUsuario() {
