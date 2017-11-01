@@ -30,7 +30,6 @@ public class CancionTest extends BaseTest {
         p.setRating((float) 4.5);
         p.setReproducciones(15);
         p.setTitulo("Before I forguet");
-        p.setUsuarios(new ArrayList<Usuario>());
 
         p = service.save(p);
         assertNotEquals("Se generó mal el id", 0, p.getId());
@@ -45,7 +44,6 @@ public class CancionTest extends BaseTest {
         p.setRating((float) 3.2);
         p.setReproducciones(9);
         p.setTitulo("Pulse of the maggot");
-        p.setUsuarios(new ArrayList<Usuario>());
 
         p = service.saveOrUpdate(p);
         assertNotEquals("Se generó mal el id", 0, p.getId());
@@ -61,7 +59,6 @@ public class CancionTest extends BaseTest {
         p.setRating((float) 4.1);
         p.setReproducciones(33);
         p.setTitulo("Smell like teen spirit");
-        p.setUsuarios(new ArrayList<Usuario>());
         try {
             p = service.update(p);
         } catch (NotFoundException e) {
