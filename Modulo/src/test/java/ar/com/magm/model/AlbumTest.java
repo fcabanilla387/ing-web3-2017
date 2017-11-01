@@ -28,6 +28,8 @@ public class AlbumTest extends BaseTest {
         Album p = new Album();
         p.setAño(1990);
         p.setNombre("Death Magnetic");
+        Cancion c = new Cancion();
+        c.setDuracion("3'45''");
         p.setListaCanciones(new ArrayList<Cancion>());
 
         p = service.save(p);

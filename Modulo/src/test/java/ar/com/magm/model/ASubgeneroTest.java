@@ -14,20 +14,17 @@ import ar.com.magm.ti.model.dao.hibernate.SubgeneroDAO;
 import ar.com.magm.ti.model.service.ISubgeneroService;
 import ar.com.magm.ti.model.service.impl.SubgeneroService;
 import ar.com.magm.ti.service.exception.ServiceException;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
-public class SubgeneroTest extends BaseTest {
+public class ASubgeneroTest extends BaseTest {
 
     @Test
     public void testSave() throws ServiceException {
         ISubgeneroService service = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));
 
-
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Subgenero p = new Subgenero();
-        p.setNombre("Cuarteto de cuerdas");
-
+        p.setNombre("Metal");
         p = service.save(p);
         assertNotEquals("Se generó mal el id", 0, p.getIdSubgenero());
     }
@@ -35,10 +32,9 @@ public class SubgeneroTest extends BaseTest {
     @Test
     public void testSaveOrUpdate() throws ServiceException {
         ISubgeneroService service = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));
-        
-        Subgenero p = new Subgenero();
-        p.setNombre("Trash");
 
+        Subgenero p = new Subgenero();
+        p.setNombre("Punk");
         p = service.saveOrUpdate(p);
         assertNotEquals("Se generó mal el id", 0, p.getIdSubgenero());
     }
@@ -49,7 +45,7 @@ public class SubgeneroTest extends BaseTest {
 
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Subgenero p = new Subgenero();
-        p.setIdSubgenero(1);
+        p.setIdSubgenero(2);
         p.setNombre("Nu Metal");
         try {
             p = service.update(p);
@@ -68,20 +64,22 @@ public class SubgeneroTest extends BaseTest {
 
         assertNotNull("Se generó la lista", p);
     }
+
     @Test
     public void testListFilter() throws ServiceException {
         ISubgeneroService service = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));
 
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
-        List<Subgenero> p = service.list("ash");
+        List<Subgenero> p = service.list("unk");
 
         assertNotNull("No se generó la lista", p);
     }
+
     @SuppressWarnings("unused")
-	@Test
+    @Test
     public void testLoad() throws ServiceException {
         ISubgeneroService service = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));
-        
+
         Subgenero p = new Subgenero();
         p = null;
         try {
@@ -91,7 +89,8 @@ public class SubgeneroTest extends BaseTest {
 
         assertNotNull("No se cargo el Subgenero");
     }
-/*
+    
+    /*
     @Test
     public void testDelete() throws ServiceException {
         ISubgeneroService service = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));
@@ -99,10 +98,10 @@ public class SubgeneroTest extends BaseTest {
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Subgenero p = new Subgenero();
         try {
-            p = service.load(3);
+            p = service.load(2);
             service.delete(p);
             p = null;
-            p = service.load(3);
+            p = service.load(2);
         } catch (NotFoundException e) {
         }
         assertNull("Se borro el Subgenero", p);
@@ -117,6 +116,5 @@ public class SubgeneroTest extends BaseTest {
 
         assertNotNull("Se generó la lista", p);
     }*/
-
 
 }

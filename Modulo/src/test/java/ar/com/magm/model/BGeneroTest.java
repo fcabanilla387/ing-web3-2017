@@ -22,23 +22,23 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
-public class GeneroTest extends BaseTest {
+public class BGeneroTest extends BaseTest {
 
     @Test
     public void testSave() throws ServiceException {
         IGeneroService service = new GeneroService(new GeneroDAO((SessionFactory) sessionFactory()));
         ISubgeneroService service1 = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));
+        
         Genero p = new Genero();
-        p.setNombre("Clasica");
+        p.setNombre("Metal");
         ArrayList<Subgenero> subgeneros = new ArrayList<Subgenero>();
-        Subgenero s;
+        Subgenero s = new Subgenero();
         try {
-            s = service1.load(3);
+            s = service1.load(1);
             subgeneros.add(s);
         } catch (NotFoundException ex) {
-            Logger.getLogger(GeneroTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BGeneroTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         p.setSubgeneros(subgeneros);
 
@@ -50,14 +50,15 @@ public class GeneroTest extends BaseTest {
         IGeneroService service = new GeneroService(new GeneroDAO((SessionFactory) sessionFactory()));
         ISubgeneroService service1 = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));
         Genero p = new Genero();
-        p.setNombre("Punk");
+        
+        p.setNombre("Trash");
         ArrayList<Subgenero> subgeneros = new ArrayList<Subgenero>();
-        Subgenero s;
+        Subgenero s = new Subgenero();
         try {
-            s = service1.load(3);
+            s = service1.load(2);
             subgeneros.add(s);
         } catch (NotFoundException ex) {
-            Logger.getLogger(GeneroTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BGeneroTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         p.setSubgeneros(subgeneros);
 
@@ -67,11 +68,19 @@ public class GeneroTest extends BaseTest {
     @Test
     public void testUpdate() throws ServiceException {
         IGeneroService service = new GeneroService(new GeneroDAO((SessionFactory) sessionFactory()));
-
+        ISubgeneroService service1 = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));
         Genero p = new Genero();
-        p.setIdGenero(1);
-        p.setNombre("Metal");
-        p.setSubgeneros(new ArrayList<Subgenero>());
+        p.setIdGenero(2);
+        p.setNombre("Trash");
+        ArrayList<Subgenero> subgeneros = new ArrayList<Subgenero>();
+        Subgenero s = new Subgenero();
+        try {
+            s = service1.load(2);
+            subgeneros.add(s);
+        } catch (NotFoundException ex) {
+            Logger.getLogger(BGeneroTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        p.setSubgeneros(subgeneros);
         try{
             p = service.update(p);
         }catch(NotFoundException e){
