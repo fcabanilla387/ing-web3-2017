@@ -29,7 +29,6 @@ public class GeneroTest extends BaseTest {
         Genero p = new Genero();
         p.setNombre("Clasica");
         p.setSubgeneros(new ArrayList<Subgenero>());
-        p.setUsuarios(new ArrayList<Usuario>());
 
         p = service.save(p);
         assertNotEquals("Se generó mal el id", 0, p.getIdGenero());
@@ -41,7 +40,6 @@ public class GeneroTest extends BaseTest {
         Genero p = new Genero();
         p.setNombre("Punk");
         p.setSubgeneros(new ArrayList<Subgenero>());
-        p.setUsuarios(new ArrayList<Usuario>());
 
         p = service.saveOrUpdate(p);
         assertNotEquals("Se generó mal el id", 0, p.getIdGenero());
@@ -54,7 +52,6 @@ public class GeneroTest extends BaseTest {
         p.setIdGenero(1);
         p.setNombre("Metal");
         p.setSubgeneros(new ArrayList<Subgenero>());
-        p.setUsuarios(new ArrayList<Usuario>());
         try{
             p = service.update(p);
         }catch(NotFoundException e){

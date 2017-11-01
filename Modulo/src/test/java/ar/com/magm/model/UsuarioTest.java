@@ -33,7 +33,6 @@ public class UsuarioTest extends BaseTest {
         Usuario p = new Usuario();
         p.setArtistasSeguidos(new ArrayList<Artista>());
         p.setContraseña("1234");
-        p.setGenerosFavoritos(new ArrayList<Genero>());
         p.setMail("prueba123@gmail.com");
         p.setPais("prueba");
         p.setPlaylists(new ArrayList<Playlist>());
@@ -54,7 +53,6 @@ public class UsuarioTest extends BaseTest {
         Usuario p = new Usuario();
         p.setArtistasSeguidos(new ArrayList<Artista>());
         p.setContraseña("1111");
-        p.setGenerosFavoritos(new ArrayList<Genero>());
         p.setMail("fcabanilla@gmail.com");
         p.setPais("Argentina");
         p.setPlaylists(new ArrayList<Playlist>());
@@ -75,7 +73,6 @@ public class UsuarioTest extends BaseTest {
         p.setId(1);
         p.setArtistasSeguidos(new ArrayList<Artista>());
         p.setContraseña("6666");
-        p.setGenerosFavoritos(new ArrayList<Genero>());
         p.setMail("matiasslpknt@gmail.com");
         p.setPais("Argentina");
         p.setPlaylists(new ArrayList<Playlist>());
