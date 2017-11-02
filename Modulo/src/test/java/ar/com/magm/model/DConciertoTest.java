@@ -42,7 +42,7 @@ public class DConciertoTest extends BaseTest {
         Concierto p = new Concierto();
         p.setFecha(new Date());
         p.setLugar("Luna Park");
-        p.setPais("Argentina");
+        p.setPais("Uruguay");
 
         p = service.saveOrUpdate(p);
         assertNotEquals("Se generó mal el id", 0, p.getIdConcierto());
@@ -101,6 +101,7 @@ public class DConciertoTest extends BaseTest {
         
         assertNotNull("No se cargo el concierto");
     }
+    /*
     @Test
     public void testDelete()  throws ServiceException{
         IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
@@ -115,5 +116,5 @@ public class DConciertoTest extends BaseTest {
         }
         assertNull("Se borro el concierto", p);
     }
-    
+    */
 }

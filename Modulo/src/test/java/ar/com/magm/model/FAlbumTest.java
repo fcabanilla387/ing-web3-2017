@@ -12,54 +12,78 @@ import org.hibernate.SessionFactory;
 import org.junit.Test;
 
 import ar.com.magm.ti.model.dao.hibernate.AlbumDAO;
+import ar.com.magm.ti.model.dao.hibernate.CancionDAO;
 import ar.com.magm.ti.model.service.IAlbumService;
+import ar.com.magm.ti.model.service.ICancionService;
 import ar.com.magm.ti.model.service.impl.AlbumService;
+import ar.com.magm.ti.model.service.impl.CancionService;
 import ar.com.magm.ti.service.exception.ServiceException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-public class AlbumTest extends BaseTest {
+public class FAlbumTest extends BaseTest {
 
     @Test
     public void testSave() throws ServiceException {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
-
+        ICancionService serviceCancion = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
+        
         Album p = new Album();
         p.setAño(1990);
         p.setNombre("Death Magnetic");
         Cancion c = new Cancion();
-        c.setDuracion("3'45''");
-        p.setListaCanciones(new ArrayList<Cancion>());
-
+        try {
+            c = serviceCancion.load(1);
+            ArrayList<Cancion> canciones = new ArrayList<Cancion>();
+            canciones.add(c);
+            p.setListaCanciones(canciones);
+        } catch (NotFoundException ex) {
+            Logger.getLogger(FAlbumTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         p = service.save(p);
         assertNotEquals("Se generó mal el id", 0, p.getId());
     }
     @Test
     public void testSaveOrUpdate() throws ServiceException {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
-
+        ICancionService serviceCancion = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
         Album p = new Album();
         p.setAño(1832);
         p.setNombre("Dark side of the moon");
-        p.setListaCanciones(new ArrayList<Cancion>());
-
+        Cancion c = new Cancion();
+        try {
+            c = serviceCancion.load(2);
+            ArrayList<Cancion> canciones = new ArrayList<Cancion>();
+            canciones.add(c);
+            p.setListaCanciones(canciones);
+        } catch (NotFoundException ex) {
+            Logger.getLogger(FAlbumTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         p = service.saveOrUpdate(p);
         assertNotEquals("Se generó mal el id", 0, p.getId());
     }
     @Test
     public void testUpdate() throws ServiceException {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
-
+        ICancionService serviceCancion = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
         Album p = new Album();
         p.setId(1);
         p.setAño(2000);
         p.setNombre("Iowa");
         p.setListaCanciones(new ArrayList<Cancion>());
-        try{
+        
+        Cancion c = new Cancion();
+        try {
+            c = serviceCancion.load(1);
+            ArrayList<Cancion> canciones = new ArrayList<Cancion>();
+            canciones.add(c);
+            p.setListaCanciones(canciones);
             p = service.update(p);
-        }catch(NotFoundException e){
-            
+        } catch (NotFoundException ex) {
+            Logger.getLogger(FAlbumTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         assertNotEquals("Se generó mal el id", 0, p.getId());
     }
@@ -93,6 +117,7 @@ public class AlbumTest extends BaseTest {
         
         assertNotNull("No se cargo el album");
     }
+    /*
     @Test
     public void testDelete()  throws ServiceException{
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
@@ -106,6 +131,6 @@ public class AlbumTest extends BaseTest {
         }catch(NotFoundException e){
         }
         assertNull("Se borro el Album", p);
-    }
+    }*/
     
 }

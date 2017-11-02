@@ -5,7 +5,7 @@ import ar.com.magm.ti.exception.NotFoundException;
 import ar.com.magm.ti.model.Album;
 import ar.com.magm.ti.model.Artista;
 import ar.com.magm.ti.model.Concierto;
-import ar.com.magm.ti.model.Playlist;
+import ar.com.magm.ti.model.dao.hibernate.AlbumDAO;
 
 import static org.junit.Assert.assertNotEquals;
 
@@ -15,33 +15,53 @@ import org.hibernate.SessionFactory;
 import org.junit.Test;
 
 import ar.com.magm.ti.model.dao.hibernate.ArtistaDAO;
+import ar.com.magm.ti.model.dao.hibernate.ConciertoDAO;
+import ar.com.magm.ti.model.service.IAlbumService;
 import ar.com.magm.ti.model.service.IArtistaService;
+import ar.com.magm.ti.model.service.IConciertoService;
+import ar.com.magm.ti.model.service.impl.AlbumService;
 import ar.com.magm.ti.model.service.impl.ArtistaService;
+import ar.com.magm.ti.model.service.impl.ConciertoService;
 import ar.com.magm.ti.service.exception.ServiceException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-public class ArtistaTest extends BaseTest {
+public class GArtistaTest extends BaseTest {
 
     @Test
     public void testSave() throws ServiceException {
         IArtistaService service = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
-
+        IConciertoService serviceConcierto = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
+        IAlbumService serviceAlbum = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
         Artista p = new Artista();
         p.setNombre("Kevin Johansen + The Nada");
         p.setGenero("Rock");
-        p.setConciertos(new ArrayList<Concierto>());
-        p.setAlbums(new ArrayList<Album>());
+        ArrayList<Concierto> conciertos = new ArrayList<Concierto>();
+        ArrayList<Album> albums = new ArrayList<Album>();
+        try {
+            Concierto con = new Concierto();
+            con = serviceConcierto.load(1);
+            conciertos.add(con);
+            Album al = new Album();
+            al=serviceAlbum.load(1);
+            albums.add(al);
+            p.setConciertos(conciertos);
+            p.setAlbums(albums);
+        } catch (NotFoundException ex) {
+            Logger.getLogger(GArtistaTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-
         p = service.save(p);
         assertNotEquals("Se generó mal el id", 0, p.getId());
     }
     @Test
     public void testSaveOrUpdate() throws ServiceException {
         IArtistaService service = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
-
+        IConciertoService serviceConcierto = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
+        IAlbumService serviceAlbum = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
         //List<Artista> l = service.list();
 
         /*
@@ -53,8 +73,20 @@ public class ArtistaTest extends BaseTest {
         Artista p = new Artista();
         p.setNombre("The Black Eyes Peas");
         p.setGenero("Pop");
-        p.setConciertos(new ArrayList<Concierto>());
-        p.setAlbums(new ArrayList<Album>());
+        ArrayList<Concierto> conciertos = new ArrayList<Concierto>();
+        ArrayList<Album> albums = new ArrayList<Album>();
+        try {
+            Concierto con = new Concierto();
+            con = serviceConcierto.load(2);
+            conciertos.add(con);
+            Album al = new Album();
+            al=serviceAlbum.load(2);
+            albums.add(al);
+            p.setConciertos(conciertos);
+            p.setAlbums(albums);
+        } catch (NotFoundException ex) {
+            Logger.getLogger(GArtistaTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         /*
          * ****************************************************
@@ -68,27 +100,27 @@ public class ArtistaTest extends BaseTest {
     @Test
     public void testUpdate() throws ServiceException {
         IArtistaService service = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
-
-        //List<Artista> l = service.list();
-
-        /*
-         * ****************************************************
-         * 					SETEO DE VARIABLES 
-         * ****************************************************
-         * */
+        IConciertoService serviceConcierto = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
+        IAlbumService serviceAlbum = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
         
         Artista p = new Artista();
         p.setId(1);
         p.setNombre("Joss Stone");
         p.setGenero("Pop");
-        p.setConciertos(new ArrayList<Concierto>());
-        p.setAlbums(new ArrayList<Album>());
-
-        /*
-         * ****************************************************
-         * 				FIN SETEO DE VARIABLES 
-         * ****************************************************
-         * */
+        ArrayList<Concierto> conciertos = new ArrayList<Concierto>();
+        ArrayList<Album> albums = new ArrayList<Album>();
+        try {
+            Concierto con = new Concierto();
+            con = serviceConcierto.load(1);
+            conciertos.add(con);
+            Album al = new Album();
+            al=serviceAlbum.load(1);
+            albums.add(al);
+            p.setConciertos(conciertos);
+            p.setAlbums(albums);
+        } catch (NotFoundException ex) {
+            Logger.getLogger(GArtistaTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         try{
             p = service.update(p);
@@ -130,6 +162,7 @@ public class ArtistaTest extends BaseTest {
         
         assertNotNull("No se cargo el album");
     }
+    /*
     @Test
     public void testDelete()  throws ServiceException{
         IArtistaService service = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
@@ -145,6 +178,6 @@ public class ArtistaTest extends BaseTest {
         }catch(NotFoundException e){
         }
         assertNull("Se borro el Album", p);
-    }
+    }*/
     
 }
