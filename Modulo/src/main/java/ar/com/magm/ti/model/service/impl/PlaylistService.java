@@ -22,10 +22,6 @@ public class PlaylistService extends GenericService<Playlist, Integer>
         super(dao);
         this.dao = dao;
     }
-    
-    
-    
-    
 
     @Override
     public List<Playlist> list(String parteDelNombre) throws ServiceException {
