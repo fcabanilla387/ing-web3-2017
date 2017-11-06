@@ -1,5 +1,6 @@
 package ar.com.magm.ti.model.service.impl;
 
+import ar.com.magm.ti.model.Concierto;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -12,6 +13,8 @@ import ar.com.magm.ti.model.service.IUsuarioService;
 import ar.com.magm.ti.persistence.exception.PersistenceException;
 import ar.com.magm.ti.service.exception.ServiceException;
 import ar.com.magm.ti.service.impl.GenericService;
+import java.util.ArrayList;
+import java.util.logging.Level;
 
 public class UsuarioService extends GenericService<Usuario, Integer>
         implements IUsuarioService {
@@ -34,14 +37,21 @@ public class UsuarioService extends GenericService<Usuario, Integer>
             throw new ServiceException(e.getMessage(), e);
         }
     }
-    /*@Override
-    public Object[][] getConciertosEnMiPais(Usuario usuario) throws ServiceException {
-        try {
-            return daoConcierto.list();
-        } catch (PersistenceException e) {
-            //LOG.error(e.getMessage(), e);
-            //throw new ServiceException(e.getMessage(), e);
-        }
-    }*/
 
+    @Override
+    public ArrayList<Concierto> getConciertosEnMiPais(Usuario usuario) throws ServiceException {
+        ArrayList<Concierto> cons = new ArrayList<Concierto>();
+        try {
+            ArrayList<Concierto> aux = (ArrayList<Concierto>)daoConcierto.list();
+            for (Concierto c : aux) {
+                if (c.getPais().equals(usuario.getPais())) {
+                    cons.add(c);
+                }
+            }
+        } catch (PersistenceException ex) {
+            java.util.logging.Logger.getLogger(UsuarioService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return cons;
+    }
 }

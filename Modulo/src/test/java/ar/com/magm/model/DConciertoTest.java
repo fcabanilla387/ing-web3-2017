@@ -52,8 +52,8 @@ public class DConciertoTest extends BaseTest {
         Concierto p = new Concierto();
         p.setIdConcierto(1);
         p.setFecha(new Date());
-        p.setLugar("Maracana");
-        p.setPais("Brasil");
+        p.setLugar("Chateau Carreras");
+        p.setPais("Argentina");
         try {
             p = service.update(p);
         } catch (NotFoundException e) {

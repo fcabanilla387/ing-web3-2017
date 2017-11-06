@@ -34,5 +34,4 @@ public class UsuarioDAO extends GenericDAO<Usuario, Integer> implements IUsuario
         }
         return l;
     }
-
 }

@@ -11,4 +11,5 @@ public interface IConciertoDAO extends IGenericDAO<Concierto, Integer> {
     public List<Concierto> listPais(String parteDelNombre) throws PersistenceException;
 
     public List<Concierto> listLugar(String parteDelNombre) throws PersistenceException;
+
 }

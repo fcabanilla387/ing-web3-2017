@@ -136,7 +136,6 @@ public class GenericDAO<Entity, PK extends Serializable> implements IGenericDAO<
     public Entity save(Entity t) throws PersistenceException {
         Session session = getSession();
         try {
-
             session.beginTransaction();
             session.save(t);
             session.getTransaction().commit();

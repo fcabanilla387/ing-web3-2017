@@ -2,11 +2,12 @@ package ar.com.magm.model;
 
 import ar.com.magm.ti.exception.NotFoundException;
 import ar.com.magm.ti.model.Artista;
+import ar.com.magm.ti.model.Concierto;
 import ar.com.magm.ti.model.Playlist;
 import ar.com.magm.ti.model.Usuario;
 import ar.com.magm.ti.model.dao.hibernate.ArtistaDAO;
 import ar.com.magm.ti.model.dao.hibernate.PlaylistDAO;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -97,7 +98,7 @@ public class HUsuarioTest extends BaseTest {
         IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
         IPlaylistService servicePlaylist = new PlaylistService(new PlaylistDAO((SessionFactory) sessionFactory()));
         IArtistaService serviceArtista = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
-        //List<Usuario> l = service.list();
+
         Usuario p = new Usuario();
         p.setId(1);
         p.setContraseña("6666");
@@ -126,8 +127,6 @@ public class HUsuarioTest extends BaseTest {
     public void testList() throws ServiceException {
         IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
 
-        //List<Usuario> l = service.list();
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         List<Usuario> p = service.list();
 
         assertNotNull("Se generó la lista", p);
@@ -137,8 +136,6 @@ public class HUsuarioTest extends BaseTest {
     public void testListFilter() throws ServiceException {
         IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
 
-        //List<Usuario> l = service.list();
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         List<Usuario> p = service.list("caba");
 
         assertNotNull("No se generó la lista", p);
@@ -149,8 +146,6 @@ public class HUsuarioTest extends BaseTest {
     public void testLoad() throws ServiceException {
         IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
 
-        //List<Usuario> l = service.list();
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Usuario p = new Usuario();
         p = null;
         try {
@@ -159,6 +154,38 @@ public class HUsuarioTest extends BaseTest {
         }
 
         assertNotNull("No se cargo el Usuario");
+    }
+
+    @Test
+    public void getConciertosEnMiPais() throws ServiceException {
+        try {
+            IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
+            
+            Usuario usuario = service.load(1);
+            List<Concierto> c = service.getConciertosEnMiPais(usuario);
+            
+            assertNotNull("Se generó la lista", c);
+        } catch (NotFoundException ex) {
+            Logger.getLogger(HUsuarioTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Test
+    public void getConciertosEnMiPaisVerificarTamaño() throws ServiceException {
+        try {
+            IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
+            
+            Usuario usuario = service.load(1);
+            List<Concierto> c = service.getConciertosEnMiPais(usuario);
+            int tam = c.size();
+            boolean bo = false;
+            if (tam == 1) {
+                bo = true;
+            }
+            assertTrue("Se generó la lista", bo);
+        } catch (NotFoundException ex) {
+            Logger.getLogger(HUsuarioTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /*
