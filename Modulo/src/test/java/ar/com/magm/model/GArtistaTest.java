@@ -111,6 +111,7 @@ public class GArtistaTest extends BaseTest {
         try {
             Concierto con = new Concierto();
             con = serviceConcierto.load(1);
+            con.setArtista(p);
             conciertos.add(con);
             Album al = new Album();
             al = serviceAlbum.load(1);
