@@ -41,8 +41,9 @@ public class UsuarioService extends GenericService<Usuario, Integer>
     @Override
     public ArrayList<Concierto> getConciertosEnMiPais(Usuario usuario) throws ServiceException {
         ArrayList<Concierto> cons = new ArrayList<Concierto>();
+        ArrayList<Concierto> aux = new ArrayList<Concierto>();
         try {
-            ArrayList<Concierto> aux = (ArrayList<Concierto>)daoConcierto.list();
+            aux = (ArrayList<Concierto>)daoConcierto.listPais(usuario.getPais());
             for (Concierto c : aux) {
                 if (c.getPais().equals(usuario.getPais())) {
                     cons.add(c);

@@ -19,7 +19,7 @@ public class ConciertoDAO extends GenericDAO<Concierto, Integer> implements ICon
         super(sessionFactory);
     }
 
-    @SuppressWarnings("unchecked")
+    //@SuppressWarnings("unchecked")
     @Override
     public List<Concierto> listPais(String parteDelNombre) throws PersistenceException {
         List<Concierto> l = null;

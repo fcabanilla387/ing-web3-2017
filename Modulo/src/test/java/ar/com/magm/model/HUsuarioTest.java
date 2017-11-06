@@ -155,7 +155,7 @@ public class HUsuarioTest extends BaseTest {
 
         assertNotNull("No se cargo el Usuario");
     }
-
+/*
     @Test
     public void getConciertosEnMiPais() throws ServiceException {
         try {
@@ -186,7 +186,7 @@ public class HUsuarioTest extends BaseTest {
         } catch (NotFoundException ex) {
             Logger.getLogger(HUsuarioTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }*/
 
     /*
     @Test
