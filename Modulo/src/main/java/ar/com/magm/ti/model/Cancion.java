@@ -3,7 +3,6 @@ package ar.com.magm.ti.model;
 import java.io.Serializable;
 //import java.util.ArrayList;
 //import java.util.*;
-import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;

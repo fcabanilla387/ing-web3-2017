@@ -22,7 +22,7 @@ import static org.junit.Assert.assertNotNull;
  *
  * @author matia
  */
-public class CalcularCancionTest extends BaseTest {
+public class ICalcularCancionTest extends BaseTest {
     
     @Test
     public void test1()throws ServiceException{

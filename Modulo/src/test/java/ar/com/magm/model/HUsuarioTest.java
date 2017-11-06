@@ -1,6 +1,5 @@
 package ar.com.magm.model;
 
-//import static org.junit.Assert.assertEquals;
 import ar.com.magm.ti.exception.NotFoundException;
 import ar.com.magm.ti.model.Artista;
 import ar.com.magm.ti.model.Playlist;
@@ -26,7 +25,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 public class HUsuarioTest extends BaseTest {
 
