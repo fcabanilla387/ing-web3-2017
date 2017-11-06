@@ -29,7 +29,7 @@ public class BGeneroTest extends BaseTest {
     public void testSave() throws ServiceException {
         IGeneroService service = new GeneroService(new GeneroDAO((SessionFactory) sessionFactory()));
         ISubgeneroService service1 = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));
-        
+
         Genero p = new Genero();
         p.setNombre("Metal");
         ArrayList<Subgenero> subgeneros = new ArrayList<Subgenero>();
@@ -45,12 +45,13 @@ public class BGeneroTest extends BaseTest {
         p = service.save(p);
         assertNotEquals("Se generó mal el id", 0, p.getIdGenero());
     }
+
     @Test
     public void testSaveOrUpdate() throws ServiceException {
         IGeneroService service = new GeneroService(new GeneroDAO((SessionFactory) sessionFactory()));
         ISubgeneroService service1 = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));
         Genero p = new Genero();
-        
+
         p.setNombre("Trash");
         ArrayList<Subgenero> subgeneros = new ArrayList<Subgenero>();
         Subgenero s = new Subgenero();
@@ -65,6 +66,7 @@ public class BGeneroTest extends BaseTest {
         p = service.saveOrUpdate(p);
         assertNotEquals("Se generó mal el id", 0, p.getIdGenero());
     }
+
     @Test
     public void testUpdate() throws ServiceException {
         IGeneroService service = new GeneroService(new GeneroDAO((SessionFactory) sessionFactory()));
@@ -81,13 +83,14 @@ public class BGeneroTest extends BaseTest {
             Logger.getLogger(BGeneroTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         p.setSubgeneros(subgeneros);
-        try{
+        try {
             p = service.update(p);
-        }catch(NotFoundException e){
-            
+        } catch (NotFoundException e) {
+
         }
         assertNotEquals("Se generó mal el id", 0, p.getIdGenero());
     }
+
     @Test
     public void testList() throws ServiceException {
         IGeneroService service = new GeneroService(new GeneroDAO((SessionFactory) sessionFactory()));
@@ -96,6 +99,7 @@ public class BGeneroTest extends BaseTest {
 
         assertNotNull("Se generó la lista", p);
     }
+
     @Test
     public void testListFilter() throws ServiceException {
         IGeneroService service = new GeneroService(new GeneroDAO((SessionFactory) sessionFactory()));
@@ -104,18 +108,19 @@ public class BGeneroTest extends BaseTest {
 
         assertNotNull("No se generó la lista", p);
     }
+
     @SuppressWarnings("unused")
-	@Test
+    @Test
     public void testLoad() throws ServiceException {
         IGeneroService service = new GeneroService(new GeneroDAO((SessionFactory) sessionFactory()));
 
         Genero p = new Genero();
         p = null;
-        try{
+        try {
             p = service.load(1);
-        }catch(NotFoundException e){
+        } catch (NotFoundException e) {
         }
-        
+
         assertNotNull("No se cargo el genero");
     }
     /*
@@ -133,5 +138,5 @@ public class BGeneroTest extends BaseTest {
         }
         assertNull("Se borro el genero", p);
     }
-    */
+     */
 }

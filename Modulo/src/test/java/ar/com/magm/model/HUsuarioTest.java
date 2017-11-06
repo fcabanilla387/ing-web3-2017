@@ -87,7 +87,7 @@ public class HUsuarioTest extends BaseTest {
         } catch (NotFoundException ex) {
             Logger.getLogger(HUsuarioTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         p = service.saveOrUpdate(p);
         assertNotEquals("Se generó mal el id", 0, p.getId());
     }

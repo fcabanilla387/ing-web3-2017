@@ -1,6 +1,5 @@
 package ar.com.magm.ti.model.service.impl;
 
-import ar.com.magm.ti.model.Concierto;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -44,6 +43,5 @@ public class UsuarioService extends GenericService<Usuario, Integer>
             //throw new ServiceException(e.getMessage(), e);
         }
     }*/
-    
 
 }

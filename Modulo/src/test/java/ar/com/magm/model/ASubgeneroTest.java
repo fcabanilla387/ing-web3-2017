@@ -89,7 +89,7 @@ public class ASubgeneroTest extends BaseTest {
 
         assertNotNull("No se cargo el Subgenero");
     }
-    
+
     /*
     @Test
     public void testDelete() throws ServiceException {
@@ -116,5 +116,4 @@ public class ASubgeneroTest extends BaseTest {
 
         assertNotNull("Se generó la lista", p);
     }*/
-
 }

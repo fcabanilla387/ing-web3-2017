@@ -35,7 +35,7 @@ public class JListaCancionesTest extends BaseTest {
         String str = service.getDuracionTotalLista(canciones);
         assertEquals("Se genero la duracion total de la lista.", "3w0d25h15m21s", str);
     }
-    
+
     @Test
     public void testOrdenarCancionesPorDuracion() throws ServiceException {
         ListaCancionesService service = new ListaCancionesService();
@@ -52,7 +52,7 @@ public class JListaCancionesTest extends BaseTest {
         ArrayList<Cancion> cancs = service.ordenarCancionPorDuracion(canciones);
         assertNotNull("Se ordeno correctamente.", cancs);
     }
-    
+
     @Test
     public void testComprobarTamañoListas() throws ServiceException {
         ListaCancionesService service = new ListaCancionesService();
@@ -70,7 +70,7 @@ public class JListaCancionesTest extends BaseTest {
         ArrayList<Cancion> cancs = service.ordenarCancionPorDuracion(canciones);
         int tamanio2 = cancs.size();
         boolean test = false;
-        if(tamanio1 == tamanio2){
+        if (tamanio1 == tamanio2) {
             test = true;
         }
         assertTrue("Se rdeno correctamente.", test);

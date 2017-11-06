@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 public class FAlbumTest extends BaseTest {
 
@@ -30,7 +29,7 @@ public class FAlbumTest extends BaseTest {
     public void testSave() throws ServiceException {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
         ICancionService serviceCancion = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
-        
+
         Album p = new Album();
         p.setAño(1990);
         p.setNombre("Death Magnetic");
@@ -46,6 +45,7 @@ public class FAlbumTest extends BaseTest {
         p = service.save(p);
         assertNotEquals("Se generó mal el id", 0, p.getId());
     }
+
     @Test
     public void testSaveOrUpdate() throws ServiceException {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
@@ -65,6 +65,7 @@ public class FAlbumTest extends BaseTest {
         p = service.saveOrUpdate(p);
         assertNotEquals("Se generó mal el id", 0, p.getId());
     }
+
     @Test
     public void testUpdate() throws ServiceException {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
@@ -74,7 +75,7 @@ public class FAlbumTest extends BaseTest {
         p.setAño(2000);
         p.setNombre("Iowa");
         p.setListaCanciones(new ArrayList<Cancion>());
-        
+
         Cancion c = new Cancion();
         try {
             c = serviceCancion.load(1);
@@ -87,6 +88,7 @@ public class FAlbumTest extends BaseTest {
         }
         assertNotEquals("Se generó mal el id", 0, p.getId());
     }
+
     @Test
     public void testList() throws ServiceException {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
@@ -95,6 +97,7 @@ public class FAlbumTest extends BaseTest {
 
         assertNotNull("Se generó la lista", p);
     }
+
     @Test
     public void testListFilter() throws ServiceException {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
@@ -103,18 +106,19 @@ public class FAlbumTest extends BaseTest {
 
         assertNotNull("No se generó la lista", p);
     }
+
     @SuppressWarnings("unused")
-	@Test
+    @Test
     public void testLoad() throws ServiceException {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
 
         Album p = new Album();
         p = null;
-        try{
+        try {
             p = service.load(1);
-        }catch(NotFoundException e){
+        } catch (NotFoundException e) {
         }
-        
+
         assertNotNull("No se cargo el album");
     }
     /*
@@ -132,5 +136,5 @@ public class FAlbumTest extends BaseTest {
         }
         assertNull("Se borro el Album", p);
     }*/
-    
+
 }

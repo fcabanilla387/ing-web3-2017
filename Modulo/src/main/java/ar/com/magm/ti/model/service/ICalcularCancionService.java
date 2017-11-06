@@ -13,6 +13,8 @@ import java.util.ArrayList;
  * @author matia
  */
 public interface ICalcularCancionService {
+
     public Cancion CancionMejorPuntuada(ArrayList<Cancion> canciones);
+
     public Cancion CancionMasReproducida(ArrayList<Cancion> canciones);
 }

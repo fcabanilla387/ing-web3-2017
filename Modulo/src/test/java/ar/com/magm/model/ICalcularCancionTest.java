@@ -23,27 +23,27 @@ import static org.junit.Assert.assertNotNull;
  * @author matia
  */
 public class ICalcularCancionTest extends BaseTest {
-    
+
     @Test
-    public void test1()throws ServiceException{
-       ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
-        
-        ArrayList<Cancion> canciones = (ArrayList<Cancion>)service.list();
-        
+    public void test1() throws ServiceException {
+        ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
+
+        ArrayList<Cancion> canciones = (ArrayList<Cancion>) service.list();
+
         CalcularCancionService calc = new CalcularCancionService();
         Cancion c = calc.CancionMejorPuntuada(canciones);
         assertNotNull(c);
     }
-    
+
     @Test
-    public void test2()throws ServiceException{
-       ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
-        
-        ArrayList<Cancion> canciones = (ArrayList<Cancion>)service.list();
-        
+    public void test2() throws ServiceException {
+        ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
+
+        ArrayList<Cancion> canciones = (ArrayList<Cancion>) service.list();
+
         CalcularCancionService calc = new CalcularCancionService();
         Cancion c = calc.CancionMasReproducida(canciones);
         assertNotNull(c);
     }
-    
+
 }

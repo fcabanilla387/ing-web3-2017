@@ -27,7 +27,7 @@ public class CCancionTest extends BaseTest {
     @Test
     public void testSave() throws ServiceException {
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
-        ISubgeneroService serviceSubgenero = new SubgeneroService(new SubgeneroDAO((SessionFactory)sessionFactory()));
+        ISubgeneroService serviceSubgenero = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));
         Cancion p = new Cancion();
         p.setTitulo("Before I forguet");
         p.setDuracion("3'45''");
@@ -37,14 +37,12 @@ public class CCancionTest extends BaseTest {
             Subgenero f = serviceSubgenero.load(1);
             p.setSubgenero(f);
             p = service.save(p);
-            
+
         } catch (NotFoundException ex) {
             Logger.getLogger(CCancionTest.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        }
         assertNotEquals("Se generó mal el id", 0, p.getId());
     }
-
-    
 
     @Test
     public void testList() throws ServiceException {
@@ -65,7 +63,7 @@ public class CCancionTest extends BaseTest {
     }
 
     @SuppressWarnings("unused")
-	@Test
+    @Test
     public void testLoad() throws ServiceException {
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
 
@@ -78,11 +76,11 @@ public class CCancionTest extends BaseTest {
 
         assertNotNull("No se cargo la cancion");
     }
-    
+
     @Test
     public void testUpdate() throws ServiceException {
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
-        ISubgeneroService serviceSubgenero = new SubgeneroService(new SubgeneroDAO((SessionFactory)sessionFactory()));
+        ISubgeneroService serviceSubgenero = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));
         Cancion p = new Cancion();
         p.setId(1);
         p.setDuracion("9'11''");
@@ -95,13 +93,14 @@ public class CCancionTest extends BaseTest {
             p = service.update(p);
         } catch (NotFoundException ex) {
             Logger.getLogger(CCancionTest.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        }
         assertNotEquals("Se generó mal el id", 0, p.getId());
     }
+
     @Test
     public void testSaveOrUpdate() throws ServiceException {
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
-        ISubgeneroService serviceSubgenero = new SubgeneroService(new SubgeneroDAO((SessionFactory)sessionFactory()));
+        ISubgeneroService serviceSubgenero = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));
         Cancion p = new Cancion();
         p.setDuracion("7'22''");
         p.setRating((float) 3.2);
@@ -113,9 +112,10 @@ public class CCancionTest extends BaseTest {
             p = service.saveOrUpdate(p);
         } catch (NotFoundException ex) {
             Logger.getLogger(CCancionTest.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        }
         assertNotEquals("Se generó mal el id", 0, p.getId());
     }
+
     /*
     
     @Test
@@ -134,7 +134,7 @@ public class CCancionTest extends BaseTest {
         }
         assertNull("Se borro la cancion", p);
     }
-*/
+     */
     @Test
     public void testTopRating() throws ServiceException {
         ICancionService service = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));

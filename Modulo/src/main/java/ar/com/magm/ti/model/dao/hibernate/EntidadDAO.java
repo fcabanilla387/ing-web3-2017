@@ -8,9 +8,8 @@ import ar.com.magm.ti.persistence.dao.hibernate.GenericDAO;
 
 public class EntidadDAO extends GenericDAO<Entidad, Integer> implements IEntidadDAO {
 
-	public EntidadDAO(SessionFactory sessionFactory) {
-		super(sessionFactory);
-	}
-	
+    public EntidadDAO(SessionFactory sessionFactory) {
+        super(sessionFactory);
+    }
 
 }

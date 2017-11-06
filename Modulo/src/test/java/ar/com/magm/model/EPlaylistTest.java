@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 public class EPlaylistTest extends BaseTest {
 
@@ -85,7 +84,7 @@ public class EPlaylistTest extends BaseTest {
         } catch (NotFoundException ex) {
             Logger.getLogger(EPlaylistTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+
         assertNotEquals("Se generó mal el id", 0, p.getIdPlaylist());
     }
 
@@ -97,6 +96,7 @@ public class EPlaylistTest extends BaseTest {
 
         assertNotNull("Se generó la lista", p);
     }
+
     @Test
     public void testListFilter() throws ServiceException {
         IPlaylistService service = new PlaylistService(new PlaylistDAO((SessionFactory) sessionFactory()));
@@ -105,8 +105,9 @@ public class EPlaylistTest extends BaseTest {
 
         assertNotNull("No se generó la lista", p);
     }
+
     @SuppressWarnings("unused")
-	@Test
+    @Test
     public void testLoad() throws ServiceException {
         IPlaylistService service = new PlaylistService(new PlaylistDAO((SessionFactory) sessionFactory()));
 
@@ -133,5 +134,5 @@ public class EPlaylistTest extends BaseTest {
         }
         assertNull("Se borro la Playlist", p);
     }
-*/
+     */
 }

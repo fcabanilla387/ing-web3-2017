@@ -13,6 +13,8 @@ import java.util.ArrayList;
  * @author matia
  */
 public interface IListaCancionesService {
+
     public String getDuracionTotalLista(ArrayList<Cancion> canciones) throws NumberFormatException;
+
     public ArrayList<Cancion> ordenarCancionPorDuracion(ArrayList<Cancion> canciones) throws NumberFormatException;
 }

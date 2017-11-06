@@ -17,49 +17,49 @@ import org.hibernate.annotations.Proxy;
 @Table(name = "entidades")
 public class Entidad implements Serializable {
 
-	private static final long serialVersionUID = 2464927409480955012L;
-	@Id
-	@GeneratedValue
-	private int idEntidad;
-	private String nombre;
+    private static final long serialVersionUID = 2464927409480955012L;
+    @Id
+    @GeneratedValue
+    private int idEntidad;
+    private String nombre;
 
-        public Entidad(){
-            super();
-        }
+    public Entidad() {
+        super();
+    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
-        
-	@Override
-	public int hashCode() {
-		return getIdEntidad();
 
-	}
+    @Override
+    public int hashCode() {
+        return getIdEntidad();
 
-	@Override
-	public String toString() {
-		return String.format("Entidad: %s - %s", getIdEntidad(), getNombre());
-	}
+    }
 
-	public int getIdEntidad() {
-		return idEntidad;
-	}
+    @Override
+    public String toString() {
+        return String.format("Entidad: %s - %s", getIdEntidad(), getNombre());
+    }
 
-	public void setIdEntidad(int idEntidad) {
-		this.idEntidad = idEntidad;
-	}
+    public int getIdEntidad() {
+        return idEntidad;
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public void setIdEntidad(int idEntidad) {
+        this.idEntidad = idEntidad;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		return getIdEntidad()==((Entidad)obj).getIdEntidad();
-	}
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return getIdEntidad() == ((Entidad) obj).getIdEntidad();
+    }
 }

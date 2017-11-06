@@ -33,7 +33,6 @@ public class ConciertoService extends GenericService<Concierto, Integer>
         }
     }
 
-    
     @Override
     public List<Concierto> listLugar(String parteDelNombre) throws ServiceException {
         try {

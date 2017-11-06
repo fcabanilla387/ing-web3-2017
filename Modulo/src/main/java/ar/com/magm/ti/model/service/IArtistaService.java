@@ -7,5 +7,6 @@ import ar.com.magm.ti.service.IGenericService;
 import ar.com.magm.ti.service.exception.ServiceException;
 
 public interface IArtistaService extends IGenericService<Artista, Integer> {
-	public List<Artista> list(String parteDelNombre) throws ServiceException; 
+
+    public List<Artista> list(String parteDelNombre) throws ServiceException;
 }

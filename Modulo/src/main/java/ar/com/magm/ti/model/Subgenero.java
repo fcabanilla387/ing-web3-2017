@@ -22,7 +22,7 @@ public class Subgenero implements Serializable {
     @GeneratedValue
     private int idSubgenero;
     private String nombre;
-    
+
     public Subgenero() {
         super();
     }

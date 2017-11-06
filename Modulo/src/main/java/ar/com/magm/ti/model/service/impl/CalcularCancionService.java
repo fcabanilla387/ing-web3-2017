@@ -13,32 +13,32 @@ import java.util.ArrayList;
  *
  * @author matia
  */
-public class CalcularCancionService implements ICalcularCancionService{
+public class CalcularCancionService implements ICalcularCancionService {
+
     private ArrayList<Cancion> canciones;
-    
-    public CalcularCancionService(){
+
+    public CalcularCancionService() {
         this.canciones = canciones;
-    }            
-    
-    
+    }
+
     @Override
-    public Cancion CancionMejorPuntuada(ArrayList<Cancion> canciones){
+    public Cancion CancionMejorPuntuada(ArrayList<Cancion> canciones) {
         float rep = 0;
         Cancion cc = new Cancion();
-        for(Cancion c : canciones){
-            if(c.getRating()> rep){
+        for (Cancion c : canciones) {
+            if (c.getRating() > rep) {
                 cc = c;
             }
         }
         return cc;
     }
-    
+
     @Override
-    public Cancion CancionMasReproducida(ArrayList<Cancion> canciones){
+    public Cancion CancionMasReproducida(ArrayList<Cancion> canciones) {
         int cant = 0;
         Cancion cc = new Cancion();
-        for(Cancion c : canciones){
-            if(c.getReproducciones() > cant){
+        for (Cancion c : canciones) {
+            if (c.getReproducciones() > cant) {
                 cc = c;
             }
         }

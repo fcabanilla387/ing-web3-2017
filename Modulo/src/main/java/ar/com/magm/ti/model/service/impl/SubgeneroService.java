@@ -13,7 +13,7 @@ import ar.com.magm.ti.service.exception.ServiceException;
 import ar.com.magm.ti.service.impl.GenericService;
 
 public class SubgeneroService extends GenericService<Subgenero, Integer>
-	implements ISubgeneroService {
+        implements ISubgeneroService {
 
     private static Logger LOG = LoggerFactory.getLogger(SubgeneroService.class);
     private ISubgeneroDAO dao;
@@ -33,14 +33,14 @@ public class SubgeneroService extends GenericService<Subgenero, Integer>
         }
     }
 
-	@Override
-	public List<Subgenero> listSubgeneros(Integer idGenero) throws ServiceException {
-		 try {
-	            return dao.listSubgeneros(idGenero);
-	        } catch (PersistenceException e) {
-	            LOG.error(e.getMessage(), e);
-	            throw new ServiceException(e.getMessage(), e);
-	        }
-	}
-    
+    @Override
+    public List<Subgenero> listSubgeneros(Integer idGenero) throws ServiceException {
+        try {
+            return dao.listSubgeneros(idGenero);
+        } catch (PersistenceException e) {
+            LOG.error(e.getMessage(), e);
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
+
 }

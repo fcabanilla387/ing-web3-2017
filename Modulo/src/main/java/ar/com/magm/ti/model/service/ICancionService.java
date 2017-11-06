@@ -7,7 +7,10 @@ import ar.com.magm.ti.service.IGenericService;
 import ar.com.magm.ti.service.exception.ServiceException;
 
 public interface ICancionService extends IGenericService<Cancion, Integer> {
-	List<Cancion> list(String parteDelNombre) throws ServiceException;
-	List<Cancion> topRating(int limite) throws ServiceException;
-	List<Cancion> topReproducido(int limite) throws ServiceException;
+
+    List<Cancion> list(String parteDelNombre) throws ServiceException;
+
+    List<Cancion> topRating(int limite) throws ServiceException;
+
+    List<Cancion> topReproducido(int limite) throws ServiceException;
 }

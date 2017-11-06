@@ -6,10 +6,10 @@ import ar.com.magm.ti.model.service.IEntidadService;
 import ar.com.magm.ti.service.impl.GenericService;
 
 public class EntidadService extends GenericService<Entidad, Integer>
-		implements IEntidadService {
+        implements IEntidadService {
 
-	public EntidadService(IEntidadDAO dao) {
-		super(dao);
-	}
-	
+    public EntidadService(IEntidadDAO dao) {
+        super(dao);
+    }
+
 }

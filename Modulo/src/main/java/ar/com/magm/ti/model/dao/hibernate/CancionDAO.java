@@ -13,75 +13,74 @@ import ar.com.magm.ti.persistence.dao.hibernate.GenericDAO;
 import ar.com.magm.ti.persistence.exception.PersistenceException;
 
 public class CancionDAO extends GenericDAO<Cancion, Integer> implements ICancionDAO {
-	private static Logger LOG = LoggerFactory.getLogger(CancionDAO.class);
-	public CancionDAO(SessionFactory sessionFactory) {
-		super(sessionFactory);
-	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Cancion> list(String parteDelNombre) throws PersistenceException {
-		List<Cancion> l = null;
-		try {
-			l = getSession().createQuery("FROM Cancion p WHERE p.titulo LIKE :parteNombre")
-					.setString("parteNombre", "%"+parteDelNombre+"%").list();
-		} catch (Exception e) {
-			LOG.error(e.getMessage(), e);
-			throw new PersistenceException(e.getMessage(), e);
-		} finally {
-			closeSession();
-		}
-		return l;
-	}
+    private static Logger LOG = LoggerFactory.getLogger(CancionDAO.class);
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Cancion> topRating(int limite) throws PersistenceException {
-		
-		List<Cancion> l = null;
-		
-		try {/*
+    public CancionDAO(SessionFactory sessionFactory) {
+        super(sessionFactory);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Cancion> list(String parteDelNombre) throws PersistenceException {
+        List<Cancion> l = null;
+        try {
+            l = getSession().createQuery("FROM Cancion p WHERE p.titulo LIKE :parteNombre")
+                    .setString("parteNombre", "%" + parteDelNombre + "%").list();
+        } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
+            throw new PersistenceException(e.getMessage(), e);
+        } finally {
+            closeSession();
+        }
+        return l;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Cancion> topRating(int limite) throws PersistenceException {
+
+        List<Cancion> l = null;
+
+        try {/*
 			
 			l = getSession().createQuery("from Cancion").list();
-			*/
-			Query q = getSession().createQuery("FROM Cancion c ORDER BY c.rating desc");
-			q.setFirstResult(1);
-			q.setMaxResults(limite);
-			l = q.list();
-			
-			
-		} catch (Exception e) {
-			LOG.error(e.getMessage(), e);
-			throw new PersistenceException(e.getMessage(), e);
-		} finally {
-			closeSession();
-		}
-		return l;
-	}
+             */
+            Query q = getSession().createQuery("FROM Cancion c ORDER BY c.rating desc");
+            q.setFirstResult(1);
+            q.setMaxResults(limite);
+            l = q.list();
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Cancion> topReproducido(int limite) throws PersistenceException {
-List<Cancion> l = null;
-		
-		try {/*
+        } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
+            throw new PersistenceException(e.getMessage(), e);
+        } finally {
+            closeSession();
+        }
+        return l;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Cancion> topReproducido(int limite) throws PersistenceException {
+        List<Cancion> l = null;
+
+        try {/*
 			
 			l = getSession().createQuery("from Cancion").list();
-			*/
-			Query q = getSession().createQuery("FROM Cancion c ORDER BY c.reproducciones desc");
-			q.setFirstResult(1);
-			q.setMaxResults(limite);
-			l = q.list();
-			
-			
-		} catch (Exception e) {
-			LOG.error(e.getMessage(), e);
-			throw new PersistenceException(e.getMessage(), e);
-		} finally {
-			closeSession();
-		}
-		return l;
-	}
-	
+             */
+            Query q = getSession().createQuery("FROM Cancion c ORDER BY c.reproducciones desc");
+            q.setFirstResult(1);
+            q.setMaxResults(limite);
+            l = q.list();
+
+        } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
+            throw new PersistenceException(e.getMessage(), e);
+        } finally {
+            closeSession();
+        }
+        return l;
+    }
 
 }

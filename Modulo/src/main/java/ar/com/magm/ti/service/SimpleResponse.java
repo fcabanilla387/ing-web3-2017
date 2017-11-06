@@ -7,77 +7,78 @@ import java.io.StringWriter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * 
+ *
  * @author magm
  *
  */
 public class SimpleResponse implements Serializable {
-	private static final long serialVersionUID = 6229322065137629670L;
 
-	private int code;
+    private static final long serialVersionUID = 6229322065137629670L;
 
-	private String message;
+    private int code;
 
-	private String devMessage;
+    private String message;
 
-	public String getDevMessage() {
-		String r = devMessage;
-		if (tr != null) {
-			final StringWriter sw = new StringWriter();
-			final PrintWriter pw = new PrintWriter(sw, true);
-			tr.printStackTrace(pw);
-			r = sw.getBuffer().toString().replaceAll("\\n", String.format("%n")).replaceAll("\\t", String.format("\t"));
-		}
-		return r;
-	}
+    private String devMessage;
 
-	public void setDevMessage(String devMessage) {
-		this.devMessage = devMessage;
-	}
+    public String getDevMessage() {
+        String r = devMessage;
+        if (tr != null) {
+            final StringWriter sw = new StringWriter();
+            final PrintWriter pw = new PrintWriter(sw, true);
+            tr.printStackTrace(pw);
+            r = sw.getBuffer().toString().replaceAll("\\n", String.format("%n")).replaceAll("\\t", String.format("\t"));
+        }
+        return r;
+    }
 
-	public SimpleResponse() {
-	}
+    public void setDevMessage(String devMessage) {
+        this.devMessage = devMessage;
+    }
 
-	public SimpleResponse(int code, String message) {
-		super();
-		this.code = code;
-		this.message = message;
-	}
+    public SimpleResponse() {
+    }
 
-	@JsonIgnore
-	private Throwable tr;
+    public SimpleResponse(int code, String message) {
+        super();
+        this.code = code;
+        this.message = message;
+    }
 
-	public SimpleResponse(int code, Throwable tr) {
-		super();
-		this.code = code;
-		this.tr = tr;
-	}
+    @JsonIgnore
+    private Throwable tr;
 
-	public SimpleResponse(int code, String message, String devMessage) {
-		super();
-		this.code = code;
-		this.message = message;
-		this.devMessage = devMessage;
-	}
+    public SimpleResponse(int code, Throwable tr) {
+        super();
+        this.code = code;
+        this.tr = tr;
+    }
 
-	public int getCode() {
-		return code;
-	}
+    public SimpleResponse(int code, String message, String devMessage) {
+        super();
+        this.code = code;
+        this.message = message;
+        this.devMessage = devMessage;
+    }
 
-	public String getMessage() {
-		String r = message;
-		if (tr != null) {
-			r = tr.getMessage();
-		}
-		return r;
-	}
+    public int getCode() {
+        return code;
+    }
 
-	public void setCode(int code) {
-		this.code = code;
-	}
+    public String getMessage() {
+        String r = message;
+        if (tr != null) {
+            r = tr.getMessage();
+        }
+        return r;
+    }
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
 }

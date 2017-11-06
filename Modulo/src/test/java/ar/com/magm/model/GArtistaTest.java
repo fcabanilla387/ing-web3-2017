@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 public class GArtistaTest extends BaseTest {
 
@@ -46,17 +45,18 @@ public class GArtistaTest extends BaseTest {
             con = serviceConcierto.load(1);
             conciertos.add(con);
             Album al = new Album();
-            al=serviceAlbum.load(1);
+            al = serviceAlbum.load(1);
             albums.add(al);
             p.setConciertos(conciertos);
             p.setAlbums(albums);
         } catch (NotFoundException ex) {
             Logger.getLogger(GArtistaTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         p = service.save(p);
         assertNotEquals("Se generó mal el id", 0, p.getId());
     }
+
     @Test
     public void testSaveOrUpdate() throws ServiceException {
         IArtistaService service = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
@@ -69,7 +69,6 @@ public class GArtistaTest extends BaseTest {
          * 					SETEO DE VARIABLES 
          * ****************************************************
          * */
-        
         Artista p = new Artista();
         p.setNombre("The Black Eyes Peas");
         p.setGenero("Pop");
@@ -80,7 +79,7 @@ public class GArtistaTest extends BaseTest {
             con = serviceConcierto.load(2);
             conciertos.add(con);
             Album al = new Album();
-            al=serviceAlbum.load(2);
+            al = serviceAlbum.load(2);
             albums.add(al);
             p.setConciertos(conciertos);
             p.setAlbums(albums);
@@ -93,16 +92,16 @@ public class GArtistaTest extends BaseTest {
          * 				FIN SETEO DE VARIABLES 
          * ****************************************************
          * */
-        
         p = service.saveOrUpdate(p);
         assertNotEquals("Se generó mal el id", 0, p.getId());
     }
+
     @Test
     public void testUpdate() throws ServiceException {
         IArtistaService service = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
         IConciertoService serviceConcierto = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
         IAlbumService serviceAlbum = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
-        
+
         Artista p = new Artista();
         p.setId(1);
         p.setNombre("Joss Stone");
@@ -114,7 +113,7 @@ public class GArtistaTest extends BaseTest {
             con = serviceConcierto.load(1);
             conciertos.add(con);
             Album al = new Album();
-            al=serviceAlbum.load(1);
+            al = serviceAlbum.load(1);
             albums.add(al);
             p.setConciertos(conciertos);
             p.setAlbums(albums);
@@ -122,24 +121,25 @@ public class GArtistaTest extends BaseTest {
             Logger.getLogger(GArtistaTest.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        try{
+        try {
             p = service.update(p);
-        }catch(NotFoundException e){
-            
+        } catch (NotFoundException e) {
+
         }
         assertNotEquals("Se generó mal el id", 0, p.getId());
     }
+
     @Test
     public void testList() throws ServiceException {
         IArtistaService service = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
 
         //List<Album> l = service.list();
-
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         List<Artista> p = service.list();
 
         assertNotNull("Se generó la lista", p);
     }
+
     @Test
     public void testListFilter() throws ServiceException {
         IArtistaService service = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
@@ -148,18 +148,19 @@ public class GArtistaTest extends BaseTest {
 
         assertNotNull("No se generó la lista", p);
     }
+
     @SuppressWarnings("unused")
-	@Test
+    @Test
     public void testLoad() throws ServiceException {
         IArtistaService service = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
 
         Artista p = new Artista();
         p = null;
-        try{
+        try {
             p = service.load(1);
-        }catch(NotFoundException e){
+        } catch (NotFoundException e) {
         }
-        
+
         assertNotNull("No se cargo el album");
     }
     /*
@@ -179,5 +180,5 @@ public class GArtistaTest extends BaseTest {
         }
         assertNull("Se borro el Album", p);
     }*/
-    
+
 }
