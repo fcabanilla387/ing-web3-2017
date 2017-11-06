@@ -1,6 +1,7 @@
 package ar.com.magm.ti.model.service.impl;
 
 import ar.com.magm.ti.model.Cancion;
+import ar.com.magm.ti.model.service.IListaCancionesService;
 import java.util.ArrayList;
 
 /**
@@ -8,13 +9,15 @@ import java.util.ArrayList;
 * sancion que corresponde.
 *
 */
-public class ListaCancionesService {
+public class ListaCancionesService implements IListaCancionesService{
 
+   @Override
    public ArrayList<Cancion> ordenarCancionPorDuracion(ArrayList<Cancion> canciones) throws NumberFormatException {
        ArrayList<Cancion> listaOrdenada = new ArrayList<Cancion>();
        return listaOrdenada;
    }
 
+   @Override
    public String getDuracionTotalLista(ArrayList<Cancion> canciones) throws NumberFormatException {
        String duracion = "0s";
        long sumaSegundos = 0;
@@ -41,7 +44,7 @@ public class ListaCancionesService {
        return duracion;
    }
 
-   public long calcular(ArrayList<Cancion> canciones) {
+   private long calcular(ArrayList<Cancion> canciones) {
        long sumaMinutos1 = 0;
        long sumaSegundos1 = 0;
        for (Cancion c : canciones) {
@@ -56,7 +59,7 @@ public class ListaCancionesService {
        return sumaSegundos1;
    }
 
-   public String[] parser(String aux) {
+   private String[] parser(String aux) {
        String[] array = aux.split("''");
        aux = array[0];
        array = aux.split("'");

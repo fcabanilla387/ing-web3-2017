@@ -12,7 +12,6 @@ import ar.com.magm.ti.model.service.impl.ListaCancionesService;
 import ar.com.magm.ti.service.exception.ServiceException;
 import java.util.ArrayList;
 import org.junit.Assert;
-import static org.junit.Assert.assertNotNull;
 
 /**
  *

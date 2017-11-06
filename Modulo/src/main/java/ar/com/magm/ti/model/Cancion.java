@@ -21,7 +21,7 @@ import org.hibernate.annotations.Proxy;
 @Proxy(lazy = false)
 @Access(value = AccessType.FIELD)
 @Table(name = "cancion")
-public class Cancion implements Serializable, Comparable<Cancion>{
+public class Cancion implements Serializable, Comparable<Cancion> {
 
     private static final long serialVersionUID = -3235990393994226233L;
 
@@ -33,6 +33,9 @@ public class Cancion implements Serializable, Comparable<Cancion>{
     private String duracion;
     private float rating;
     private long reproducciones;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idSubgenero")
+    private Subgenero subgenero;
 
     public Cancion() {
         super();
@@ -77,10 +80,6 @@ public class Cancion implements Serializable, Comparable<Cancion>{
     public void setReproducciones(long reproducciones) {
         this.reproducciones = reproducciones;
     }
-    
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idSubgenero")
-    private Subgenero subgenero;
 
     public Subgenero getSubgenero() {
         return subgenero;
@@ -106,11 +105,11 @@ public class Cancion implements Serializable, Comparable<Cancion>{
         return String.format("Cancion: titulo=%s, Duracion=%s", getTitulo(), getDuracion());
     }
 
-	@Override
-	public int compareTo(Cancion o) {
-		// TODO Auto-generated method stub
-		String a = new String(String.valueOf(this.getReproducciones()));
-		String b = new String(String.valueOf(this.getReproducciones()));
-		return a.compareTo(b);
-	}
+    @Override
+    public int compareTo(Cancion o) {
+        // TODO Auto-generated method stub
+        String a = new String(String.valueOf(this.getReproducciones()));
+        String b = new String(String.valueOf(this.getReproducciones()));
+        return a.compareTo(b);
+    }
 }
