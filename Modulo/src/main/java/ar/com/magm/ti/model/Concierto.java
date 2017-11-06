@@ -5,9 +5,12 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
@@ -26,6 +29,9 @@ public class Concierto implements Serializable {
     private String pais;
     private String lugar;
     private Date fecha;
+    /*@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idArtista")
+    private Artista artista;*/
 
     public Concierto() {
         super();
@@ -66,6 +72,14 @@ public class Concierto implements Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    /*public Artista getArtista() {
+        return artista;
+    }
+
+    public void setArtista(Artista artista) {
+        this.artista = artista;
+    }*/
 
     @Override
     public int hashCode() {

@@ -20,9 +20,8 @@ public class ListaCancionesService implements IListaCancionesService {
             if (indice != -1) {
                 listaOrdenada.add(canciones.get(indice));
                 canciones.remove(indice);
-            }
-            else{
-                for(Cancion c : canciones){
+            } else {
+                for (Cancion c : canciones) {
                     listaOrdenada.add(c);
                 }
             }
