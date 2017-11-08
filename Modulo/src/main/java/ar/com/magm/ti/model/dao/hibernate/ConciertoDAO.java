@@ -40,7 +40,7 @@ public class ConciertoDAO extends GenericDAO<Concierto, Integer> implements ICon
     public List<Concierto> listLugar(String parteDelNombre) throws PersistenceException {
         List<Concierto> l = null;
         try {
-            l = getSession().createQuery("FROM concierto p WHERE p.lugar LIKE :parteNombre")
+            l = getSession().createQuery("FROM Concierto p WHERE p.lugar LIKE :parteNombre")
                     .setString("parteNombre", "%" + parteDelNombre + "%").list();
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);

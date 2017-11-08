@@ -23,9 +23,10 @@ public class UsuarioService extends GenericService<Usuario, Integer>
     private IUsuarioDAO dao;
     private IConciertoDAO daoConcierto;
 
-    public UsuarioService(IUsuarioDAO dao) {
+    public UsuarioService(IUsuarioDAO dao, IConciertoDAO daoConcierto) {
         super(dao);
         this.dao = dao;
+        this.daoConcierto = daoConcierto;
     }
 
     @Override
@@ -43,7 +44,7 @@ public class UsuarioService extends GenericService<Usuario, Integer>
         ArrayList<Concierto> cons = new ArrayList<Concierto>();
         ArrayList<Concierto> aux = new ArrayList<Concierto>();
         try {
-            aux = (ArrayList<Concierto>)daoConcierto.listPais(usuario.getPais());
+            aux = (ArrayList<Concierto>)daoConcierto.list();
             for (Concierto c : aux) {
                 if (c.getPais().equals(usuario.getPais())) {
                     cons.add(c);

@@ -6,6 +6,7 @@ import ar.com.magm.ti.model.Concierto;
 import ar.com.magm.ti.model.Playlist;
 import ar.com.magm.ti.model.Usuario;
 import ar.com.magm.ti.model.dao.hibernate.ArtistaDAO;
+import ar.com.magm.ti.model.dao.hibernate.ConciertoDAO;
 import ar.com.magm.ti.model.dao.hibernate.PlaylistDAO;
 import static org.junit.Assert.*;
 
@@ -31,7 +32,7 @@ public class HUsuarioTest extends BaseTest {
 
     @Test
     public void testSave() throws ServiceException {
-        IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
+        IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()), new ConciertoDAO((SessionFactory) sessionFactory()));
         IPlaylistService servicePlaylist = new PlaylistService(new PlaylistDAO((SessionFactory) sessionFactory()));
         IArtistaService serviceArtista = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
         //List<Usuario> l = service.list();
@@ -63,7 +64,7 @@ public class HUsuarioTest extends BaseTest {
 
     @Test
     public void testSaveOrUpdate() throws ServiceException {
-        IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
+        IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()), new ConciertoDAO((SessionFactory) sessionFactory()));
         IPlaylistService servicePlaylist = new PlaylistService(new PlaylistDAO((SessionFactory) sessionFactory()));
         IArtistaService serviceArtista = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
         //List<Usuario> l = service.list();
@@ -95,7 +96,7 @@ public class HUsuarioTest extends BaseTest {
 
     @Test
     public void testUpdate() throws ServiceException {
-        IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
+        IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()), new ConciertoDAO((SessionFactory) sessionFactory()));
         IPlaylistService servicePlaylist = new PlaylistService(new PlaylistDAO((SessionFactory) sessionFactory()));
         IArtistaService serviceArtista = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
 
@@ -125,16 +126,18 @@ public class HUsuarioTest extends BaseTest {
 
     @Test
     public void testList() throws ServiceException {
-        IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
-
-        List<Usuario> p = service.list();
-
-        assertNotNull("Se generó la lista", p);
+        
+        IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()), new ConciertoDAO((SessionFactory) sessionFactory()));
+        List<Usuario> p = service.list("matiasslpknt");
+        if(p.size()==0){
+            p = null;
+        }
+        assertNotNull("No se generó la lista", p);
     }
 
     @Test
     public void testListFilter() throws ServiceException {
-        IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
+        IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()), new ConciertoDAO((SessionFactory) sessionFactory()));
 
         List<Usuario> p = service.list("caba");
 
@@ -144,7 +147,7 @@ public class HUsuarioTest extends BaseTest {
     @SuppressWarnings("unused")
     @Test
     public void testLoad() throws ServiceException {
-        IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
+        IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()), new ConciertoDAO((SessionFactory) sessionFactory()));
 
         Usuario p = new Usuario();
         p = null;
@@ -155,38 +158,44 @@ public class HUsuarioTest extends BaseTest {
 
         assertNotNull("No se cargo el Usuario");
     }
-/*
+
     @Test
     public void getConciertosEnMiPais() throws ServiceException {
+        ArrayList<Concierto> c = null;
         try {
-            IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
-            
+            IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()), new ConciertoDAO((SessionFactory) sessionFactory()));
+
             Usuario usuario = service.load(1);
-            List<Concierto> c = service.getConciertosEnMiPais(usuario);
+            c = service.getConciertosEnMiPais(usuario);
+            if(c.size()==0){
+                c = null;
+            }
+
             
-            assertNotNull("Se generó la lista", c);
         } catch (NotFoundException ex) {
             Logger.getLogger(HUsuarioTest.class.getName()).log(Level.SEVERE, null, ex);
         }
+        assertNotNull("No se generó la lista", c);
     }
 
     @Test
     public void getConciertosEnMiPaisVerificarTamaño() throws ServiceException {
+        boolean bo = false;
         try {
-            IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
-            
+            IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()), new ConciertoDAO((SessionFactory) sessionFactory()));
+
             Usuario usuario = service.load(1);
-            List<Concierto> c = service.getConciertosEnMiPais(usuario);
+            ArrayList<Concierto> c = service.getConciertosEnMiPais(usuario);
             int tam = c.size();
-            boolean bo = false;
-            if (tam == 1) {
-                bo = true;
-            }
-            assertTrue("Se generó la lista", bo);
+            bo = tam == 1;
+            
         } catch (NotFoundException ex) {
             Logger.getLogger(HUsuarioTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }*/
+        
+        assertTrue("No se generó la lista", bo);
+
+    }
 
     /*
     @Test

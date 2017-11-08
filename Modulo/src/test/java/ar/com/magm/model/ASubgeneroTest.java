@@ -59,10 +59,12 @@ public class ASubgeneroTest extends BaseTest {
     public void testList() throws ServiceException {
         ISubgeneroService service = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));
 
-        //assertEquals("Tamaño erróneo de la lista",0,l.size());
         List<Subgenero> p = service.list();
+        if(p.size() == 0){
+            p = null;
+        }
 
-        assertNotNull("Se generó la lista", p);
+        assertNotNull("No se generó la lista", p);
     }
 
     @Test
