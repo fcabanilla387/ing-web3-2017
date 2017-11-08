@@ -17,7 +17,7 @@ import org.hibernate.annotations.Proxy;
 
 @Entity
 @Proxy(lazy = false)
-//@Access(value = AccessType.FIELD)
+@Access(value = AccessType.FIELD)
 @Table(name = "subgenero")
 public class Subgenero implements Serializable {
 

@@ -60,9 +60,6 @@ public class ASubgeneroTest extends BaseTest {
         ISubgeneroService service = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));
 
         List<Subgenero> p = service.list();
-        if(p.size() == 0){
-            p = null;
-        }
 
         assertNotNull("No se generó la lista", p);
     }
@@ -86,10 +83,13 @@ public class ASubgeneroTest extends BaseTest {
         p = null;
         try {
             p = service.load(1);
+            if (!p.getNombre().equals("Metal")) {
+                p = null;
+            }
         } catch (NotFoundException e) {
         }
 
-        assertNotNull("No se cargo el Subgenero");
+        assertNotNull("No se cargo el Subgenero",p);
     }
 
     /*
