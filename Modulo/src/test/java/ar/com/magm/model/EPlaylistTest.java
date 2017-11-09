@@ -26,6 +26,7 @@ import ar.com.magm.ti.service.exception.ServiceException;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.transaction.Transactional;
 import static org.junit.Assert.assertNotNull;
 
 public class EPlaylistTest extends BaseTest {
@@ -42,7 +43,7 @@ public class EPlaylistTest extends BaseTest {
         Playlist p = null;
         try {
             Usuario usuario = new Usuario();
-            usuario.setId(1);
+            usuario = serviceUsuario.load(1);
             HashSet<Cancion> canciones = new HashSet<Cancion>();
             c = serviceCancion.load(1);
             canciones.add(c);
@@ -56,6 +57,7 @@ public class EPlaylistTest extends BaseTest {
     }
 
     @Test
+    @Transactional
     public void testSaveOrUpdate() throws ServiceException {
         IPlaylistService service = new PlaylistService(new PlaylistDAO((SessionFactory) sessionFactory()));
         ICancionService serviceCancion = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
@@ -82,7 +84,6 @@ public class EPlaylistTest extends BaseTest {
         IPlaylistService service = new PlaylistService(new PlaylistDAO((SessionFactory) sessionFactory()));
         ICancionService serviceCancion = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
         Playlist p = new Playlist();
-        
         p.setPlaylistCancions(new HashSet<Cancion>());
         p.setNombre("Metal");
         Cancion c = new Cancion();

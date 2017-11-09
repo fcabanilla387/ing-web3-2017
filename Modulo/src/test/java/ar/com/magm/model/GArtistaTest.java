@@ -23,7 +23,6 @@ import ar.com.magm.ti.model.service.impl.AlbumService;
 import ar.com.magm.ti.model.service.impl.ArtistaService;
 import ar.com.magm.ti.model.service.impl.ConciertoService;
 import ar.com.magm.ti.service.exception.ServiceException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,7 +54,7 @@ public class GArtistaTest extends BaseTest {
         }
 
         p = service.save(p);
-        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
+        assertNotEquals("Se generó mal el id", 0, (long) p.getId());
     }
 
     @Test
@@ -94,7 +93,7 @@ public class GArtistaTest extends BaseTest {
          * ****************************************************
          * */
         p = service.saveOrUpdate(p);
-        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
+        assertNotEquals("Se generó mal el id", 0, (long) p.getId());
     }
 
     @Test
@@ -102,6 +101,7 @@ public class GArtistaTest extends BaseTest {
         IArtistaService service = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
         IConciertoService serviceConcierto = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
         IAlbumService serviceAlbum = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
+        IArtistaService serviceArtista = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
 
         Artista p = new Artista();
         p.setId(1);
@@ -109,7 +109,9 @@ public class GArtistaTest extends BaseTest {
         p.setGenero("Pop");
         HashSet<Concierto> conciertos = new HashSet<Concierto>();
         HashSet<Album> albums = new HashSet<Album>();
+        HashSet<Artista> arts = new HashSet<Artista>();
         try {
+            /*
             Concierto con = new Concierto();
             con = serviceConcierto.load(1);
             con.setArtista(p);
@@ -117,18 +119,18 @@ public class GArtistaTest extends BaseTest {
             Album al = new Album();
             al = serviceAlbum.load(1);
             albums.add(al);
-            p.setConciertos(conciertos);
-            p.setAlbums(albums);
+            Artista a = serviceArtista.load(1);
+            arts.add(a);*/
+            //p.setConciertos(conciertos);
+            //p.setAlbums(albums);
+            p = new Artista("Rock","Syracuse", new HashSet(), new HashSet(), new HashSet());
+            p.setId(1);
+            p = service.update(p);
         } catch (NotFoundException ex) {
             Logger.getLogger(GArtistaTest.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        try {
-            p = service.update(p);
-        } catch (NotFoundException e) {
-
-        }
-        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
+        assertNotEquals("Se generó mal el id", 0, (long) p.getId());
     }
 
     @Test

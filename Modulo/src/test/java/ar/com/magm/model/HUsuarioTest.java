@@ -43,7 +43,7 @@ public class HUsuarioTest extends BaseTest {
         p.setPais("prueba");
         p.setPremiun(false);
         p.setUsuario("prueba");
-
+        /*
         try {
             HashSet<Playlist> pls = new HashSet<Playlist>();
             Playlist pl;
@@ -53,13 +53,14 @@ public class HUsuarioTest extends BaseTest {
             HashSet<Artista> arts = new HashSet<Artista>();
             Artista art = serviceArtista.load(1);
             arts.add(art);
-            p.setArtistaSeguidos(arts);
-        } catch (NotFoundException ex) {
+            p.setArtistaSeguidos(arts);*/
+        p = new Usuario("1234", "mmanzanelli069@alumnos.iua.edu.ar", "Argentina", true, "Matias", new HashSet(), new HashSet());
+        /*} catch (NotFoundException ex) {
             Logger.getLogger(HUsuarioTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
 
         p = service.save(p);
-        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
+        assertNotEquals("Se generó mal el id", 0, (long) p.getId());
     }
 
     @Test
@@ -70,12 +71,7 @@ public class HUsuarioTest extends BaseTest {
         //List<Usuario> l = service.list();
         //assertEquals("Tamaño erróneo de la lista",0,l.size());
         Usuario p = new Usuario();
-        p.setContrasenia("1111");
-        p.setMail("fcabanilla@gmail.com");
-        p.setPais("Argentina");
-        p.setPremiun(false);
-        p.setUsuario("fcabanilla");
-
+        /*
         try {
             HashSet<Playlist> pls = new HashSet<Playlist>();
             Playlist pl;
@@ -85,13 +81,14 @@ public class HUsuarioTest extends BaseTest {
             HashSet<Artista> arts = new HashSet<Artista>();
             Artista art = serviceArtista.load(2);
             arts.add(art);
-            p.setArtistaSeguidos(arts);
-        } catch (NotFoundException ex) {
+            p.setArtistaSeguidos(arts);*/
+        p = new Usuario("123456", "fcabanilla@hotmail.com", "Argentina", true, "Fede", new HashSet(), new HashSet());
+        /*} catch (NotFoundException ex) {
             Logger.getLogger(HUsuarioTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
 
         p = service.saveOrUpdate(p);
-        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
+        assertNotEquals("Se generó mal el id", 0, (long) p.getId());
     }
 
     @Test
@@ -101,13 +98,13 @@ public class HUsuarioTest extends BaseTest {
         IArtistaService serviceArtista = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
 
         Usuario p = new Usuario();
-        p.setId(1);
+        /*
         p.setContrasenia("6666");
         p.setMail("matiasslpknt@gmail.com");
         p.setPais("Argentina");
         p.setPremiun(true);
-        p.setUsuario("matiasslpknt");
-        try {
+        p.setUsuario("matiasslpknt");*/
+        try {/*
             HashSet<Playlist> pls = new HashSet<Playlist>();
             Playlist pl;
             pl = servicePlaylist.load(1);
@@ -116,17 +113,19 @@ public class HUsuarioTest extends BaseTest {
             HashSet<Artista> arts = new HashSet<Artista>();
             Artista art = serviceArtista.load(1);
             arts.add(art);
-            p.setArtistaSeguidos(arts);
+            p.setArtistaSeguidos(arts);*/
+            p = new Usuario("112233", "matias_slpknt08@gmail.com", "Argentina", true, "Matias1", new HashSet(), new HashSet());
+            p.setId(1);
             p = service.update(p);
         } catch (NotFoundException ex) {
             Logger.getLogger(HUsuarioTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
+        assertNotEquals("Se generó mal el id", 0, (long) p.getId());
     }
 
     @Test
     public void testList() throws ServiceException {
-        
+
         IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()), new ConciertoDAO((SessionFactory) sessionFactory()));
         List<Usuario> p = service.list("matiasslpknt");
         assertNotNull("No se generó la lista", p);
@@ -154,7 +153,7 @@ public class HUsuarioTest extends BaseTest {
 
         assertNotNull("No se cargo el Usuario");
     }
-/*
+    /*
     @Test
     public void getConciertosEnMiPais() throws ServiceException {
         ArrayList<Concierto> c = null;
@@ -193,7 +192,7 @@ public class HUsuarioTest extends BaseTest {
 
     }*/
 
-    /*
+ /*
     @Test
     public void testDelete() throws ServiceException {
         IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));
