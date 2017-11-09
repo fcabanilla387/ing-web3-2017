@@ -29,7 +29,7 @@ public class Usuario implements Serializable {
     @GeneratedValue
     private int id;
     private String usuario;
-    private String contraseña;
+    private String contrasenia;
     private String mail;
     private String pais;
     private boolean premiun;
@@ -80,12 +80,12 @@ public class Usuario implements Serializable {
         this.usuario = usuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     public String getMail() {

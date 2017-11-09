@@ -31,7 +31,7 @@ public class FAlbumTest extends BaseTest {
         ICancionService serviceCancion = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
 
         Album p = new Album();
-        p.setAño(1990);
+        p.setAnio(1990);
         p.setNombre("Death Magnetic");
         Cancion c = new Cancion();
         try {
@@ -51,7 +51,7 @@ public class FAlbumTest extends BaseTest {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
         ICancionService serviceCancion = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
         Album p = new Album();
-        p.setAño(1832);
+        p.setAnio(1832);
         p.setNombre("Dark side of the moon");
         Cancion c = new Cancion();
         try {
@@ -72,7 +72,7 @@ public class FAlbumTest extends BaseTest {
         ICancionService serviceCancion = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
         Album p = new Album();
         p.setId(1);
-        p.setAño(2000);
+        p.setAnio(2000);
         p.setNombre("Iowa");
         p.setListaCanciones(new ArrayList<Cancion>());
 

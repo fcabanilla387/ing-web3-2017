@@ -28,7 +28,7 @@ public class Album implements Serializable {
     private int id;
 
     private String nombre;
-    private int año;
+    private int anio;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "idAlbum")
@@ -59,12 +59,12 @@ public class Album implements Serializable {
         this.nombre = nombre;
     }
 
-    public int getAño() {
-        return año;
+    public int getAnio() {
+        return anio;
     }
 
-    public void setAño(int año) {
-        this.año = año;
+    public void setAnio(int anio) {
+        this.anio = anio;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class Album implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Album: nombre=%s, año=%s", getNombre(), getAño());
+        return String.format("Album: nombre=%s, año=%s", getNombre(), getAnio());
     }
 
     public List<Cancion> getListaCanciones() {
