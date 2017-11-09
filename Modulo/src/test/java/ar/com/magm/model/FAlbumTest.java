@@ -19,6 +19,7 @@ import ar.com.magm.ti.model.service.impl.AlbumService;
 import ar.com.magm.ti.model.service.impl.CancionService;
 import ar.com.magm.ti.service.exception.ServiceException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static org.junit.Assert.assertNotNull;
@@ -36,14 +37,14 @@ public class FAlbumTest extends BaseTest {
         Cancion c = new Cancion();
         try {
             c = serviceCancion.load(1);
-            ArrayList<Cancion> canciones = new ArrayList<Cancion>();
+            HashSet<Cancion> canciones = new HashSet<Cancion>();
             canciones.add(c);
-            p.setListaCanciones(canciones);
+            p.setCancions(canciones);
         } catch (NotFoundException ex) {
             Logger.getLogger(FAlbumTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         p = service.save(p);
-        assertNotEquals("Se generó mal el id", 0, p.getId());
+        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
     }
 
     @Test
@@ -56,14 +57,14 @@ public class FAlbumTest extends BaseTest {
         Cancion c = new Cancion();
         try {
             c = serviceCancion.load(2);
-            ArrayList<Cancion> canciones = new ArrayList<Cancion>();
+            HashSet<Cancion> canciones = new HashSet<Cancion>();
             canciones.add(c);
-            p.setListaCanciones(canciones);
+            p.setCancions(canciones);
         } catch (NotFoundException ex) {
             Logger.getLogger(FAlbumTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         p = service.saveOrUpdate(p);
-        assertNotEquals("Se generó mal el id", 0, p.getId());
+        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
     }
 
     @Test
@@ -74,19 +75,19 @@ public class FAlbumTest extends BaseTest {
         p.setId(1);
         p.setAnio(2000);
         p.setNombre("Iowa");
-        p.setListaCanciones(new ArrayList<Cancion>());
+        p.setCancions(new HashSet<Cancion>());
 
         Cancion c = new Cancion();
         try {
             c = serviceCancion.load(1);
-            ArrayList<Cancion> canciones = new ArrayList<Cancion>();
+            HashSet<Cancion> canciones = new HashSet<Cancion>();
             canciones.add(c);
-            p.setListaCanciones(canciones);
+            p.setCancions(canciones);
             p = service.update(p);
         } catch (NotFoundException ex) {
             Logger.getLogger(FAlbumTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        assertNotEquals("Se generó mal el id", 0, p.getId());
+        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
     }
 
     @Test

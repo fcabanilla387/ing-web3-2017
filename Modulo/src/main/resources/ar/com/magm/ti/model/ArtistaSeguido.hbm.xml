@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/11/2017 23:33:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ar.com.magm.ti.model.ArtistaSeguido" table="artista_seguido" catalog="ti" optimistic-lock="version">
+        <composite-id name="id" class="ar.com.magm.ti.model.ArtistaSeguidoId">
+            <key-property name="idUsuario" type="int">
+                <column name="idUsuario" />
+            </key-property>
+            <key-property name="idArtista" type="int">
+                <column name="IdArtista" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="artista" class="ar.com.magm.ti.model.Artista" update="false" insert="false" fetch="select">
+            <column name="IdArtista" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="ar.com.magm.ti.model.Usuario" update="false" insert="false" fetch="select">
+            <column name="idUsuario" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

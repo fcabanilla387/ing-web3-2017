@@ -19,6 +19,7 @@ import ar.com.magm.ti.model.service.impl.GeneroService;
 import ar.com.magm.ti.model.service.impl.SubgeneroService;
 import ar.com.magm.ti.service.exception.ServiceException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static org.junit.Assert.assertNotNull;
@@ -32,7 +33,7 @@ public class BGeneroTest extends BaseTest {
 
         Genero p = new Genero();
         p.setNombre("Metal");
-        ArrayList<Subgenero> subgeneros = new ArrayList<Subgenero>();
+        HashSet<Subgenero> subgeneros = new HashSet<Subgenero>();
         Subgenero s = new Subgenero();
         try {
             s = service1.load(1);
@@ -43,7 +44,7 @@ public class BGeneroTest extends BaseTest {
         p.setSubgeneros(subgeneros);
 
         p = service.save(p);
-        assertNotEquals("Se generó mal el id", 0, p.getIdGenero());
+        assertNotEquals("Se generó mal el id", 0, (long)p.getIdGenero());
     }
 
     @Test
@@ -53,7 +54,7 @@ public class BGeneroTest extends BaseTest {
         Genero p = new Genero();
 
         p.setNombre("Trash");
-        ArrayList<Subgenero> subgeneros = new ArrayList<Subgenero>();
+        HashSet<Subgenero> subgeneros = new HashSet<Subgenero>();
         Subgenero s = new Subgenero();
         try {
             s = service1.load(2);
@@ -64,7 +65,7 @@ public class BGeneroTest extends BaseTest {
         p.setSubgeneros(subgeneros);
 
         p = service.saveOrUpdate(p);
-        assertNotEquals("Se generó mal el id", 0, p.getIdGenero());
+        assertNotEquals("Se generó mal el id", 0, (long)p.getIdGenero());
     }
 
     @Test
@@ -74,7 +75,7 @@ public class BGeneroTest extends BaseTest {
         Genero p = new Genero();
         p.setIdGenero(2);
         p.setNombre("Trash");
-        ArrayList<Subgenero> subgeneros = new ArrayList<Subgenero>();
+        HashSet<Subgenero> subgeneros = new HashSet<Subgenero>();
         Subgenero s = new Subgenero();
         try {
             s = service1.load(2);
@@ -88,7 +89,7 @@ public class BGeneroTest extends BaseTest {
         } catch (NotFoundException e) {
 
         }
-        assertNotEquals("Se generó mal el id", 0, p.getIdGenero());
+        assertNotEquals("Se generó mal el id", 0, (long)p.getIdGenero());
     }
 
     @Test

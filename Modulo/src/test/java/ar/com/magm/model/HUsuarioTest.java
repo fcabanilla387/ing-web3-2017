@@ -2,7 +2,6 @@ package ar.com.magm.model;
 
 import ar.com.magm.ti.exception.NotFoundException;
 import ar.com.magm.ti.model.Artista;
-import ar.com.magm.ti.model.Concierto;
 import ar.com.magm.ti.model.Playlist;
 import ar.com.magm.ti.model.Usuario;
 import ar.com.magm.ti.model.dao.hibernate.ArtistaDAO;
@@ -24,6 +23,7 @@ import ar.com.magm.ti.model.service.impl.PlaylistService;
 import ar.com.magm.ti.model.service.impl.UsuarioService;
 import ar.com.magm.ti.service.exception.ServiceException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static org.junit.Assert.assertNotNull;
@@ -45,21 +45,21 @@ public class HUsuarioTest extends BaseTest {
         p.setUsuario("prueba");
 
         try {
-            ArrayList<Playlist> pls = new ArrayList<Playlist>();
+            HashSet<Playlist> pls = new HashSet<Playlist>();
             Playlist pl;
             pl = servicePlaylist.load(1);
             pls.add(pl);
             p.setPlaylists(pls);
-            ArrayList<Artista> arts = new ArrayList<Artista>();
+            HashSet<Artista> arts = new HashSet<Artista>();
             Artista art = serviceArtista.load(1);
             arts.add(art);
-            p.setArtistasSeguidos(arts);
+            p.setArtistaSeguidos(arts);
         } catch (NotFoundException ex) {
             Logger.getLogger(HUsuarioTest.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         p = service.save(p);
-        assertNotEquals("Se generó mal el id", 0, p.getId());
+        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
     }
 
     @Test
@@ -77,21 +77,21 @@ public class HUsuarioTest extends BaseTest {
         p.setUsuario("fcabanilla");
 
         try {
-            ArrayList<Playlist> pls = new ArrayList<Playlist>();
+            HashSet<Playlist> pls = new HashSet<Playlist>();
             Playlist pl;
             pl = servicePlaylist.load(2);
             pls.add(pl);
             p.setPlaylists(pls);
-            ArrayList<Artista> arts = new ArrayList<Artista>();
+            HashSet<Artista> arts = new HashSet<Artista>();
             Artista art = serviceArtista.load(2);
             arts.add(art);
-            p.setArtistasSeguidos(arts);
+            p.setArtistaSeguidos(arts);
         } catch (NotFoundException ex) {
             Logger.getLogger(HUsuarioTest.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         p = service.saveOrUpdate(p);
-        assertNotEquals("Se generó mal el id", 0, p.getId());
+        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
     }
 
     @Test
@@ -108,20 +108,20 @@ public class HUsuarioTest extends BaseTest {
         p.setPremiun(true);
         p.setUsuario("matiasslpknt");
         try {
-            ArrayList<Playlist> pls = new ArrayList<Playlist>();
+            HashSet<Playlist> pls = new HashSet<Playlist>();
             Playlist pl;
             pl = servicePlaylist.load(1);
             pls.add(pl);
             p.setPlaylists(pls);
-            ArrayList<Artista> arts = new ArrayList<Artista>();
+            HashSet<Artista> arts = new HashSet<Artista>();
             Artista art = serviceArtista.load(1);
             arts.add(art);
-            p.setArtistasSeguidos(arts);
+            p.setArtistaSeguidos(arts);
             p = service.update(p);
         } catch (NotFoundException ex) {
             Logger.getLogger(HUsuarioTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        assertNotEquals("Se generó mal el id", 0, p.getId());
+        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
     }
 
     @Test

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/11/2017 23:33:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ar.com.magm.ti.model.Playlist" table="playlist" catalog="ti" optimistic-lock="version">
+        <id name="idPlaylist" type="java.lang.Integer">
+            <column name="idPlaylist" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuario" class="ar.com.magm.ti.model.Usuario" fetch="select">
+            <column name="idUsuario" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" />
+        </property>
+        <set name="playlistCancions" table="playlist_cancion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idPlaylist" not-null="true" />
+            </key>
+            <one-to-many class="ar.com.magm.ti.model.PlaylistCancion" />
+        </set>
+    </class>
+</hibernate-mapping>

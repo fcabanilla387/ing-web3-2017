@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/11/2017 23:33:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ar.com.magm.ti.model.Usuario" table="usuario" catalog="ti" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="contrasenia" type="string">
+            <column name="contrasenia" />
+        </property>
+        <property name="mail" type="string">
+            <column name="mail" />
+        </property>
+        <property name="pais" type="string">
+            <column name="pais" />
+        </property>
+        <property name="premiun" type="boolean">
+            <column name="premiun" not-null="true" />
+        </property>
+        <property name="usuario" type="string">
+            <column name="usuario" />
+        </property>
+        <set name="playlists" table="playlist" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idUsuario" />
+            </key>
+            <one-to-many class="ar.com.magm.ti.model.Playlist" />
+        </set>
+        <set name="artistaSeguidos" table="artista_seguido" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idUsuario" not-null="true" />
+            </key>
+            <one-to-many class="ar.com.magm.ti.model.ArtistaSeguido" />
+        </set>
+    </class>
+</hibernate-mapping>

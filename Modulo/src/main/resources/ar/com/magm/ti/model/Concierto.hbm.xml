@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/11/2017 23:33:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ar.com.magm.ti.model.Concierto" table="concierto" catalog="ti" optimistic-lock="version">
+        <id name="idConcierto" type="java.lang.Integer">
+            <column name="idConcierto" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="artista" class="ar.com.magm.ti.model.Artista" fetch="select">
+            <column name="idArtista" />
+        </many-to-one>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" />
+        </property>
+        <property name="lugar" type="string">
+            <column name="lugar" />
+        </property>
+        <property name="pais" type="string">
+            <column name="pais" />
+        </property>
+    </class>
+</hibernate-mapping>

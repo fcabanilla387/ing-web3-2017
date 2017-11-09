@@ -24,6 +24,7 @@ import ar.com.magm.ti.model.service.impl.ArtistaService;
 import ar.com.magm.ti.model.service.impl.ConciertoService;
 import ar.com.magm.ti.service.exception.ServiceException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static org.junit.Assert.assertNotNull;
@@ -38,8 +39,8 @@ public class GArtistaTest extends BaseTest {
         Artista p = new Artista();
         p.setNombre("Kevin Johansen + The Nada");
         p.setGenero("Rock");
-        ArrayList<Concierto> conciertos = new ArrayList<Concierto>();
-        ArrayList<Album> albums = new ArrayList<Album>();
+        HashSet<Concierto> conciertos = new HashSet<Concierto>();
+        HashSet<Album> albums = new HashSet<Album>();
         try {
             Concierto con = new Concierto();
             con = serviceConcierto.load(1);
@@ -54,7 +55,7 @@ public class GArtistaTest extends BaseTest {
         }
 
         p = service.save(p);
-        assertNotEquals("Se generó mal el id", 0, p.getId());
+        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
     }
 
     @Test
@@ -72,8 +73,8 @@ public class GArtistaTest extends BaseTest {
         Artista p = new Artista();
         p.setNombre("The Black Eyes Peas");
         p.setGenero("Pop");
-        ArrayList<Concierto> conciertos = new ArrayList<Concierto>();
-        ArrayList<Album> albums = new ArrayList<Album>();
+        HashSet<Concierto> conciertos = new HashSet<Concierto>();
+        HashSet<Album> albums = new HashSet<Album>();
         try {
             Concierto con = new Concierto();
             con = serviceConcierto.load(2);
@@ -93,7 +94,7 @@ public class GArtistaTest extends BaseTest {
          * ****************************************************
          * */
         p = service.saveOrUpdate(p);
-        assertNotEquals("Se generó mal el id", 0, p.getId());
+        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
     }
 
     @Test
@@ -106,8 +107,8 @@ public class GArtistaTest extends BaseTest {
         p.setId(1);
         p.setNombre("Joss Stone");
         p.setGenero("Pop");
-        ArrayList<Concierto> conciertos = new ArrayList<Concierto>();
-        ArrayList<Album> albums = new ArrayList<Album>();
+        HashSet<Concierto> conciertos = new HashSet<Concierto>();
+        HashSet<Album> albums = new HashSet<Album>();
         try {
             Concierto con = new Concierto();
             con = serviceConcierto.load(1);
@@ -127,7 +128,7 @@ public class GArtistaTest extends BaseTest {
         } catch (NotFoundException e) {
 
         }
-        assertNotEquals("Se generó mal el id", 0, p.getId());
+        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
     }
 
     @Test

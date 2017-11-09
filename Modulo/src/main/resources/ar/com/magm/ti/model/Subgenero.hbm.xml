@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/11/2017 23:33:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ar.com.magm.ti.model.Subgenero" table="subgenero" catalog="ti" optimistic-lock="version">
+        <id name="idSubgenero" type="java.lang.Integer">
+            <column name="idSubgenero" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="genero" class="ar.com.magm.ti.model.Genero" fetch="select">
+            <column name="idGenero" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" />
+        </property>
+        <set name="cancions" table="cancion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idSubgenero" />
+            </key>
+            <one-to-many class="ar.com.magm.ti.model.Cancion" />
+        </set>
+    </class>
+</hibernate-mapping>

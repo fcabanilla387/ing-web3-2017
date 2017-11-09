@@ -6,12 +6,12 @@ import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ar.com.magm.ti.model.Persona;
+import ar.com.magm.ti.model.Personas;
 import ar.com.magm.ti.model.dao.IPersonaDAO;
 import ar.com.magm.ti.persistence.dao.hibernate.GenericDAO;
 import ar.com.magm.ti.persistence.exception.PersistenceException;
 
-public class PersonaDAO extends GenericDAO<Persona, Integer> implements IPersonaDAO {
+public class PersonaDAO extends GenericDAO<Personas, Integer> implements IPersonaDAO {
 
     private static Logger LOG = LoggerFactory.getLogger(PersonaDAO.class);
 
@@ -21,8 +21,8 @@ public class PersonaDAO extends GenericDAO<Persona, Integer> implements IPersona
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Persona> list(String parteDelNombre) throws PersistenceException {
-        List<Persona> l = null;
+    public List<Personas> list(String parteDelNombre) throws PersistenceException {
+        List<Personas> l = null;
         try {
             l = getSession().createQuery("FROM Personas p WHERE p.nombre LIKE :parteNombre")
                     .setString("parteNombre", "%" + parteDelNombre + "%").list();
