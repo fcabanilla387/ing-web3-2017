@@ -29,7 +29,7 @@ public class DConciertoTest extends BaseTest {
         p.setPais("Argentina");
 
         p = service.save(p);
-        assertNotEquals("Se generó mal el id", 0, (long)p.getIdConcierto());
+        assertNotEquals("Se generó mal el id", 0, p.getIdConcierto());
     }
 
     @Test
@@ -42,7 +42,7 @@ public class DConciertoTest extends BaseTest {
         p.setPais("Uruguay");
 
         p = service.saveOrUpdate(p);
-        assertNotEquals("Se generó mal el id", 0, (long)p.getIdConcierto());
+        assertNotEquals("Se generó mal el id", 0, p.getIdConcierto());
     }
 
     @Test
@@ -59,7 +59,7 @@ public class DConciertoTest extends BaseTest {
         } catch (NotFoundException e) {
 
         }
-        assertNotEquals("Se generó mal el id", 0, (long)p.getIdConcierto());
+        assertNotEquals("Se generó mal el id", 0, p.getIdConcierto());
     }
 
     @Test

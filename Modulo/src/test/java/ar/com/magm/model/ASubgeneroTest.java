@@ -26,7 +26,7 @@ public class ASubgeneroTest extends BaseTest {
         Subgenero p = new Subgenero();
         p.setNombre("Metal");
         p = service.save(p);
-        assertNotEquals("Se generó mal el id", 0, (long)p.getIdSubgenero());
+        assertNotEquals("Se generó mal el id", 0, p.getIdSubgenero());
     }
 
     @Test
@@ -36,7 +36,7 @@ public class ASubgeneroTest extends BaseTest {
         Subgenero p = new Subgenero();
         p.setNombre("Punk");
         p = service.saveOrUpdate(p);
-        assertNotEquals("Se generó mal el id", 0, (long)p.getIdSubgenero());
+        assertNotEquals("Se generó mal el id", 0, p.getIdSubgenero());
     }
 
     @Test
@@ -52,7 +52,7 @@ public class ASubgeneroTest extends BaseTest {
         } catch (NotFoundException e) {
 
         }
-        assertNotEquals("Se generó mal el id", 0, (long)p.getIdSubgenero());
+        assertNotEquals("Se generó mal el id", 0, p.getIdSubgenero());
     }
 
     @Test
@@ -80,10 +80,15 @@ public class ASubgeneroTest extends BaseTest {
         ISubgeneroService service = new SubgeneroService(new SubgeneroDAO((SessionFactory) sessionFactory()));
 
         Subgenero p = new Subgenero();
+        p = null;
         try {
             p = service.load(1);
+            if (!p.getNombre().equals("Metal")) {
+                p = null;
+            }
         } catch (NotFoundException e) {
         }
+
         assertNotNull("No se cargo el Subgenero",p);
     }
 

@@ -41,7 +41,7 @@ public class CCancionTest extends BaseTest {
         } catch (NotFoundException ex) {
             Logger.getLogger(CCancionTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
+        assertNotEquals("Se generó mal el id", 0, p.getId());
     }
 
     @Test
@@ -94,7 +94,7 @@ public class CCancionTest extends BaseTest {
         } catch (NotFoundException ex) {
             Logger.getLogger(CCancionTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
+        assertNotEquals("Se generó mal el id", 0, p.getId());
     }
 
     @Test
@@ -113,7 +113,7 @@ public class CCancionTest extends BaseTest {
         } catch (NotFoundException ex) {
             Logger.getLogger(CCancionTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
+        assertNotEquals("Se generó mal el id", 0, p.getId());
     }
 
     /*

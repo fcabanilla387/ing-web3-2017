@@ -19,7 +19,6 @@ import ar.com.magm.ti.model.service.impl.AlbumService;
 import ar.com.magm.ti.model.service.impl.CancionService;
 import ar.com.magm.ti.service.exception.ServiceException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static org.junit.Assert.assertNotNull;
@@ -32,19 +31,19 @@ public class FAlbumTest extends BaseTest {
         ICancionService serviceCancion = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
 
         Album p = new Album();
-        p.setAnio(1990);
+        p.setAño(1990);
         p.setNombre("Death Magnetic");
         Cancion c = new Cancion();
         try {
             c = serviceCancion.load(1);
-            HashSet<Cancion> canciones = new HashSet<Cancion>();
+            ArrayList<Cancion> canciones = new ArrayList<Cancion>();
             canciones.add(c);
-            p.setCancions(canciones);
+            p.setListaCanciones(canciones);
         } catch (NotFoundException ex) {
             Logger.getLogger(FAlbumTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         p = service.save(p);
-        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
+        assertNotEquals("Se generó mal el id", 0, p.getId());
     }
 
     @Test
@@ -52,19 +51,19 @@ public class FAlbumTest extends BaseTest {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
         ICancionService serviceCancion = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
         Album p = new Album();
-        p.setAnio(1832);
+        p.setAño(1832);
         p.setNombre("Dark side of the moon");
         Cancion c = new Cancion();
         try {
             c = serviceCancion.load(2);
-            HashSet<Cancion> canciones = new HashSet<Cancion>();
+            ArrayList<Cancion> canciones = new ArrayList<Cancion>();
             canciones.add(c);
-            p.setCancions(canciones);
+            p.setListaCanciones(canciones);
         } catch (NotFoundException ex) {
             Logger.getLogger(FAlbumTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         p = service.saveOrUpdate(p);
-        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
+        assertNotEquals("Se generó mal el id", 0, p.getId());
     }
 
     @Test
@@ -73,21 +72,21 @@ public class FAlbumTest extends BaseTest {
         ICancionService serviceCancion = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
         Album p = new Album();
         p.setId(1);
-        p.setAnio(2000);
+        p.setAño(2000);
         p.setNombre("Iowa");
-        p.setCancions(new HashSet<Cancion>());
+        p.setListaCanciones(new ArrayList<Cancion>());
 
         Cancion c = new Cancion();
         try {
             c = serviceCancion.load(1);
-            HashSet<Cancion> canciones = new HashSet<Cancion>();
+            ArrayList<Cancion> canciones = new ArrayList<Cancion>();
             canciones.add(c);
-            p.setCancions(canciones);
+            p.setListaCanciones(canciones);
             p = service.update(p);
         } catch (NotFoundException ex) {
             Logger.getLogger(FAlbumTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        assertNotEquals("Se generó mal el id", 0, (long)p.getId());
+        assertNotEquals("Se generó mal el id", 0, p.getId());
     }
 
     @Test
