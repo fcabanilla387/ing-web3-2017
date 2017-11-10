@@ -1,8 +1,7 @@
 package ar.com.magm.model;
 
 import ar.com.magm.ti.exception.NotFoundException;
-import ar.com.magm.ti.model.Artista;
-import ar.com.magm.ti.model.Playlist;
+import ar.com.magm.ti.model.Concierto;
 import ar.com.magm.ti.model.Usuario;
 import ar.com.magm.ti.model.dao.hibernate.ArtistaDAO;
 import ar.com.magm.ti.model.dao.hibernate.ConciertoDAO;
@@ -57,7 +56,7 @@ public class HUsuarioTest extends BaseTest {
         p = new Usuario("1234", "mmanzanelli069@alumnos.iua.edu.ar", "Argentina", true, "Matias", new HashSet(), new HashSet());
         /*} catch (NotFoundException ex) {
             Logger.getLogger(HUsuarioTest.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
 
         p = service.save(p);
         assertNotEquals("Se generó mal el id", 0, (long) p.getId());
@@ -153,46 +152,48 @@ public class HUsuarioTest extends BaseTest {
 
         assertNotNull("No se cargo el Usuario");
     }
-    /*
+
     @Test
     public void getConciertosEnMiPais() throws ServiceException {
         ArrayList<Concierto> c = null;
-        try {
-            IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()), new ConciertoDAO((SessionFactory) sessionFactory()));
+        //try {
+        IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()), new ConciertoDAO((SessionFactory) sessionFactory()));
 
-            Usuario usuario = service.load(1);
-            c = service.getConciertosEnMiPais(usuario);
-            if(c.size()==0){
-                c = null;
-            }
+        Usuario usuario = new Usuario();
+        usuario.setPais("Argentina");
+        c = service.getConciertosEnMiPais(usuario);
+        if (c.size() == 0) {
+            c = null;
+        }
 
-            
+        /* 
         } catch (NotFoundException ex) {
             Logger.getLogger(HUsuarioTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         assertNotNull("No se generó la lista", c);
     }
 
     @Test
     public void getConciertosEnMiPaisVerificarTamaño() throws ServiceException {
         boolean bo = false;
-        try {
+        //try {
             IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()), new ConciertoDAO((SessionFactory) sessionFactory()));
 
-            Usuario usuario = service.load(1);
+            Usuario usuario = new Usuario();
+            usuario.setPais("Argentina");
             ArrayList<Concierto> c = service.getConciertosEnMiPais(usuario);
             int tam = c.size();
-            bo = tam == 1;
-            
+            bo = tam == 32;
+/*
         } catch (NotFoundException ex) {
             Logger.getLogger(HUsuarioTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }*/
+
         assertTrue("No se generó la lista", bo);
 
-    }*/
+    }
 
- /*
+    /*
     @Test
     public void testDelete() throws ServiceException {
         IUsuarioService service = new UsuarioService(new UsuarioDAO((SessionFactory) sessionFactory()));

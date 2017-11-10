@@ -3,6 +3,7 @@ package ar.com.magm.model;
 //import static org.junit.Assert.assertEquals;
 import ar.com.magm.ti.exception.NotFoundException;
 import ar.com.magm.ti.model.Concierto;
+import ar.com.magm.ti.model.dao.hibernate.ArtistaDAO;
 import static org.junit.Assert.assertNotEquals;
 
 import java.util.List;
@@ -11,10 +12,14 @@ import org.hibernate.SessionFactory;
 import org.junit.Test;
 
 import ar.com.magm.ti.model.dao.hibernate.ConciertoDAO;
+import ar.com.magm.ti.model.service.IArtistaService;
 import ar.com.magm.ti.model.service.IConciertoService;
+import ar.com.magm.ti.model.service.impl.ArtistaService;
 import ar.com.magm.ti.model.service.impl.ConciertoService;
 import ar.com.magm.ti.service.exception.ServiceException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static org.junit.Assert.assertNotNull;
 
 public class DConciertoTest extends BaseTest {
@@ -22,11 +27,17 @@ public class DConciertoTest extends BaseTest {
     @Test
     public void testSave() throws ServiceException {
         IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
+        IArtistaService serviceArtista = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
 
         Concierto p = new Concierto();
         p.setFecha(new Date());
         p.setLugar("Orfeo Superdomo");
-        p.setPais("Argentina");
+        p.setPais("Argentina");        
+        try {
+            p.setArtista(serviceArtista.load(1));
+        } catch (NotFoundException ex) {
+            Logger.getLogger(DConciertoTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         p = service.save(p);
         assertNotEquals("Se generó mal el id", 0, (long)p.getIdConcierto());
@@ -35,11 +46,17 @@ public class DConciertoTest extends BaseTest {
     @Test
     public void testSaveOrUpdate() throws ServiceException {
         IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
-
+        IArtistaService serviceArtista = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
+        
         Concierto p = new Concierto();
         p.setFecha(new Date());
         p.setLugar("Luna Park");
         p.setPais("Uruguay");
+        try {
+            p.setArtista(serviceArtista.load(1));
+        } catch (NotFoundException ex) {
+            Logger.getLogger(DConciertoTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         p = service.saveOrUpdate(p);
         assertNotEquals("Se generó mal el id", 0, (long)p.getIdConcierto());
@@ -48,17 +65,21 @@ public class DConciertoTest extends BaseTest {
     @Test
     public void testUpdate() throws ServiceException {
         IConciertoService service = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
-
+        IArtistaService serviceArtista = new ArtistaService(new ArtistaDAO((SessionFactory) sessionFactory()));
+        
         Concierto p = new Concierto();
         p.setIdConcierto(1);
         p.setFecha(new Date());
         p.setLugar("Chateau Carreras");
         p.setPais("Argentina");
         try {
+            p.setArtista(serviceArtista.load(1));
+         
             p = service.update(p);
-        } catch (NotFoundException e) {
-
+        } catch (NotFoundException ex) {
+            Logger.getLogger(DConciertoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         assertNotEquals("Se generó mal el id", 0, (long)p.getIdConcierto());
     }
 

@@ -3,7 +3,9 @@ package ar.com.magm.model;
 //import static org.junit.Assert.assertEquals;
 import ar.com.magm.ti.exception.NotFoundException;
 import ar.com.magm.ti.model.Album;
+import ar.com.magm.ti.model.Artista;
 import ar.com.magm.ti.model.Cancion;
+import ar.com.magm.ti.model.Concierto;
 import static org.junit.Assert.assertNotEquals;
 
 import java.util.List;
@@ -13,12 +15,14 @@ import org.junit.Test;
 
 import ar.com.magm.ti.model.dao.hibernate.AlbumDAO;
 import ar.com.magm.ti.model.dao.hibernate.CancionDAO;
+import ar.com.magm.ti.model.dao.hibernate.ConciertoDAO;
 import ar.com.magm.ti.model.service.IAlbumService;
 import ar.com.magm.ti.model.service.ICancionService;
+import ar.com.magm.ti.model.service.IConciertoService;
 import ar.com.magm.ti.model.service.impl.AlbumService;
 import ar.com.magm.ti.model.service.impl.CancionService;
+import ar.com.magm.ti.model.service.impl.ConciertoService;
 import ar.com.magm.ti.service.exception.ServiceException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,16 +34,29 @@ public class FAlbumTest extends BaseTest {
     public void testSave() throws ServiceException {
         IAlbumService service = new AlbumService(new AlbumDAO((SessionFactory) sessionFactory()));
         ICancionService serviceCancion = new CancionService(new CancionDAO((SessionFactory) sessionFactory()));
+        IConciertoService serviceConcierto = new ConciertoService(new ConciertoDAO((SessionFactory) sessionFactory()));
 
         Album p = new Album();
         p.setAnio(1990);
-        p.setNombre("Death Magnetic");
-        Cancion c = new Cancion();
+        
+        Cancion c1 = new Cancion();
+        Cancion c2 = new Cancion();
+        Cancion c3 = new Cancion();
         try {
-            c = serviceCancion.load(1);
+            c1 = serviceCancion.load(1);
+            c2 = serviceCancion.load(2);
+            c3 = serviceCancion.load(3);
             HashSet<Cancion> canciones = new HashSet<Cancion>();
-            canciones.add(c);
+            canciones.add(c1);
+            canciones.add(c2);
+            canciones.add(c3);
             p.setCancions(canciones);
+            Artista artista = new Artista();
+            p = new Album(artista, 1990, "Death Magnetic", canciones);
+            Concierto co = serviceConcierto.load(1);
+            HashSet<Concierto> cons = new HashSet<Concierto>();
+            cons.add(co);
+            artista = new Artista("Rock", "Red hot Chilli Peppers", cons, new HashSet(), new HashSet());
         } catch (NotFoundException ex) {
             Logger.getLogger(FAlbumTest.class.getName()).log(Level.SEVERE, null, ex);
         }
